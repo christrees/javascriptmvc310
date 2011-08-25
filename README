@@ -1,0 +1,81 @@
+Intent:  Test javascriptmvc 3.1.0 zip project
+Goal: working spools site based javascriptmvc-3.1.0.zip
+DateCreated: 2011.08.25
+DateLast: 2011.08.25 <or look this stuff up on github repo history>
+
+Resources:
+WEB: http://js.javascriptmvc310/
+WEB: http://js.javascriptmvc305/
+FILE: C:\Users\ChrisT\workspace\javascriptmvc310
+FILE: C:\Users\ChrisT\workspace\javascriptmvc305
+GITHUB https://github.com/christrees/javascriptmvc310
+OLD GITHUB https://github.com/christrees/javascriptmvc305
+
+Spools STEPS: https://github.com/christrees/javascriptmvc305/tree/spools
+======================================================================================
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 1 - Setup 310
+<<<<<<<<<<<<<<<<<
+--Well... I was having an issue with some of the edit update in the old code <failed server updated>
+--I was thinking it was broken somehere in the source or I had did something that messed it up
+--SO.... I figure I'd just rewrite this from scratch using 3.1.0
+--First pull the zip file https://github.com/downloads/jupiterjs/javascriptmvc/javascriptmvc-3.1.0.zip
+--Expand to C:\Users\ChrisT\workspace\javascriptmvc310
+--Put in this README
+--Put in my .gitnore
+--C:\Users\ChrisT\workspace\javascriptmvc310>git init
+--Create repo on GITHUB https://github.com/christrees/javascriptmvc310
+--C:\Users\ChrisT\workspace\javascriptmvc310>git remote add origin git@github.com:christrees/javascriptmvc310.git
+
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "first commit"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin master
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 1 - TEST
+<<<<<<<<<<<<<<<<<
+Browse - https://github.com/christrees/javascriptmvc310
+SUCCESS>>
+?FAILURE>>
+??WHAT?>>
+
+======================================================================================
+------- copy buffer --------------
+?????????????????????????????????
+<<<<<<<<<<<<<<<<<
+>>>>>STEP x - <step subject>
+<<<<<<<<<<<<<<<<<
+--WHAT the heck to do next... how about blahblah
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "blah blah"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+<<<<<<<<<<<<<<<<<
+>>>>>STEP x - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc305/spools/spools.html
+SUCCESS>>
+?FAILURE>>
+??WHAT?>>
+???????????????????????????????????????
+>>>>>UNUSED / NEXT BUG ID BIN<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>BUG:3 BEGIN
+<<<<<BUG:3 END
+>>>>>BUG:4 BEGIN
+<<<<<BUG:4 END
+>>>>>BUG:5 BEGIN
+<<<<<BUG:5 END
+>>>>>BUG:6 BEGIN
+<<<<<BUG:6 END
+>>>>>BUG:7 BEGIN
+<<<<<BUG:7 END
+>>>>>BUG:8 BEGIN
+<<<<<BUG:8 END
+>>>>>BUG:9 BEGIN
+<<<<<BUG:9 END
