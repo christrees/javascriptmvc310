@@ -59,11 +59,16 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git checkout spools
 127.0.0.1 js.javascriptmvc310 # javascriptmvc310 zip test
 --Edit hosts on clients I'm using
 192.168.1.174 js.javascriptmvc310 # javascriptmvc310 zip test
-
+--RESTART WEBSERVER
+--Do the javascriptmvc magic
+C:\Users\ChrisT\workspace\javascriptmvc310>js jquery\generate\app spools
+--<lots of spools files created in spools directory>
+C:\Users\ChrisT\workspace\javascriptmvc310>js jquery\generate\scaffold Spools.Models.Token
+--<lots of spools files created in spools directory>
 --Lets commit this
 --SAVE THIS README
 C:\Users\ChrisT\workspace\javascriptmvc310>git add .
-C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "blah blah"
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "Basic Spools App"
 C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
 [cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
@@ -71,10 +76,8 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 <<<<<<<<<<<<<<<<<
 >>>>>STEP x - TEST
 <<<<<<<<<<<<<<<<<
-Browse - http://js.javascriptmvc305/spools/spools.html
+Browse - http://js.javascriptmvc310/spools/spools.html
 SUCCESS>>
-?FAILURE>>
-??WHAT?>>
 
 ======================================================================================
 ------- copy buffer --------------
