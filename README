@@ -23,10 +23,9 @@ Spools STEPS: https://github.com/christrees/javascriptmvc305/tree/spools
 --Expand to C:\Users\ChrisT\workspace\javascriptmvc310
 --Put in this README
 --Put in my .gitnore
---C:\Users\ChrisT\workspace\javascriptmvc310>git init
+C:\Users\ChrisT\workspace\javascriptmvc310>git init
 --Create repo on GITHUB https://github.com/christrees/javascriptmvc310
---C:\Users\ChrisT\workspace\javascriptmvc310>git remote add origin git@github.com:christrees/javascriptmvc310.git
-
+C:\Users\ChrisT\workspace\javascriptmvc310>git remote add origin git@github.com:christrees/javascriptmvc310.git
 --Lets commit this
 --SAVE THIS README
 C:\Users\ChrisT\workspace\javascriptmvc310>git add .
@@ -36,6 +35,43 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin master
 >>>>>STEP 1 - TEST
 <<<<<<<<<<<<<<<<<
 Browse - https://github.com/christrees/javascriptmvc310
+SUCCESS>>
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 2 - Spools branch, WebServer Config and Spools App Gen
+<<<<<<<<<<<<<<<<<
+C:\Users\ChrisT\workspace\javascriptmvc310>git branch spools
+C:\Users\ChrisT\workspace\javascriptmvc310>git checkout spools
+--Edit httpd.conf
+<VirtualHost *:80>
+   DocumentRoot "C:\Users\ChrisT\workspace\javascriptmvc305"
+   ServerName js.javascriptmvc305
+#<FilesMatch "token" >
+#    SetHandler application/x-httpd-php
+#</FilesMatch>
+   <Directory "C:\Users\ChrisT\workspace\javascriptmvc305">
+       Options Indexes MultiViews FollowSymLinks
+       AllowOverride All
+       Order allow,deny
+       Allow from all
+   </Directory>
+</VirtualHost>
+--Edit hosts
+127.0.0.1 js.javascriptmvc310 # javascriptmvc310 zip test
+--Edit hosts on clients I'm using
+192.168.1.174 js.javascriptmvc310 # javascriptmvc310 zip test
+
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "blah blah"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+<<<<<<<<<<<<<<<<<
+>>>>>STEP x - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc305/spools/spools.html
 SUCCESS>>
 ?FAILURE>>
 ??WHAT?>>
