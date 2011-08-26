@@ -70,15 +70,100 @@ C:\Users\ChrisT\workspace\javascriptmvc310>js jquery\generate\scaffold Spools.Mo
 C:\Users\ChrisT\workspace\javascriptmvc310>git add .
 C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "Basic Spools App"
 C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
-[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
-[cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
-[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
 <<<<<<<<<<<<<<<<<
->>>>>STEP x - TEST
+>>>>>STEP 3 - Test
 <<<<<<<<<<<<<<<<<
 Browse - http://js.javascriptmvc310/spools/spools.html
 SUCCESS>>
-
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 4 - Spools Models
+<<<<<<<<<<<<<<<<<
+--OK lets put in the CRUD models we know we need.
+--EDIT spools.js
+steal.plugins(	
+	'jquery/controller',			// a widget factory
+	'jquery/controller/subscribe',          // subscribe to OpenAjax.hub
+	'jquery/view/ejs',			// client side templates
+	'jquery/controller/view',		// lookup views with the controller's name
+	'jquery/model',				// Ajax wrappers
+//	'jquery/dom/fixture',			// simulated Ajax requests
+	'jquery/dom/form_params')		// form data helper
+	.css('spools')                          // loads styles
+	.resources()				// 3rd party script's (like jQueryUI), in resources folder
+	.models('token')			// loads files in models folder
+	.controllers('token')			// loads files in controllers folder
+	.views();
+--That give us the basic crud... but we want to start fixing our server
+--comment out the fixture above
+--Now we mod token.js
+	findAll: function( params, success, error ){
+		$.ajax({
+		//	url: '/token',
+			url: 'spoolspps/token.php',
+			type: 'get',
+			dataType: 'json',
+			data: params,
+			success: this.callback(['wrapMany',success]),
+			error: error,
+			fixture: "//spools/fixtures/tokens.json.get" //calculates the fixture path from the url and type.
+		});
+	},
+--Grab the server files from our old project and put them in 
+C:\Users\ChrisT\workspace\javascriptmvc310\spools\spoolspps
+ common.php, game.php, gameboard.ini, games.php, newboard.php, nukecookieandsession.php, token.php, tokens.php
+--I'll have to remember details... but if we use the chrome dev tools we can see the message passing... once we get all the path
+--and server stuff right we should see a list of the tokens for a board.
+http://js.javascriptmvc310/spools/spools.html
+--YUP... we've got a list of tokens for a game board.
+--Now the only 'edit' we will make to the tokens will be a request to own the token by the viewing player.
+--The way I was thinking about the logic is the user clicks on a token to request a change in ownership.
+--The server grants the request if the current owner is the game.
+--The short of all this on the 'client user' side is we only need 'update' which passes the token data element to the server.
+--The server responds with the new data with the new resulting owner.
+--Lets get the CRUD going for the game model now.
+C:\Users\ChrisT\workspace\javascriptmvc310>js jquery\generate\scaffold Spools.Models.Game
+--EDIT spools.js
+steal.plugins(	
+	'jquery/controller',			// a widget factory
+	'jquery/controller/subscribe',          // subscribe to OpenAjax.hub
+	'jquery/view/ejs',			// client side templates
+	'jquery/controller/view',		// lookup views with the controller's name
+	'jquery/model',				// Ajax wrappers
+//	'jquery/dom/fixture',			// simulated Ajax requests
+	'jquery/dom/form_params')		// form data helper
+	.css('spools')                          // loads styles
+	.resources()				// 3rd party script's (like jQueryUI), in resources folder
+	.models('game','token')			// loads files in models folder
+	.controllers('game','token')			// loads files in controllers folder
+	.views();
+--EDIT models\game.js
+			url: 'spoolspps/game.php',
+--OK... that works but we've got the same problem... guess it's in my issue??
+--WOOPS... it's doing a put to games... forgot mod the url but it was passing the modded value... cool..
+--EDIT models\game.js
+--Change the url and make the update a post
+--OK... I think I found my bug... I am not passing back the same id as the request... so the form really does not update because 
+--it was expecting the model update of that id and not getting it...
+--EDIT spoolspps\games.php
+--Add the id as the key to the game array.  Use that key to pass back the game controller update event.
+--EDIT models\game.js
+--Need to add the correct AJAX for the create
+--One question I have was both games.php and games\2 and games was working.... I must have set the apache to script as would think that would work otherwise
+--Not an issue, just need to note it so when I go pushing to a server I don't forget.
+--Well to review... we've got the users games setup and tokens setup.
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 4 - Spools Models"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 4 - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc305/spools/spools.html
+Edit user games
+update user games
+refresh
+nuke the spools\spoolspps\*.spools and try again
 ======================================================================================
 ------- copy buffer --------------
 ?????????????????????????????????

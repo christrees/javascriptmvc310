@@ -1,43 +1,45 @@
 /**
  * @tag models, home
- * Wraps backend token services.  Enables 
- * [Spools.Models.Token.static.findAll retrieving],
- * [Spools.Models.Token.static.update updating],
- * [Spools.Models.Token.static.destroy destroying], and
- * [Spools.Models.Token.static.create creating] tokens.
+ * Wraps backend game services.  Enables 
+ * [Spools.Models.Game.static.findAll retrieving],
+ * [Spools.Models.Game.static.update updating],
+ * [Spools.Models.Game.static.destroy destroying], and
+ * [Spools.Models.Game.static.create creating] games.
  */
-$.Model.extend('Spools.Models.Token',
+$.Model.extend('Spools.Models.Game',
 /* @Static */
 {
 	/**
- 	 * Retrieves tokens data from your backend services.
+ 	 * Retrieves games data from your backend services.
  	 * @param {Object} params params that might refine your results.
- 	 * @param {Function} success a callback function that returns wrapped token objects.
+ 	 * @param {Function} success a callback function that returns wrapped game objects.
  	 * @param {Function} error a callback function for an error in the ajax request.
  	 */
 	findAll: function( params, success, error ){
 		$.ajax({
-		//	url: '/token',
-			url: 'spoolspps/token.php',
+		//	url: '/game',
+			url: 'spoolspps/game.php',
 			type: 'get',
 			dataType: 'json',
 			data: params,
 			success: this.callback(['wrapMany',success]),
 			error: error,
-			fixture: "//spools/fixtures/tokens.json.get" //calculates the fixture path from the url and type.
+			fixture: "//spools/fixtures/games.json.get" //calculates the fixture path from the url and type.
 		});
 	},
 	/**
-	 * Updates a token's data.
-	 * @param {String} id A unique id representing your token.
-	 * @param {Object} attrs Data to update your token with.
+	 * Updates a game's data.
+	 * @param {String} id A unique id representing your game.
+	 * @param {Object} attrs Data to update your game with.
 	 * @param {Function} success a callback function that indicates a successful update.
  	 * @param {Function} error a callback that should be called with an object of errors.
      */
 	update: function( id, attrs, success, error ){
 		$.ajax({
-			url: 'spoolspps/tokens/'+id,
-			type: 'put',
+//			url: '/games/'+id,
+//			type: 'put',
+			url: 'spoolspps/games/'+id,
+			type: 'post',
 			dataType: 'json',
 			data: attrs,
 			success: success,
@@ -46,14 +48,14 @@ $.Model.extend('Spools.Models.Token',
 		});
 	},
 	/**
- 	 * Destroys a token's data.
- 	 * @param {String} id A unique id representing your token.
+ 	 * Destroys a game's data.
+ 	 * @param {String} id A unique id representing your game.
 	 * @param {Function} success a callback function that indicates a successful destroy.
  	 * @param {Function} error a callback that should be called with an object of errors.
 	 */
 	destroy: function( id, success, error ){
 		$.ajax({
-			url: 'spoolspps/tokens/'+id,
+			url: '/games/'+id,
 			type: 'delete',
 			dataType: 'json',
 			success: success,
@@ -62,14 +64,15 @@ $.Model.extend('Spools.Models.Token',
 		});
 	},
 	/**
-	 * Creates a token.
-	 * @param {Object} attrs A token's attributes.
+	 * Creates a game.
+	 * @param {Object} attrs A game's attributes.
 	 * @param {Function} success a callback function that indicates a successful create.  The data that comes back must have an ID property.
 	 * @param {Function} error a callback that should be called with an object of errors.
 	 */
 	create: function( attrs, success, error ){
 		$.ajax({
-			url: 'spoolspps/tokens',
+	//		url: '/games',
+			url: 'spoolspps/games.php',
 			type: 'post',
 			dataType: 'json',
 			success: success,
