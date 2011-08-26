@@ -29,6 +29,7 @@ if (isset($_POST['idGameBrd'])) {
     $message_post   = $_POST['message'];
      * 
      */
+// Not using needle haystack lookup via $idGameBrd now...
 //    $needle = array("idGameBrd" => $idGameBrd_post);
 //    $haystack = $gamebankout;
 //    $key = findGameBrd($needle, $haystack);

@@ -19,7 +19,18 @@
 		<% if(attr == 'id') continue;%>
 		<div>
 			<label><%= attr %> </label><br />
-			<input type="text" value="" name="<%= attr %>"/>
+	<%if(attr == 'TypeSport') {%>
+            <select name="<%= attr %>">
+                <option value="Baseball">Baseball</option>
+                <option value="Football" selected="selected">Football</option>
+            </select>
+        <%} else if ((attr == 'TeamAScore') || (attr == 'TeamBScore')) {%>
+            <input type='button' value='-' onclick='javascript:process(-1)'>
+            <input type='test' value="0" name="<%= attr%>"/>
+            <input type='button' value='+' onclick='javascript:process(1)'>
+        <%} else {%>
+		<input type="text" value="<%= this[attr]%>" name="<%= attr%>"/>
+        <%}%>
 		</div>
 	<%}%>
 	<input type='submit' value='Create'/>

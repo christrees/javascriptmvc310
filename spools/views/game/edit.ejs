@@ -1,8 +1,18 @@
 <%for(var attribute in Spools.Models.Game.attributes){%>
 	<%if(attribute == 'id') continue;%>
 	<td class='<%= attribute %>'>
+	<%if(attribute == 'TypeSport') {%>
+            <select name="<%= attribute%>">
+                <option value="Baseball">Baseball</option>
+                <option value="Football" selected="selected">Football</option>
+            </select>
+        <%} else if ((attribute == 'TeamAScore') || (attribute == 'TeamBScore')) {%>
+            <input type='button' value='-' onclick='javascript:process(-1)'>
+            <input type='test' value="<%= this[attribute]%>" name="<%= attribute%>"/>
+            <input type='button' value='+' onclick='javascript:process(1)'>
+        <%} else {%>
 		<input type="text" value="<%= this[attribute]%>" name="<%= attribute%>"/>
-	</td>
+        <%}%></td>
 <%}%>
 <td>
 	<input type='submit' value='Update' class='update'/>

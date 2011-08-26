@@ -5,7 +5,7 @@ session_start();
 //-EXPIRE COOKIE- set time in past so browser deletes.
 setcookie ("idPlayer", "", time() - 3600);
 setcookie ("idGameBrd", "", time() - 3600);
-setcookie ("spoolsgameboard1", "", time() - 3600);
+//setcookie ("spoolsgameboard1", "", time() - 3600);
 
 // Unset all of the session variables.
 $_SESSION = array();
@@ -52,5 +52,17 @@ if (isset($_COOKIE['cookie'])) {
         return setcookie($name, NULL, -1);
     }
  */
+if (isset($_POST['nukedata'])) { //-- Do we want to nuke the files
+    if ($_POST['nukedata'] == 'nukefile') { //-- Yup... go delete stuff
+       $mask = "spoolsdata/*.spools";
+       array_map( "unlink", glob( $mask ) );
+    }
+}
 echo '<a href="/spools/spools.html">Re-Spool Me<a>';
+echo '<br/>Nuke the data files:<br/>';
+echo '<form action="/spools/spoolspps/nukecookieandsession.php" method="post">';
+echo 'Type nukefiles to nuke files in spools\spoolspps\spoolsdata\*:<br/> <input type="text" name="nukedata" value="nukefile" />';
+echo 'Age: <input type="text" name="age" value="999"/>';
+echo '<br/><input type="submit" />';
+echo '</form>';
 ?>

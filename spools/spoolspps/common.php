@@ -7,7 +7,8 @@ session_start();
 //-- Check cookie
 //-- idPlayer and idGameBrd should always be passed in the cookie.
 isset($_COOKIE["idPlayer"])   ? ($idPlayer  = $_COOKIE["idPlayer"])   : ($idPlayer  = "CRAP_GETPLAYER") ;
-isset($_COOKIE["idGameBrd"])  ? ($idGameBrd = $_COOKIE["idGameBrd"])  : ($idGameBrd = "CRAP_GETNBOARD") ;
+isset($_COOKIE["idGameBrd"])  ? ($idGameBrd = $_COOKIE["idGameBrd"])  : ($idGameBrd = "CRAP_NOBOARD") ;
+if (isset($_POST['idPlayer'])) { //-- post should have id
 //-- if your using tokens you should be passing me this stuff on POST
 	$idCreator       = (isset($_POST['idCreator']))  ? ($_POST['idCreator'])   : ('UIDfuckd');
 	$idGameBrd_post  = (isset($_POST['idGameBrd']))  ? ($_POST['idGameBrd'] )  : ('GameBrdFd');
@@ -15,8 +16,9 @@ isset($_COOKIE["idGameBrd"])  ? ($idGameBrd = $_COOKIE["idGameBrd"])  : ($idGame
 	$idOwner         = (isset($_POST['idOwner']))    ? ($_POST['idOwner'] )    : ('DeBugFd');
         $idPlayer_post   = (isset($_POST['idPlayer']))   ? ($_POST['idPlayer'])    : ('DeBugFd');
 	$state           = (isset($_POST['state']))      ? ($_POST['state'] )      : ('DeBugFd');
-if (isset($_POST['idPlayer'])) { //-- post should have id
+	$id_post   = (isset($_POST['id']))    ? ($_POST['id']  )   : ('idfuckd');
 }
+$idGameBrd_post = "0";
 if (isset($_POST['idGameBrd'])) { //-- post should have board for game
         //-- if your using games you should be passing me this stuff on POST
 	$idGameBrd_post  = (isset($_POST['idGameBrd']))  ? ($_POST['idGameBrd'] )  : ('GameBrdFd');
@@ -31,14 +33,16 @@ if (isset($_POST['idGameBrd'])) { //-- post should have board for game
 //-- Get setup and then the right board for the user
 $theGame = parse_ini_file("gameboard.ini", true);
 //--Pull the Users games out of storage
-//-- Deal with List with no USER
-if ($idPlayer == "CRAP_GETPLAYER") {
+if ($idPlayer == "CRAP_GETPLAYER") { //-- Need to set a new user
     $mySession = session_id();
     $idPlayer = substr_replace($mySession, '', 3, -1);
     setcookie("idPlayer", $idPlayer);
 }
+if ($idGameBrd !== $idGameBrd_post) { //-- The board and board cookie don't match
+    $idGameBrd = "0"; //--
+}
 //-- We have user for sure now look for the game bank
-$gamesbankbasename = $idPlayer . $theGame["gamesinit"]["filename"];
+$gamesbankbasename = $theGame["gamesinit"]["filepath"] . $idPlayer . $theGame["gamesinit"]["filename"];
 if (file_exists($gamesbankbasename)) { //-- Get the right games bank for the user
     $gamebankout = unserialize(file_get_contents($gamesbankbasename));
 } else { //-- it's a new user with no boards so write the bank with the loaded default
@@ -49,21 +53,22 @@ if (file_exists($gamesbankbasename)) { //-- Get the right games bank for the use
 if ($idGameBrd == "CRAP_GETNBOARD") { //-- set the last board in the bank
     $lastgameboard = end($gamebankout);
     $idGameBrd = $lastgameboard["idGameBrd"];
-    setcookie("idGameBrd", $idGameBrd);
+    //--NOTE: let the client tell us the cookie -
+    //setcookie("idGameBrd", $idGameBrd);
 }  //--NOTE: If we post we need to pull another board
 //--Pull the tokenboard out of storage
 //-- Get the right board for the user
 //-- Default the board to the last one
-$filename = $idGameBrd . $theGame["boardbank"]["filename"];
-if (file_exists($filename)) {
-        $gamebrdout = unserialize(file_get_contents($filename));
-} else  $gamebrdout = init_newboard($filename, $idGameBrd, $theGame);
+$gamebrdfilename = $theGame["gamesinit"]["filepath"] . $idGameBrd . $theGame["boardbank"]["filename"];
+if (file_exists($gamebrdfilename)) {
+        $gamebrdout = unserialize(file_get_contents($gamebrdfilename));
+} else  $gamebrdout = init_newboard($gamebrdfilename, $idGameBrd, $theGame);
 //--
 //-- FUNCTIONS
 //-- New User
 function init_newuser($idPlayer, $theGame) {
     $gamebankout[0] = $theGame["gamesbankinit"];
-    $gamesbankbasename = $idPlayer . $theGame["gamesinit"]["filename"];
+    $gamesbankbasename = $theGame["gamesinit"]["filepath"] . $idPlayer . $theGame["gamesinit"]["filename"];
     $fp = fopen($gamesbankbasename, 'w+') or die("I could not open $gamesbankbasename.");
     fwrite($fp, serialize($gamebankout));
     fclose($fp);

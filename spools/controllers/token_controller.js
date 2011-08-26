@@ -25,8 +25,21 @@ $.Controller.extend('Spools.Controllers.Token',
  * Displays a list of tokens and the submit form.
  * @param {Array} tokens An array of Spools.Models.Token objects.
  */
+ grid: function( tokens ){ /**/
+        var curgame;
+        Spools.Models.Game.findAll({}, function(data){
+            curgame = data[$.cookie('idGameBrd')]
+            $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:tokens, game:curgame} ));
+        });
+     // $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:tokens, game:curgame} ));
+     // $('#token').html(this.view('grid', {tokens:tokens} ));
+ },
+ /**
+ * Displays a list of tokens and the submit form.
+ * @param {Array} tokens An array of Spools.Models.Token objects.
+ */
  list: function( tokens ){
-	$('#token').html(this.view('init', {tokens:tokens} ));
+	$('#token').html(this.view('list', {tokens:tokens} ));
  },
  /**
  * Responds to the create form being submitted by creating a new Spools.Models.Token.
@@ -66,6 +79,13 @@ $.Controller.extend('Spools.Controllers.Token',
  */
 '.update click': function( el ){
 	var $token = el.closest('.token'); 
+	$token.model().update($token.formParams());
+},
+ /**
+ * Updates the token from a buy request values.
+ */
+'.pick click': function( el ){
+	var $token = el.closest('.token');
 	$token.model().update($token.formParams());
 },
  /**

@@ -76,6 +76,26 @@ $.Controller.extend('Spools.Controllers.Game',
 	this.show(game);
 },
  /**
+ *	 Handle's clicking on a game's view link.
+ */
+ '.view click': function( el ){
+        $('.game').removeClass('gameselect');
+        alert('hello');
+        var curgame = el.closest('.game').model();
+       // $.cookie('DoDo', 'Dah');
+       // document.cookie = 'idGameBrd=' + curgame['idGameBrd'] + '; path=/';
+        var date = new Date();
+        var days = 1;
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+	var expires = "; expires="+date.toGMTString();
+        var name = 'idGameBrd';
+        var value = curgame['idGameBrd'];
+        // document.cookie = name+"="+value+expires+"; path=/";
+        Spools.Models.Token.findAll({}, function(data){
+          $('#token').html(Spools.Controllers.Token.prototype.view('list', {tokens:data, game:curgame} ));
+        });
+ },
+ /**
  * Shows a game's information.
  */
 show: function( game ){

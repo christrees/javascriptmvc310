@@ -164,6 +164,187 @@ Edit user games
 update user games
 refresh
 nuke the spools\spoolspps\*.spools and try again
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 5 - Spools functional gameflow
+<<<<<<<<<<<<<<<<<
+--OK... Lets walk through Shayne's gameflow
+--OUTLINE
+>>>>GAME PHASE 1 - Creation <Official>
+>>>>GAME PHASE 2 - Join Game <Player>
+>>>>GAME PHASE 3 - Token Selection <Player>
+>>>>GAME PHASE 4 - Manage Game <Official>
+>>>>GAME PHASE 5 - End Game <Official>
+--Details
+>>>>GAME PHASE 1 - Creation <Official>
+	Connect via URL http://js.javascriptmvc310/spools/spools.html
+	Select a Sport <drop down Baseball Football>
+	*Enter name of Away Team (text field)
+	*Enter name of Home Team (text field)
+	Press Create Game button
+>>>>GAME PHASE 2 - Join Game
+	Connects via URL
+	Screen shows a tab titled Join Game 
+	Selects game 
+	View game
+>>>>GAME PHASE 3 - Token Selection
+	Click on token image
+	Call to database
+	Place request for token
+	If token already taken message returned
+	If token available moniker is added to screen
+>>>>GAME PHASE 4 - Manage Game <Official>
+	Selects game like Player
+	Official tab shows only for the owner
+	Bottom buttons show <Start Game> <End Game>
+	Clicks start game
+	Call to database
+	Rows/Columns randomized
+	Tokens locked from further selection
+	Score is adjusted with -/+ buttons
+	Game status (innings/quarter)
+>>>>GAME PHASE 5 - End Game <Official>
+	Selects game like Player
+	Official tab shows only for the owner 
+	Clicks end game
+	Call to database
+	Identify winners
+	Notify winners
+---------------------------
+--WORK Manual walkthrough
+---------------------------
+>>>>GAME PHASE 1 - Creation <Official>
+	Connect via URL http://js.javascriptmvc310/spools/spools.html
+DONE
+	Select a Sport <drop down Baseball Football>
+--OK... need to add a view that is a dropdown select for Type Sport. 
+--EDIT spools\views\game\edit.ejs and spools\views\game\edit.ejs
+--Add the dropdown input select for gametype
+	*Enter name of Away Team (text field)
+--Function is there but may need to change the view
+	*Enter name of Home Team (text field)
+--Function is there but may need to change the view
+	Press Create Game button
+--Function is there but may need to change the view
+>>>>GAME PHASE 2 - Join Game
+	Connects via URL
+	Screen shows a tab titled Join Game 
+--Function is there but may need to change add a view tag
+--Yea... this I need to add a tag to the game list that changes the view of the tokens <the board view>
+--Lets put that in.  Add a view link in the list view of games
+--EDIT spools\views\game\show.ejs and add
+	<a href='javascript://' class='view'>view</a>
+--EDIT spools\controllers\game_controller.js and add the .view click handler
+ /**
+ *	 Handle's clicking on a game's view link.
+ */
+ '.view click': function( el ){
+        $('.game').removeClass('gameselect');
+        var curgame = el.closest('.game').model();
+        $.cookie('DoDo', 'Dah');
+        document.cookie = "idGameBrd="+ curgame['idGameBrd'] +"; path=/";
+        Spools.Models.Token.findAll({}, function(data){
+          $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:data, game:curgame} ));
+        });
+ },
+ --OK... basically I was using gameselect to id the current displayed game... but not really using this yet.
+ --Pick up the model of the associated game via the click .game tag
+ --Set the cookie so the server knows which board to give me.
+ --trigger the ajax request for the board and display the board of tokens
+ --pass the responce to the gridview along with the current game model data
+ --Well.. when I went to test this I ran into issues with the tokens edit... which I think are the issues I solved with
+ --games, I just didn't know I had them with tokens until now, so lets go clean up the token edit update stuff.
+ --Yea... I only worked with the grid view.  We should never actually edit the token.  humm....
+ --For token we only need update and findall... well lets get those working correctly with the model trigger.
+ --EDIT models\token.js Fix URL, fix POST <was PUT>
+ --Now fix the controller so the New token does not show.. just do the list view for now
+ --EDIT controllers\token_controller and change init view to list view
+ --OK... now things are looking better... we might as well add a pick token to the list view and get rid of edit and destroy.
+ --EDIT view\token\show.js
+ --EDIT contorllers\token_controller.js and add pick click event to trigger model update
+ --OK... now we need to have the server generate new boards so we can switch to them.
+ --CLICKING the view on the associated board should load that board.  But my new board generator is not right.
+ --BEFORE I just had a board gen thing... I would like to auto gen a unique board id and then allow gamebanks to attach.
+ --OK... I was using cookies to message the server and looks like I had some issues.
+ --http://www.quirksmode.org/js/cookies.html
+ --OK... I was sorting out some server side stuff... 
+ --Basically the whole messaging with the servers via the cookies I need to review.
+ --NOTE: It looks like the javascriptmvc is issues multiple file request... which is messing up my controller stuff
+ --I'm getting two sessions started.. I need to fix this but after I get through this once
+>>>>>BUG:1 BEGIN
+--Mulitple sessions created.
+<<<<<BUG:1 END
+	Selects game 
+--Function is there
+	View game
+--Function is there but not fully tested
+>>>>>BUG:2 BEGIN
+--Board not changing view when view clicked.
+<<<<<BUG:2 END
+>>>>GAME PHASE 3 - Token Selection
+	Click on token image
+>>>>>BUG:3 BEGIN
+--Not using token image yet need to hook up pick change even to board
+<<<<<BUG:3 END
+	Call to database
+--Function is there but not fully tested
+	Place request for token
+--Function is there but not fully tested
+	If token already taken message returned
+--Function is there but not fully tested
+	If token available moniker is added to screen
+--Function is there but not fully tested
+>>>>GAME PHASE 4 - Manage Game <Official>
+	Selects game like Player
+--Function is there but not fully tested
+	Official tab shows only for the owner
+>>>>>BUG:4 BEGIN
+--Need to only display edit for game owner
+<<<<<BUG:4 END
+	Bottom buttons show <Start Game> <End Game>
+	Clicks start game
+	Call to database
+	Rows/Columns randomized
+	Tokens locked from further selection
+	Score is adjusted with -/+ button
+>>>>>BUG:5 BEGIN
+--The above functions need to be implemented
+<<<<<BUG:5 END
+--This should would but I need to figure out how hook in the events properly
+<input type=button value='-' onclick='javascript:process(-1)'>
+<input type=test size=10 id='v' name='v' value='0'>
+<input type=button value='+' onclick='javascript:process(1)'>
+<script language=javascript>
+function process(v){
+document.getElementById('v').value+=v;
+}
+</script>
+--Found the above http://www.webmasterworld.com/html/3350269.htm
+	Game status (innings/quarter)
+>>>>GAME PHASE 5 - End Game <Official>
+	Selects game like Player
+	Official tab shows only for the owner 
+	Clicks end game
+	Call to database
+--HOW??????
+	Identify winners
+	Notify winners
+--HOW?????? 
+>>>>>BUG:6 BEGIN
+--NEED TO ADD the whole game status stuff.
+<<<<<BUG:6 END
+--<<<<<<<<<<<<< DONE FOR NOW >>>>>>>>>>>>
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 5 - Spools functional gameflow"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 5 - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc305/spools/spools.html
+SUCCESS>>
+?FAILURE>>
+??WHAT?>>
 ======================================================================================
 ------- copy buffer --------------
 ?????????????????????????????????
@@ -189,17 +370,18 @@ SUCCESS>>
 ???????????????????????????????????????
 >>>>>UNUSED / NEXT BUG ID BIN<<<<<
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->>>>>BUG:3 BEGIN
-<<<<<BUG:3 END
->>>>>BUG:4 BEGIN
-<<<<<BUG:4 END
->>>>>BUG:5 BEGIN
-<<<<<BUG:5 END
->>>>>BUG:6 BEGIN
-<<<<<BUG:6 END
++++++BUG:1 STATUS-> OPEN
++++++BUG:2 STATUS-> OPEN
++++++BUG:3 STATUS-> OPEN
++++++BUG:4 STATUS-> OPEN
++++++BUG:5 STATUS-> OPEN
++++++BUG:6 STATUS-> OPEN
++++++BUG:7 STATUS-> OPEN
 >>>>>BUG:7 BEGIN
 <<<<<BUG:7 END
++++++BUG:8 STATUS-> OPEN
 >>>>>BUG:8 BEGIN
 <<<<<BUG:8 END
++++++BUG:9 STATUS-> OPEN
 >>>>>BUG:9 BEGIN
 <<<<<BUG:9 END

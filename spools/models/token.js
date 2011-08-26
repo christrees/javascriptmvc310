@@ -17,7 +17,7 @@ $.Model.extend('Spools.Models.Token',
  	 */
 	findAll: function( params, success, error ){
 		$.ajax({
-		//	url: '/token',
+		//	url: 'token',
 			url: 'spoolspps/token.php',
 			type: 'get',
 			dataType: 'json',
@@ -36,8 +36,10 @@ $.Model.extend('Spools.Models.Token',
      */
 	update: function( id, attrs, success, error ){
 		$.ajax({
+		//	url: 'tokens/'+id,
+		//	type: 'put',
 			url: 'spoolspps/tokens/'+id,
-			type: 'put',
+			type: 'post',
 			dataType: 'json',
 			data: attrs,
 			success: success,
