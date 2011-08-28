@@ -6,11 +6,20 @@
                 <option value="Baseball">Baseball</option>
                 <option value="Football" selected="selected">Football</option>
             </select>
+        <%} else if (attribute == 'idGameBrd') {%>
+            <%= this[attribute]%>
+            <input type='hidden' value="<%= this[attribute]%>" name="<%= attribute%>"/>
+        <%} else if (attribute == 'GameState') {%>
+            <%= this[attribute]%>
+            <input type='hidden' value="<%= this[attribute]%>" name="<%= attribute%>"/>
         <%} else if ((attribute == 'TeamAScore') || (attribute == 'TeamBScore')) {%>
+            <%= this[attribute]%>
+            <input type='hidden' value="<%= this[attribute]%>" name="<%= attribute%>"/>
+       <% /* %>
             <input type='button' value='-' onclick='javascript:process(-1)'>
             <input type='test' value="<%= this[attribute]%>" name="<%= attribute%>"/>
             <input type='button' value='+' onclick='javascript:process(1)'>
-        <%} else {%>
+        <% */} else {%>
 		<input type="text" value="<%= this[attribute]%>" name="<%= attribute%>"/>
         <%}%></td>
 <%}%>

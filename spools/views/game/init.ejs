@@ -1,37 +1,41 @@
 <h2>games</h2>
-<table cellspacing='0px'>
+<table cellspacing="0px">
 	<thead>
 	<tr>
 		<% for(var attr in Spools.Models.Game.attributes){%>
-			<% if(attr == 'id') continue;%>
+			<% if(attr == "id") continue;%>
 			<th><%= attr%> </th>	 
 		<%}%>
 		<th>Options</th>
 	</tr>
 	</thead>
 	<tbody>
-		<%= $.View('//spools/views/game/list',{games: games})%>
+		<%= $.View("//spools/views/game/list",{games: games})%>
 	</tbody>
 </table>
 <h2>New game</h2>
 <form>
-	<% for(var attr in Spools.Models.Game.attributes){ %>
-		<% if(attr == 'id') continue;%>
+    <% for(var attr in Spools.Models.Game.attributes){ %>
+		<% if(attr == "id") continue;%>
 		<div>
-			<label><%= attr %> </label><br />
-	<%if(attr == 'TypeSport') {%>
-            <select name="<%= attr %>">
+	<% if (attr == "TypeSport") {%>
+            <label>TypeSport</label>
+            <select name="TypeSport">
                 <option value="Baseball">Baseball</option>
                 <option value="Football" selected="selected">Football</option>
             </select>
-        <%} else if ((attr == 'TeamAScore') || (attr == 'TeamBScore')) {%>
-            <input type='button' value='-' onclick='javascript:process(-1)'>
-            <input type='test' value="0" name="<%= attr%>"/>
-            <input type='button' value='+' onclick='javascript:process(1)'>
+        <%} else if (attr == "TeamAScore") {%>
+            <input type="hidden" value="0" name="TeamAScore"/>
+        <%} else if (attr == "TeamBScore") {%>
+            <input type="hidden" value="0" name="TeamBScore"/>
+        <%} else if (attr == "message") {%>
+            <input type="hidden" value="New Game" name="message"/>
+        <%} else if (attr == "GameState") {%>
+            <input type="hidden" value="JoinGame" name="GameState"/>
         <%} else {%>
-		<input type="text" value="<%= this[attr]%>" name="<%= attr%>"/>
+		<label><%= attr %></label><input type="text" name="<%= attr%>"/>
         <%}%>
-		</div>
-	<%}%>
-	<input type='submit' value='Create'/>
+	</div>
+    <%}%>
+    <input type="submit" value="Create"/>
 </form>

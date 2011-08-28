@@ -2,13 +2,19 @@
 // Initialize the session.
 // If you are using session_name("something"), don't forget it now!
 session_start();
+setcookie ("idGameBrd", "", time() - 3600, "/spools/spoolsapps");
+setcookie ("idPlayer", "", time() - 3600, "/spools/spoolsapps");
+setcookie ("idGameBrd", "", time() - 3600, "/spools");
+setcookie ("idPlayer", "", time() - 3600, "/spools");
+setcookie ("idGameBrd", "", time() - 3600, "/");
+setcookie ("idPlayer", "", time() - 3600, "/");
+setcookie ("idGameBrd", "", time() - 3600, "");
+setcookie ("idPlayer", "", time() - 3600, "");
 //-EXPIRE COOKIE- set time in past so browser deletes.
-setcookie ("idPlayer", "", time() - 3600);
-setcookie ("idGameBrd", "", time() - 3600);
+//setcookie ("idPlayer", "", time() - 3600, "/");
+//setcookie ("idGameBrd", "", time() - 3600, "/");
 //setcookie ("spoolsgameboard1", "", time() - 3600);
 
-// Unset all of the session variables.
-$_SESSION = array();
 
 // If it's desired to kill the session, also delete the session cookie.
 // Note: This will destroy the session, and not just the session data!
@@ -21,7 +27,19 @@ if (ini_get("session.use_cookies")) {
 }
 
 // Finally, destroy the session.
+// Unset all of the session variables.
+session_unset();
 session_destroy();
+$_SESSION = array();
+session_start();
+setcookie ("idGameBrd", "", time() - 3600, "/spools/spoolsapps");
+setcookie ("idPlayer", "", time() - 3600, "/spools/spoolsapps");
+setcookie ("idGameBrd", "", time() - 3600, "/spools");
+setcookie ("idPlayer", "", time() - 3600, "/spools");
+setcookie ("idGameBrd", "", time() - 3600, "/");
+setcookie ("idPlayer", "", time() - 3600, "/");
+setcookie ("idGameBrd", "", time() - 3600, "");
+setcookie ("idPlayer", "", time() - 3600, "");
 //http://hu.php.net/manual/en/function.session-destroy.php
 // set the cookies
 /*

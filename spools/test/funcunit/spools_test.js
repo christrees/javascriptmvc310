@@ -5,5 +5,5 @@ module("spools test", {
 });
 
 test("Copy Test", function(){
-	equals(S("h1").text(), "Welcome to JavaScriptMVC 3.0!","welcome text");
+	equals(S("title").text(), "spools");
 });

@@ -11,6 +11,10 @@ FILE: C:\Users\ChrisT\workspace\javascriptmvc305
 GITHUB https://github.com/christrees/javascriptmvc310
 OLD GITHUB https://github.com/christrees/javascriptmvc305
 
+TESTING DOCS: 
+	http://javascriptmvc.com/docs.html#&who=FuncUnit
+	http://docs.jquery.com/QUnit
+
 Spools STEPS: https://github.com/christrees/javascriptmvc305/tree/spools
 ======================================================================================
 <<<<<<<<<<<<<<<<<
@@ -174,7 +178,7 @@ nuke the spools\spoolspps\*.spools and try again
 >>>>GAME PHASE 3 - Token Selection <Player>
 >>>>GAME PHASE 4 - Manage Game <Official>
 >>>>GAME PHASE 5 - End Game <Official>
---Details
+--Details C:\Users\ChrisT\workspace\javascriptmvc310\spools\docs\SpoolsGameFlow
 >>>>GAME PHASE 1 - Creation <Official>
 	Connect via URL http://js.javascriptmvc310/spools/spools.html
 	Select a Sport <drop down Baseball Football>
@@ -343,8 +347,135 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 <<<<<<<<<<<<<<<<<
 Browse - http://js.javascriptmvc305/spools/spools.html
 SUCCESS>>
-?FAILURE>>
-??WHAT?>>
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 6 - Functional Auto Test using Seleinum
+<<<<<<<<<<<<<<<<<
+--I want to get some testing in now as I'm hitting lots of buttons to test at this point.
+--I probably should do unit test also, but I'd like to get function tests going so I can give Joe and Shayne stuff.
+--EDIT spools\test\funcunit\funcunit.js
+steal
+ .plugins("funcunit")
+ .then("spools_test")
+ .then("game_controller_test");
+ --EDIT spools\test\funcunit\game_controller_test.js
+ --Bascially we want to test the game creation process by the Official
+>>>>GAME PHASE 1 - Creation <Official>
+	Connect via URL http://js.javascriptmvc310/spools/spools.html
+	Select a Sport <drop down Baseball Football>
+	*Enter name of Away Team (text field)
+	*Enter name of Home Team (text field)
+	Press Create Game button
+--OK got that going.... now that I'm doing this I'm thinking I really need to create
+--a gameboard group so everybody has the same gameboard list...
+--Heck... for right now I can just have one gameboardlist..
+--Make it so..
+--EDIT spools\spoolspps\common.php fix the init_newuser
+$gamesbankbasename = $theGame["gamesinit"]["filepath"] . $theGame["gamesinit"]["gamegroup"] . $theGame["gamesinit"]["filename"];
+--EDIT spools\spoolspps\gameboard.ini
+gamegroup = partyplay
+--OK... that's working... now on to the view
+>>>>GAME PHASE 2 - Join Game
+	Connects via URL
+	Screen shows a tab titled Join Game 
+	Selects game 
+	View game
+--EDIT spools\spools.js and load the token model and controller AFTER the game model and controller
+--EDIT spools\spoolspps\tokens.php to correct error on line 21 <had wrong filename>
+--OK... this seems to work... write test that changes and checks view.
+>>>>GAME PHASE 3 - Token Selection
+	Click on token image
+	Call to database
+	Place request for token
+	If token already taken message returned
+	If token available moniker is added to screen
+--EDIT spools\test\funcunit\game_controller_test.js to add token click test... had some issue with timing I think.. not sure
+>>>>>BUG:7 BEGIN
+http://js.javascriptmvc310/spools/funcunit.html
+--Test is working but sometimes it hangs on the verification of the game board.
+--Not sure what this is but my guess is that it has something to do with the controller event firing.
+--I'm guessing this is because of some async events in the controller and test code
+<<<<<BUG:7 END
+>>>>GAME PHASE 4 - Manage Game <Official>
+	Selects game like Player
+	Official tab shows only for the owner
+	Bottom buttons show <Start Game> <End Game>
+	Clicks start game
+	Call to database
+	Rows/Columns randomized
+	Tokens locked from further selection
+	Score is adjusted with -/+ buttons
+	Game status (innings/quarter)
+--OK... crap some of this stuff I've got to think harder about.
+--FIRST I'm not going to do the 'offical vs player thing' as a player is just a functionally limited offical.
+--SECOND looks like I need game states.  That's fine what are they...
+	1-JoinGame <Can StartGame, Can NOT EndGame, {Can pick open tokens}>
+	2-StartGame <Can END Game, Can NOT JoinGame, {Can not pick tokens, Can Enter Scores}>
+	3-EndGame <Can NOT JoinGame, Can NOT StartGame>
+--Lets do this...
+--EDIT C:\Users\ChrisT\workspace\javascriptmvc310\spools\spoolspps\gameboard.ini and ADD GameState
+GameState = "JoinGame"
+--Need to have the game create view default correctly
+--Heck... might as well fix the idGameBrd to auto select a uid on New GameBrd
+--To do that we edit the init view to set and restrict user
+--HECK... lets do this 'TEST DRIVEN'
+--We want to verify a new game has gamestate 'JoinGame' and a StartGame Button when generating a new board.
+--http://javascriptmvc.com/docs.html#&who=FuncUnit
+--http://docs.jquery.com/QUnit
+--EDIT C:\Users\ChrisT\workspace\javascriptmvc310\spools\test\funcunit\game_controller_test.js
+--Basically I started filling out the test better... checking in code what I checked on the screen.
+--You can view the chages by looking at the this commit <STEP 6 - Functional Auto Test using Seleinum> vs last <STEP 5>
+--All I did was got between game_controller_test.js and the function test run:
+--BROWSE: http://js.javascriptmvc310/spools/funcunit.html
+--UNTIL I got things going GREEN and verify what I looked for.
+--OK... have some issue with the edit view defaults
+--On a NEW GAME form, lets drop the ablity to edit scores and gamestate
+--EDIT C:\Users\ChrisT\workspace\javascriptmvc310\spools\views\game\init.ejs and show.ejs
+=== I took this out, but want to save for later
+        <%} else if ((attribute == 'TeamAScore') || (attribute == 'TeamBScore')) {%>
+            <input type='button' value='-' onclick='javascript:process(-1)'>
+            <input type='test' value="<%= this[attribute]%>" name="<%= attribute%>"/>
+            <input type='button' value='+' onclick='javascript:process(1)'>
+        <%} else {%>
+=== May want to use this when display in the StartGame state
+--OK got that working, but still having some issues...
+--Looks like when the models are loading they both request and start 2 different sessions..
+--CRAP...
+--ALSO... somehow the code is setting the idGameBrd cookie and I don't think it should know that..
+--THIS is I think is BUG 7 related... the controllers getting messed up initially.
+--Funny thing when I do it manually I get the expected update
+--Well hell... just do that in the setup to see if that fixes the issue...
+--In the setup of the test when we distroy and reset click the view of the board 0 and wait for board to get it
+--HUMM... something is wron with nuke I think... check it out..
+--OK... I had messed up cookie clearing I think...
+--http://www.phpfreaks.com/forums/index.php?PHPSESSID=66njp4nmc51mqvkhu0k1bl1sd5&topic=223785.15
+--ALSO see C:\Users\ChrisT\workspace\javascriptmvc310\spools\docs\CAT_PHP_COOKIES_SETANDCLEAR.txt
+--Well that takes care of the boardid issue... but I'm still getting to request with multiple sessions..
+--Hummm... maybe I should use nuke http://js.javascriptmvc310/spools/spoolspps/nukecookieandsession.php to start the new session...
+--Yea... lets do that because it kink of will simulate a login which we will need to do at some point.
+--THAT works... basically I'm using the nuke to get the session crap going right..
+--Well test runs fine now but still getting the issue with adding the 3rd 
+--AFTER HOURS of testing and poking... I think I need to deal with the gameboard 
+--WOW... damb thing was a 'value' vs "value" in the view... 
+--WOW... MORE LOTS OF TIME messing with cookies, clearing cookies... messing with the token table
+--I FORGOT where the heck we are...
+--OH.. attempting to get token testing going
+--HOLLY CRAP... I just need to sync this... we will continue in next step.
+--RIGHT now all the test run but I commented out what I was doing with the token and user ID checks.
+--BROWSE: http://js.javascriptmvc310/spools/funcunit.html
+------------------------------------------------------------- BLAH 
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 6 - Functional Auto Test using Seleinum or QUnit"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 6 - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc310/spools/funcunit.html
+SUCCESS>>TEST RUN WOOHOO...
 ======================================================================================
 ------- copy buffer --------------
 ?????????????????????????????????
@@ -363,7 +494,7 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 <<<<<<<<<<<<<<<<<
 >>>>>STEP x - TEST
 <<<<<<<<<<<<<<<<<
-Browse - http://js.javascriptmvc305/spools/spools.html
+Browse - http://js.javascriptmvc310/spools/spools.html
 SUCCESS>>
 ?FAILURE>>
 ??WHAT?>>
@@ -377,8 +508,6 @@ SUCCESS>>
 +++++BUG:5 STATUS-> OPEN
 +++++BUG:6 STATUS-> OPEN
 +++++BUG:7 STATUS-> OPEN
->>>>>BUG:7 BEGIN
-<<<<<BUG:7 END
 +++++BUG:8 STATUS-> OPEN
 >>>>>BUG:8 BEGIN
 <<<<<BUG:8 END

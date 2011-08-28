@@ -8,6 +8,8 @@ steal.plugins(
 	'jquery/dom/form_params')		// form data helper
 	.css('spools')                          // loads styles
 	.resources()				// 3rd party script's (like jQueryUI), in resources folder
-	.models('game','token')			// loads files in models folder
-	.controllers('game','token')			// loads files in controllers folder
-	.views();				// adds views to be added to build
+	.models('game')			// loads files in models folder
+	.controllers('game')			// loads files in controllers folder
+	.views()				// adds views to be added to build
+        .models('token')
+        .controllers('token');

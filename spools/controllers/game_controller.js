@@ -80,17 +80,35 @@ $.Controller.extend('Spools.Controllers.Game',
  */
  '.view click': function( el ){
         $('.game').removeClass('gameselect');
-        alert('hello');
         var curgame = el.closest('.game').model();
+        function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		//date.setTime(date.getTime()+(sec*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+        }
+        function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+        }
+        function eraseCookie(name) {
+	createCookie(name,"",-1);
+        }
        // $.cookie('DoDo', 'Dah');
        // document.cookie = 'idGameBrd=' + curgame['idGameBrd'] + '; path=/';
-        var date = new Date();
-        var days = 1;
-        date.setTime(date.getTime()+(days*24*60*60*1000));
-	var expires = "; expires="+date.toGMTString();
-        var name = 'idGameBrd';
-        var value = curgame['idGameBrd'];
-        // document.cookie = name+"="+value+expires+"; path=/";
+       eraseCookie('idGameBrd');
+       createCookie('idGameBrd',curgame['idGameBrd'],1);
+       //createCookie('catCrap',99,2);
         Spools.Models.Token.findAll({}, function(data){
           $('#token').html(Spools.Controllers.Token.prototype.view('list', {tokens:data, game:curgame} ));
         });

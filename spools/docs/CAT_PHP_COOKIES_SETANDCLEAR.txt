@@ -1,0 +1,90 @@
+
+
+session_start();
+//-EXPIRE COOKIE- set time in past so browser deletes.
+setcookie ("idPlayer", "", time() - 3600, "/");
+setcookie ("idGameBrd", "", time() - 3600, "/");
+//setcookie ("spoolsgameboard1", "", time() - 3600);
+
+
+// If it's desired to kill the session, also delete the session cookie.
+// Note: This will destroy the session, and not just the session data!
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+
+// Finally, destroy the session.
+// Unset all of the session variables.
+session_unset();
+session_destroy();
+$_SESSION = array();
+
+http://www.phpfreaks.com/forums/index.php?PHPSESSID=66njp4nmc51mqvkhu0k1bl1sd5&topic=223785.15
+Let's be clear about some web development related definitions.
+
+cookie
+A cookie is a key/value pair that is stored (or not) by the client (browser).  
+There are plenty of issues and gotchas in regards to cookies, 
+specifically in how to set their expiration and the relevant domain that could explain problems the OP had.  
+Cookies are set by the browser when a request is sent to do so in the HTTP header.  
+So this requires that the setting of a cookie needs to occur before any output has been sent.  
+Once a cookie is set by a browser, 
+it then sends the cookie data in the HTTP header of any subsequent requests, 
+and php makes this cookie data available in the $_COOKIE superglobal array.  
+It's important to note the importance of HTTP headers in both cases.   
+You can't for example, set a cookie in your script and then go read it from $_COOKIE in the same script (chicken and egg).
+
+session cookie
+A cookie that will be automatically deleted when the browser "session" ends, or in other words, when the browser is closed.  
+A cookie is a "session cookie" when you don't specify an expiration when the cookie is created.  
+By default the php session id cookie happens to be a "session cookie" in that it does not set an expiration date, 
+although like just about everything else with php sessions, this behavior can be modified.
+
+php session
+A php session is an automated serverside mechanism that will associate a bundle of data with a session id, 
+and serializes/unserializes it for every request where sessions are invoked.  
+Note that a "session cookie" has nothing to do with php sessions.  
+The preferred way that the php session data is associated with a browser/user/client is through the setting of a cookie.  
+
+php session variables
+These are created by making an assignment to $_SESSION for an active session (one where session_start()) was called.  
+$_SESSION variables are just like any other array when a php script is executing, 
+except for the fact that the values are serialized to disk (by default), 
+and will be automatically unserialized and made available in the script in the $_SESSION superglobal array.
+
+Given all the confusion possible, 
+it is understandable that there are various ways to approach doing something in particular related either to cookies or to sessions.  
+
+Again, while it was never clear from the question, 
+many people need to know how to terminate a session, 
+usually because they want a logout feature or redirect that clears things out.  
+PHP provides a way to do that:
+session_start();
+session_unset();
+session_destroy();
+
+
+Some people have claimed that 
+the values in the $_SESSION superglob will live on in a script beyond the session destruction functions unless you assign it to an empty array.  
+I haven't had this problem myself so I can't speak to it.  
+Rather than unset($_SESSION) which will completely disable php session functionality in the rest of the script, you can instead do:
+session_start();
+session_unset();
+session_destroy();
+$_SESSION = array();
+
+
+The PHP manual specifically advises against using unset($_SESSION) so I don't think we should endorse it.  
+I think it's worth going back to the original question.  
+Can you make the browser delete a "session cookie" as defined above?  
+The methods he tried did not include simply setting the cookie with an empty value:
+setcookie('account', '');
+
+
+Again it has to be emphasized that if I made that call in a script, I would still find $_COOKIE['account'] to have a value even though I requested that the client browser "overwrite it with nothing".  On further requests however, the value would not be there.  
+
+It's also important to note that the OP never provided code that had anything to do with php sessions.  He seemed to be setting his own cookies and using them for whatever reasons, so discussion of $_SESSION is probably a complete tangent from the the original post.
