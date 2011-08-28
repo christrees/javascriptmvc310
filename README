@@ -465,12 +465,10 @@ GameState = "JoinGame"
 ------------------------------------------------------------- BLAH 
 --Lets commit this
 --SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add -u
 C:\Users\ChrisT\workspace\javascriptmvc310>git add .
 C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 6 - Functional Auto Test using Seleinum or QUnit"
 C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
-[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
-[cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
-[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
 <<<<<<<<<<<<<<<<<
 >>>>>STEP 6 - TEST
 <<<<<<<<<<<<<<<<<

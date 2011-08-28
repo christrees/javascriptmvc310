@@ -162,13 +162,17 @@ test("GAMES: Test Token picks", function () {
     });
     S.open("//spools/spools.html");
     //--Look at the token board verify Board 0 the default
-    /*
+    
     S('div#token').exists(function (){
-        ok(S('td.idGameBrd').text().match(/0/), "<<BEGIN>>: Verify board 0 default");
-        var myidPlayer = $('div#token tr.spools_models_token_2 td.idPlayer').innerHTML();
-        ok(S('div#token tr.spools_models_token_2 td.idPlayer').text().match(myidPlayer), "Verify idPlayer on tokens");
+        ok( 1, "<<BEGIN>>: Verify board 0 default");
+        ok( S('.idGameBrd').text().match(/0/), "Verify board 0 default");
+        S(".spools_models_game_0 a.view").click();
+         S("tr.spools_models_token_1 td.idGameBrd").exists( function () {
+            ok( S(".spools_models_token_1 .idGameBrd").text().match(/0/), "Verify board 0 default");
+        });
+        //var myidPlayer = S('tr.spools_models_token_1 td.idPlayer').text();
+       // ok( /myidPlayer/.test( S('tr.spools_models_token_2 td.idPlayer').text() ), "Verify idPlayer on tokens");
     });
-    */
 
 });
 
