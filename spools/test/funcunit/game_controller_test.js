@@ -1,12 +1,8 @@
 /*global module: true, ok: true, equals: true, S: true, test: true */
 module("game", {
 setup: function () {
-    //--Clear the data so we start from scratch.
-    S.open("//spools/spoolspps/nukecookieandsession.php");
-    S("[type=submit]").click();
     // open the page
     S.open("//spools/spools.html");
-    stop();
     //--Default first index should be 0 and increment from there
     S('.spools_models_game_0 .view').exists(function () {
         ok(S('.spools_models_game_0 td.idGameBrd').text().match(/0/), "Default idGameBrd 0");
@@ -19,157 +15,171 @@ setup: function () {
         ok(S('.spools_models_game_0 td.GameState').text().match(/JoinGame/), "Default GameState GameJoin");
     });
 },
-//a helper function that creates a game
-create22: function () {
-    S("[name=idGameBrd]").type("22");
-    S("[name=TeamNameA]").type("TestTeamA");
-    S("[name=TeamNameB]").type("TestTeamB");
-    S("[type=submit]").click();
+nukeuser: function () {
+    S.open("//spools/spoolspps/nukecookieandsession.php");
+    S("[type=submit]").exists();
+    // open the page
+    S.open("//spools/spools.html");
+    S('.spools_models_game_0 .view').exists();
+},
+nukeuseranddata: function () {
+    //--Clear the data so we start from scratch.
+    S.open("//spools/spoolspps/nukecookieandsession.php");
+    S("[type=submit]").exists().click();
+    // open the page
+    S.open("//spools/spools.html");
+    S('.spools_models_game_0 .view').exists();
+    S('div#game form input[value=Create]').exists();
+},
+defaultgameinput: function () {
+  var defautinput = {
+        expectedkey: 0,
+        idGameBrd: '0',
+        TypeSport: 'Football',
+        TeamNameA: 'Home Team',
+        TeamNameB: 'Away Team',
+        TeamAScore: 0,
+        TeamBScore: 0,
+        message: 'New Game',
+        GameState: 'JoinGame'
+   };
+   return defautinput;
+},
+creategame: function (gameinput) {
+    var gamecreatedom = 'div#game form';
+    S(gamecreatedom+' input[type=submit]').exists( function () {
+        S(gamecreatedom+' div input[name=idGameBrd]').type(gameinput.idGameBrd);
+        S(gamecreatedom+' div input[name=TeamNameA]').type(gameinput.TeamNameA);
+        S(gamecreatedom+' div input[name=TeamNameB]').type(gameinput.TeamNameB);
+        S(gamecreatedom+' input[type=submit]').click();
+    });
     S('.game:nth-child(2)').exists();
 },
-checkgame: function() {
-    alert('hello chris');
+modgame: function (modinput) {
+    var gameeditdom = 'div#game table tbody tr.spools_models_game_'+modinput.expectedkey;
+    S(gameeditdom+' a.edit').exists().click();
+    S(gameeditdom+' td.idGameBrd').exists( function () {
+        S(gameeditdom+' td.TeamNameA input[name=TeamNameA]').click().type('\b\b\b\b'+modinput.TeamNameA);
+        //S(".spools_models_game_1 input[name=TeamNameB]").type("CHANGED");
+        S(gameeditdom+' input[value=Update]').click();
+    });
+},
+checkgame: function(checkinput) {
+    var gamecheckdom = 'div#game table tbody tr.spools_models_game_'+checkinput.expectedkey;
+    //--Check what create22 should have done
+    S(gamecheckdom).exists(function () {
+        ok(S(gamecheckdom+' td.idGameBrd').text().match(checkinput.idGameBrd), '<<BEGIN>>: gamekey '+checkinput.expectedkey);
+        equal(S(gamecheckdom+' td.TypeSport').text(), checkinput.TypeSport, 'TypeSport');
+        equal(S(gamecheckdom+' td.TeamNameA').text(), checkinput.TeamNameA, 'TestTeamA');
+        equal(S(gamecheckdom+' td.TeamNameB').text(), checkinput.TeamNameB, 'TestTeamB');
+        equal(S(gamecheckdom+' td.TeamAScore').text(), checkinput.TeamAScore, 'TeamAScore');
+        equal(S(gamecheckdom+' td.TeamBScore').text(), checkinput.TeamBScore, 'TeamBScore');
+        equal(S(gamecheckdom+' td.message').text(), checkinput.message, 'message');
+        equal(S(gamecheckdom+' td.GameState').text(), checkinput.GameState, 'GameState');
+    });
+ },
+viewgame: function(viewinput) {
+    var gameeditdom = 'div#game table tbody tr.spools_models_game_'+viewinput.expectedkey;
+    S(gameeditdom+' a.view').exists().click();
+
 }
 });
 //-TEST1
-test("GAMES: Default", function () {
+test("GAMES: 01-SmokeDefault", function () {
+    expect(9);
+    this.nukeuseranddata();
     ok(S('.game').size() >= 1, "There is at least one game");
 });
 //-TEST2
-test("GAMES: Create", function () {
-    this.create22();
-    //--Check what create22 should have done
-    S('.spools_models_game_1 .view').exists(function () {
-        ok(S('.spools_models_game_1 td.idGameBrd').text().match(/22/), "<<BEGIN>>: create22 gameboard is 22");
-        ok(S('.spools_models_game_1 td.TypeSport').text().match(/Football/), "TypeSport Football");
-        ok(S('.spools_models_game_1 td.TeamNameA').text().match(/TestTeamA/), "TestTeamA");
-        ok(S('.spools_models_game_1 td.TeamNameB').text().match(/TestTeamB/), "TestTeamB");
-        ok(S('.spools_models_game_1 td.TeamAScore').text().match(/0/), "Default Home Score 0");
-        ok(S('.spools_models_game_1 td.TeamBScore').text().match(/0/), "Default Away Score 0");
-        ok(S('.spools_models_game_1 td.message').text().match(/New Game/), "Message");
-        ok(S('.spools_models_game_1 td.GameState').text().match(/JoinGame/), "Default GameState GameJoin");
-    });
+test("GAMES: 02-create22-check22", function () {
+    expect(16);
+    this.nukeuseranddata();
+    var myUsergameinput = this.defaultgameinput();
+    myUsergameinput.expectedkey = 1;
+    myUsergameinput.idGameBrd = '22';
+    this.creategame(myUsergameinput);
+    this.checkgame(myUsergameinput);
 });
 //-TEST3
-test("GAMES: Mod a Game", function () {
-    this.create22();
-    S('.spools_models_game_1 a.edit').click();
-    S(".spools_models_game_1 input[name=TeamNameA]").type("CHANGED");
-    S(".spools_models_game_1 input[name=TeamNameB]").type("CHANGED");
-    S(".spools_models_game_1 input[value=Update]").click();
-    S('.spools_models_game_1 .edit').exists(function () {
-            ok(S('.spools_models_game_1 td.TeamNameA').text().match(/TestTeamACHANGED/), "Typed TestTeamACHANGED");
-            ok(S('.spools_models_game_1 td.TeamNameB').text().match(/TestTeamBCHANGED/), "Typed TestTeamBCHANGED");
-    });
+test("GAMES: 03-create", function () {
+    expect(24); //8 per setup and check
+    this.nukeuseranddata();
+    var myUsergameinput = {
+        expectedkey: 1,
+        idGameBrd: '33',
+        TypeSport: 'Football',
+        TeamNameA: 'Test',
+        TeamNameB: 'Test',
+        TeamAScore: 0,
+        TeamBScore: 0,
+        message: 'New Game',
+        GameState: 'JoinGame'
+        };
+    this.creategame(myUsergameinput);
+    this.checkgame(myUsergameinput);
+    myUsergameinput.TeamNameA = "THIS";
+    this.modgame(myUsergameinput);
+    //--the mod acctuall appends via the type command
+    myUsergameinput.TeamNameA = "TestTHIS";
+    this.checkgame(myUsergameinput);
 });
 //-TEST4
-test("GAMES: Make multiple games", function () {
-    this.create22();
-    //--Now Mod the created board
-    S('.spools_models_game_1 a.edit').click();
-    S(".spools_models_game_1 option[value=Football]").click();
-    S(".spools_models_game_1 input[name=TeamNameA]").type("CHANGED");
-    S(".spools_models_game_1 input[name=TeamNameB]").type("CHANGED");
-    S(".spools_models_game_1 input[value=Update]").click();
-    S('.spools_models_game_1 .edit').exists(function () {
-        ok(S('.spools_models_game_1 td.TeamNameA').text().match(/TestTeamACHANGED/), "Typed TestTeamACHANGED");
-        ok(S('.spools_models_game_1 td.TeamNameB').text().match(/TestTeamBCHANGED/), "Typed TestTeamBCHANGED");
-    });
-    //--Check what Mod should have done
-    S('.spools_models_game_1 td.TeamNameA').exists(function () {
-            ok(S('.spools_models_game_1 td.idGameBrd').text().match(/22/), "<<BEGIN>>: MOD board22 gameboard");
-            ok(S('.spools_models_game_1 td.TypeSport').text().match(/Football/), "Football");
-            ok(S('.spools_models_game_1 td.TeamNameA').text().match(/TestTeamACHANGED/), "TestTeamACHANGED");
-            ok(S('.spools_models_game_1 td.TeamNameB').text().match(/TestTeamBCHANGED/), "TestTeamBCHANGED");
-            ok(S('.spools_models_game_1 td.TeamAScore').text().match(/0/), "Home Score 0");
-            ok(S('.spools_models_game_1 td.TeamBScore').text().match(/0/), "Away Score 0");
-            ok(S('.spools_models_game_1 td.message').text().match(/New Game/), "Message");
-            ok(S('.spools_models_game_1 td.GameState').text().match(/JoinGame/), "Default GameState GameJoin");
-            stop();
-    });
-    S.open("//spools/spools.html");
-    //--Create the second new board
-    S('input[value=Create]').exists(function () {
-        S("input[name=idGameBrd]").type("33");
-        //S("option[value=Football]").click();
-        S("input[name=TeamNameA]").type("33TeamA");
-        S("input[name=TeamNameB]").type("33TeamB");
-        S("input[value=Create]").click();
-        S('.spools_models_game_2 .edit').exists(function () {
-            ok(S('.spools_models_game_2 td.TeamNameA').text().match(/33TeamA/), "Typed 33TeamA");
-            ok(S('.spools_models_game_2 td.TeamNameB').text().match(/33TeamB/), "Typed 33TeamB");
-        });
-     });
-    //--Check what create should have done
-    S('.spools_models_game_2 .view').exists(function () {
-            ok(S('.spools_models_game_2 td.idGameBrd').text().match(/33/), "<BEGIN>>: create 33 gameboard");
-            ok(S('.spools_models_game_2 td.TypeSport').text().match(/Football/), "create TypeSport Football");
-            ok(S('.spools_models_game_2 td.TeamNameA').text().match(/33TeamA/), "Typed 33TeamA");
-            ok(S('.spools_models_game_2 td.TeamNameB').text().match(/33TeamB/), "Typed 33TeamB");
-            ok(S('.spools_models_game_2 td.TeamAScore').text().match(/0/), "Default Home Score 0");
-            ok(S('.spools_models_game_2 td.TeamBScore').text().match(/0/), "Default Away Score 0");
-            ok(S('.spools_models_game_2 td.message').text().match(/New Game/), "create Message");
-            ok(S('.spools_models_game_2 td.GameState').text().match(/JoinGame/), "Default GameState GameJoin");
-    });
-});
-test("GAMES: Test Token picks", function () {
-    this.create22();
-    //--Now Mod the created board
-    S('.spools_models_game_1 a.edit').click();
-    S(".spools_models_game_1 option[value=Football]").click();
-    S(".spools_models_game_1 input[name=TeamNameA]").type("CHANGED");
-    S(".spools_models_game_1 input[name=TeamNameB]").type("CHANGED");
-    S(".spools_models_game_1 input[value=Update]").click();
-    S('.spools_models_game_1 .edit').exists(function () {
-        ok(S('.spools_models_game_1 td.TeamNameA').text().match(/TestTeamACHANGED/), "Typed TestTeamACHANGED");
-        ok(S('.spools_models_game_1 td.TeamNameB').text().match(/TestTeamBCHANGED/), "Typed TestTeamBCHANGED");
-    });
-    //--Check what Mod should have done
-    S('.spools_models_game_1 td.TeamNameA').exists(function () {
-            ok(S('.spools_models_game_1 td.idGameBrd').text().match(/22/), "<<BEGIN>>: MOD board22 gameboard");
-            ok(S('.spools_models_game_1 td.TypeSport').text().match(/Football/), "Football");
-            ok(S('.spools_models_game_1 td.TeamNameA').text().match(/TestTeamACHANGED/), "TestTeamACHANGED");
-            ok(S('.spools_models_game_1 td.TeamNameB').text().match(/TestTeamBCHANGED/), "TestTeamBCHANGED");
-            ok(S('.spools_models_game_1 td.TeamAScore').text().match(/0/), "Home Score 0");
-            ok(S('.spools_models_game_1 td.TeamBScore').text().match(/0/), "Away Score 0");
-            ok(S('.spools_models_game_1 td.message').text().match(/New Game/), "Message");
-            ok(S('.spools_models_game_1 td.GameState').text().match(/JoinGame/), "Default GameState GameJoin");
-            stop();
-    });
-    S.open("//spools/spools.html");
-    //--Create the second new board
-    S('input[value=Create]').exists(function () {
-        S("input[name=idGameBrd]").type("33");
-        //S("option[value=Football]").click();
-        S("input[name=TeamNameA]").type("33TeamA");
-        S("input[name=TeamNameB]").type("33TeamB");
-        S("input[value=Create]").click();
-        S('.spools_models_game_2 .edit').exists(function () {
-            ok(S('.spools_models_game_2 td.TeamNameA').text().match(/33TeamA/), "Typed 33TeamA");
-            ok(S('.spools_models_game_2 td.TeamNameB').text().match(/33TeamB/), "Typed 33TeamB");
-        });
-     });
-    //--Check what create should have done
-    S('.spools_models_game_2 .view').exists(function () {
-            ok(S('.spools_models_game_2 td.idGameBrd').text().match(/33/), "<BEGIN>>: create 33 gameboard");
-            ok(S('.spools_models_game_2 td.TypeSport').text().match(/Football/), "create TypeSport Football");
-            ok(S('.spools_models_game_2 td.TeamNameA').text().match(/33TeamA/), "Typed 33TeamA");
-            ok(S('.spools_models_game_2 td.TeamNameB').text().match(/33TeamB/), "Typed 33TeamB");
-            ok(S('.spools_models_game_2 td.TeamAScore').text().match(/0/), "Default Home Score 0");
-            ok(S('.spools_models_game_2 td.TeamBScore').text().match(/0/), "Default Away Score 0");
-            ok(S('.spools_models_game_2 td.message').text().match(/New Game/), "create Message");
-            ok(S('.spools_models_game_2 td.GameState').text().match(/JoinGame/), "Default GameState GameJoin");
-    });
-    S.open("//spools/spools.html");
+test("GAMES: 04-Token picks", function () {
+    this.nukeuseranddata();
+        function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+        }
     //--Look at the token board verify Board 0 the default
-    
+    S("div#game table tbody tr.spools_models_game_0 td a.view").exists().click();
     S('div#token').exists(function (){
+        var myidPlayer = readCookie('idPlayer');
         ok( 1, "<<BEGIN>>: Verify board 0 default");
-        ok( S('.idGameBrd').text().match(/0/), "Verify board 0 default");
-        S(".spools_models_game_0 a.view").click();
-         S("tr.spools_models_token_1 td.idGameBrd").exists( function () {
-            ok( S(".spools_models_token_1 .idGameBrd").text().match(/0/), "Verify board 0 default");
+        //S("div#game table tbody tr.spools_models_game_0 td a.view").exists().click();
+        S("div#token tr.spools_models_token_1 td.idGameBrd").exists( function () {
+            ok( S("tr.spools_models_token_1 .idGameBrd").text().match(/0/), "Verify board 0 idGameBrd");
+            ok( S("tr.spools_models_token_1 .idPlayer").text().match(myidPlayer), "Verify Token 1 idPlayer");
+            ok( S("tr.spools_models_token_2 .idPlayer").text().match(myidPlayer), "Verify Token 2 idPlayer");
+            ok( S("tr.spools_models_token_3 .idPlayer").text().match(myidPlayer), "Verify Token 3 idPlayer");
+            ok( S("tr.spools_models_token_4 .idPlayer").text().match(myidPlayer), "Verify Token 4 idPlayer");
+            ok( S("tr.spools_models_token_5 .idPlayer").text().match(myidPlayer), "Verify Token 5 idPlayer");
         });
+        S("div#token tr.spools_models_token_1 td a.pick").exists().click();
+        S.wait(1000);
+        S("div#token tr.spools_models_token_2 td a.pick").exists().click();
+        S.wait(1000);
+        S("div#token tr.spools_models_token_3 td a.pick").exists().click();
+        S.wait(2000);
+        S("div#token tr.spools_models_token_1 td.idGameBrd").exists( function () {
+            ok( S("tr.spools_models_token_1 .idOwner").text().match(myidPlayer), "Verify Token 1 idPlayer is idOwner");
+            ok( S("tr.spools_models_token_2 .idOwner").text().match(myidPlayer), "Verify Token 2 idPlayer is idOwner");
+            ok( S("tr.spools_models_token_3 .idOwner").text().match(myidPlayer), "Verify Token 3 idPlayer is idOwner");
+            ok( S("tr.spools_models_token_4 .idOwner").text().match("game"), "Verify Token 4 game is idOwner");
+            ok( S("tr.spools_models_token_5 .idOwner").text().match(/game/), "Verify Token 5 game is idOwner");
+        });
+        S.open("//spools/spools.html");
+        S.wait(2000);
+        S("div#token tr.spools_models_token_1 td.idGameBrd").exists( function () {
+            ok( S("tr.spools_models_token_1 .idPlayer").text().match(/MINE/), "Verify Token 1 idPlayer is MINE");
+            ok( S("tr.spools_models_token_2 .idPlayer").text().match("MINE"), "Verify Token 2 idPlayer is MINE");
+            ok( S("tr.spools_models_token_3 .idPlayer").text().match('MINE'), "Verify Token 3 idPlayer is MINE");
+            ok( S("tr.spools_models_token_4 .idPlayer").text().match(myidPlayer), "Verify Token 4 idPlayer is myidPlayer");
+            ok( S("tr.spools_models_token_5 .idPlayer").text().match(myidPlayer), "Verify Token 5 idPlayer is myidPlayer");
+            ok( S("tr.spools_models_token_4 .idOwner").text().match("game"), "Verify Token 4 idOwner is game");
+            ok( S("tr.spools_models_token_5 .idOwner").text().match(/game/), "Verify Token 5 idOwner is game");
+        });
+
+        /*
+        S("div#token tr.spools_models_token_1 td.idOwner").text(S("div#token tr.spools_models_token_1 td.idPlayer"), function () {
+            ok( S("div#token tr.spools_models_token_1 td.idOwner").text().match(myidPlayer), "Verify new Owner");
+        });
+        */
         //var myidPlayer = S('tr.spools_models_token_1 td.idPlayer').text();
        // ok( /myidPlayer/.test( S('tr.spools_models_token_2 td.idPlayer').text() ), "Verify idPlayer on tokens");
     });

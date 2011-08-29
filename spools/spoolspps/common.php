@@ -14,7 +14,8 @@ $theGame = parse_ini_file("gameboard.ini", true);
 if (!isset($_COOKIE["idPlayer"])) { //-- No player cookie to set a new user
     $mySession = session_id();
     $idPlayer = substr_replace($mySession, '', 3, -1);
-    setcookie("idPlayer", $idPlayer);
+    //setcookie("idPlayer", $idPlayer);
+    setcookie ("idPlayer", $idPlayer, time() + 3600, "/");
 } else $idPlayer  = $_COOKIE["idPlayer"];
 //-- We now have user and a board references now look for the game bank
 $gamesbankbasename = $theGame["gamesinit"]["filepath"] . $theGame["gamesinit"]["gamegroup"] . $theGame["gamesinit"]["filename"];

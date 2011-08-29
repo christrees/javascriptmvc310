@@ -1,5 +1,3 @@
 <%for(var i = 0; i < tokens.length ; i++){%>
-	<tr <%= tokens[i]%>>
-		<%= $.View('//spools/views/token/show',tokens[i])%>
-	</tr>
+<tr <%= tokens[i]%>><%= $.View('//spools/views/token/show',tokens[i])%></tr>
 <%}%>

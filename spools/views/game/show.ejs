@@ -1,10 +1,6 @@
-<%for(var attribute in this.Class.attributes){%>
-	<%if(attribute == 'id') continue;%>
-	<td class='<%= attribute%>'>
-		<%=this[attribute]%>
-	</td>
-<%}%>
+<%for(var attribute in this.Class.attributes){ if(attribute == 'id') continue;
+%><td class='<%= attribute%>'><%= this[attribute]%></td><%}%>
 <td>
-	<a href='javascript://' class='edit'>edit</a>
-	<a href='javascript://' class='view'>view</a>
+<a href='javascript://' class='edit'>edit</a>
+<a href='javascript://' class='view'>view</a>
 </td>

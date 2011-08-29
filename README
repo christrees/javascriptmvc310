@@ -474,6 +474,57 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 <<<<<<<<<<<<<<<<<
 Browse - http://js.javascriptmvc310/spools/funcunit.html
 SUCCESS>>TEST RUN WOOHOO...
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 7 - Functional Auto Test Token Picks
+<<<<<<<<<<<<<<<<<
+--OK... lets continue with testing the tokens
+--We think we have the shit working... just need to access this via the auto test.
+--http://richard2001.blogspot.com/2010/02/select-elements-by-innerhtml-with.html
+--Man... damb selector nightmare... I'm not so sure about the S() 'helper class' in javascriptmvc need to focus on jquery selectors
+--http://api.jquery.com/multiple-selector/
+--Got a little going as I'm able to get a view and verify the board is what I think... going to save this
+C:\Users\ChrisT\workspace\javascriptmvc310>git status
+# On branch spools
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   README
+#       modified:   spools/test/funcunit/game_controller_test.js
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "Step 7 - first commit"
+--Now quit for the night... When I get back to this I need to study selection and see if I can use jquery selectors
+--START HERE CHRIS
+--http://api.jquery.com/multiple-selector/
+--http://docs.jquery.com/QUnit
+--http://javascriptmvc.com/docs.html#&who=FuncUnit.prototype.text
+--TESTING: SETUP
+--http://js.javascriptmvc310/spools/spoolspps/nukecookieandsession.php
+--http://js.javascriptmvc310/spools/funcunit.html
+--http://js.javascriptmvc310/spools/spools.html
+--C:\Users\ChrisT\workspace\javascriptmvc310>
+--C:\Users\ChrisT\workspace\javascriptmvc310\spools\test\funcunit\game_controller_test.js
+--PURPOSE: Verify Click on Pick gets the token on idOwner and then switch boards AND players.
+--THEN: need to finish up the state transition stuff
+
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "blah blah"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 7 - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc310/spools/spools.html
+AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
+SUCCESS>>
+?FAILURE>>
+??WHAT?>>
 ======================================================================================
 ------- copy buffer --------------
 ?????????????????????????????????
@@ -483,6 +534,7 @@ SUCCESS>>TEST RUN WOOHOO...
 --WHAT the heck to do next... how about blahblah
 --Lets commit this
 --SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add -u
 C:\Users\ChrisT\workspace\javascriptmvc310>git add .
 C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "blah blah"
 C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
@@ -493,6 +545,7 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 >>>>>STEP x - TEST
 <<<<<<<<<<<<<<<<<
 Browse - http://js.javascriptmvc310/spools/spools.html
+AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
 SUCCESS>>
 ?FAILURE>>
 ??WHAT?>>
