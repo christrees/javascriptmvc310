@@ -126,6 +126,7 @@ test("GAMES: 03-create", function () {
 //-TEST4
 test("GAMES: 04-Token picks", function () {
     this.nukeuseranddata();
+    /*TODO: put cookie stuff in a better place */
         function readCookie(name) {
 	var nameEQ = name + "=";
 	var ca = document.cookie.split(';');
@@ -174,15 +175,27 @@ test("GAMES: 04-Token picks", function () {
             ok( S("tr.spools_models_token_4 .idOwner").text().match("game"), "Verify Token 4 idOwner is game");
             ok( S("tr.spools_models_token_5 .idOwner").text().match(/game/), "Verify Token 5 idOwner is game");
         });
-
-        /*
-        S("div#token tr.spools_models_token_1 td.idOwner").text(S("div#token tr.spools_models_token_1 td.idPlayer"), function () {
-            ok( S("div#token tr.spools_models_token_1 td.idOwner").text().match(myidPlayer), "Verify new Owner");
-        });
-        */
-        //var myidPlayer = S('tr.spools_models_token_1 td.idPlayer').text();
-       // ok( /myidPlayer/.test( S('tr.spools_models_token_2 td.idPlayer').text() ), "Verify idPlayer on tokens");
     });
+    //--Go Start Game
+    S("div#game table tbody tr.spools_models_game_0 td a.edit").exists().click();
+    S("div#game table tbody tr.spools_models_game_0 td.GameState select[name=GameState] option[value=StartGame]").exists().click();
+    S("div#game table tbody tr.spools_models_game_0 td input.update").exists().click();
+    S("div#game table tbody tr.spools_models_game_0 td a.view").exists().click();
+    //--Go Add Score
+    S("div#game table tbody tr.spools_models_game_0 td a.edit").exists().click();
+    S("div#game table tbody tr.spools_models_game_0 td.TeamAScore div.teamscore input.gamescoreplus").exists().click().click().click();
+    S("div#game table tbody tr.spools_models_game_0 td.TeamBScore div.teamscore input.gamescoreplus").exists().click().click().click().click().click();
+    S("div#game table tbody tr.spools_models_game_0 td input.update").exists().click();
+    S("div#game table tbody tr.spools_models_game_0 td a.view").exists().click();
+    S.wait(2000);
+    //--Go End Game
+    S("div#game table tbody tr.spools_models_game_0 td a.edit").exists().click();
+    S("div#game table tbody tr.spools_models_game_0 td.GameState select[name=GameState] option[value=EndGame]").exists().click();
+    S("div#game table tbody tr.spools_models_game_0 td input.update").exists().click();
+    S("div#game table tbody tr.spools_models_game_0 td a.view").exists().click();
+
+
+
 
 });
 

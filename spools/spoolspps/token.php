@@ -23,15 +23,21 @@ if (file_exists($gamebrdfilename)) {
 
 //--OK we should have a $gamebrdout array
 //--We need to set the user display field so this user can click and buy tokens from the board default
+
 for ($i = 1; $i <= $theGame["gamegridinit"]["gametotaltokens"]; $i++) {
     if ($gamebrdout[$i]["idOwner"] == $theGame["gamegridinit"]["gamedefaulttokenowner"]) {
-        $gamebrdout[$i]["idPlayer"] = $idPlayer;
+        if ($gamebankout[$idGameBrd]["GameState"] == "JoinGame") {
+            $gamebrdout[$i]["idPlayer"] = $idPlayer;
+        } else {
+            $gamebrdout[$i]["idPlayer"] = "BANK";
+        }
     } elseif ($gamebrdout[$i]["idOwner"] == $_COOKIE["idPlayer"]) { 
-        $gamebrdout[$i]["idPlayer"] = 'MINE';
+        $gamebrdout[$i]["idPlayer"] = "MINE";
     } else { 
-        $gamebrdout[$i]["idPlayer"] = 'GONE';
+        $gamebrdout[$i]["idPlayer"] = "GONE";
     }
 }
+
 //--Send the game to the user
 echo '[';
 for ($i = 1; $i <= $theGame["gamegridinit"]["gametotaltokens"]; $i++) {

@@ -500,6 +500,7 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "Step 7 - first commit"
 --http://api.jquery.com/multiple-selector/
 --http://docs.jquery.com/QUnit
 --http://javascriptmvc.com/docs.html#&who=FuncUnit.prototype.text
+--http://javascriptmvc.com/docs.html#&who=FuncUnit
 --TESTING: SETUP
 --http://js.javascriptmvc310/spools/spoolspps/nukecookieandsession.php
 --http://js.javascriptmvc310/spools/funcunit.html
@@ -508,11 +509,71 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "Step 7 - first commit"
 --C:\Users\ChrisT\workspace\javascriptmvc310\spools\test\funcunit\game_controller_test.js
 --PURPOSE: Verify Click on Pick gets the token on idOwner and then switch boards AND players.
 --THEN: need to finish up the state transition stuff
-
+--CRAP... I just spent about 20hrs getting the test code running.
+--Forgot to comment about it... but basically I had to 'adjust the views' and also
+--Had some cookie issues... just making sure the were set to the correct path and such..
+--did a lot of work with the test code... it's in the code and the conclusion was not much
+--code but a lot of figuring out what pattern to use.
+--NOTE: the generated view code puts in code formating that f'up the HTML
+--Basically puts returns and space in so the test code picks that up and fails.
+--SO... the view templates are critical to look at how they actually output.
+--ALSO... I ran into browser dependancys... chome didn't add spaces, firefox did
+--OK lets do a quick commit again... 
+C:\Users\ChrisT\workspace\javascriptmvc310>git status
+# On branch spools
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   README
+#       modified:   spools/spoolspps/common.php
+#       modified:   spools/test/funcunit/game_controller_test.js
+#       modified:   spools/views/game/list.ejs
+#       modified:   spools/views/game/show.ejs
+#       modified:   spools/views/token/list.ejs
+#       modified:   spools/views/token/show.ejs
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "Step 7 - working token pick test"
+--OK.. now back to the state crap that started all this.
+--We need a StartGame control.
+--??HUMM... need to let the server change the state...
+--OK.. in the edit view for a game we add a button that changes the hidden state of the game
+--HECK... for right now lets just give a dropdown option...
+--EDIT C:\Users\ChrisT\workspace\javascriptmvc310\spools\views\game\edit.ejs
+--Put in dropdown select
+--Now on the server side... we want to lockout picks after a game starts
+--EDIT --EDIT C:\Users\ChrisT\workspace\javascriptmvc310\spools\views\game\edit.ejs
+--Put in dropdown select
+--EDIT C:\Users\ChrisT\workspace\javascriptmvc310\spools\spoolsapps\token.php
+--Put in code to detect GameState that alters the token data grid
+--EDIT C:\Users\ChrisT\workspace\javascriptmvc310\spools\spoolsapps\tokens.php
+--Put in code to detect GameState that ignores pick changes
+--EDIT C:\Users\ChrisT\workspace\javascriptmvc310\spools\controllers\game_controller.js
+--Put in code to button click the scores
+--Add Test...
+--WELLL... late sunday night... spent too much time on it but I think I got it now.
+--Have a few errors... but have to quit..
+--I'm going to commit before I'm committed.
+C:\Users\ChrisT\workspace\javascriptmvc310>git status
+# On branch spools
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   README
+#       modified:   spools/controllers/game_controller.js
+#       modified:   spools/spoolspps/token.php
+#       modified:   spools/spoolspps/tokens.php
+#       modified:   spools/test/funcunit/game_controller_test.js
+#       modified:   spools/views/game/edit.ejs
+#
+no changes added to commit (use "git add" and/or "git commit -a")
 --Lets commit this
 --SAVE THIS README
 C:\Users\ChrisT\workspace\javascriptmvc310>git add .
-C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "blah blah"
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 7 - Functional Auto Test Token Picks"
 C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
 [cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
@@ -522,9 +583,9 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 <<<<<<<<<<<<<<<<<
 Browse - http://js.javascriptmvc310/spools/spools.html
 AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
-SUCCESS>>
-?FAILURE>>
-??WHAT?>>
+SUCCESS>>funcunit test testing shaynes loop but have errors
+?FAILURE>>Has errors we can work on that next
+
 ======================================================================================
 ------- copy buffer --------------
 ?????????????????????????????????

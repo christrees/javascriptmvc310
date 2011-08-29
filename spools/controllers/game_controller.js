@@ -69,6 +69,25 @@ $.Controller.extend('Spools.Controllers.Game',
 	$game.model().update($game.formParams());
 },
  /**
+ * Updates the game from the edit values.
+ */
+'.gamescoreminus click': function( el ){
+    var stuff = parseInt(el.next('.gamescore').attr('value'));
+    --stuff;
+    el.next('.gamescore').attr('value', stuff);
+    //alert(stuff);
+    /*
+	var $game = el.closest('.gamescore');
+	$game.model().update($game.formParams());
+    */
+},
+'.gamescoreplus click': function( el ){
+    var stuff = parseInt(el.prev('.gamescore').attr('value'));
+    ++stuff;
+    el.prev('.gamescore').attr('value', stuff);
+    //alert(stuff);
+},
+ /**
  * Listens for updated games.	 When a game is updated, 
  * update's its display.
  */

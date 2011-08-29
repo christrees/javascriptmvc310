@@ -1,29 +1,32 @@
-<%for(var attribute in Spools.Models.Game.attributes){%>
-	<%if(attribute == 'id') continue;%>
-	<td class='<%= attribute %>'>
-	<%if(attribute == 'TypeSport') {%>
-            <select name="<%= attribute%>">
-                <option value="Baseball">Baseball</option>
-                <option value="Football" selected="selected">Football</option>
-            </select>
-        <%} else if (attribute == 'idGameBrd') {%>
-            <%= this[attribute]%>
-            <input type='hidden' value="<%= this[attribute]%>" name="<%= attribute%>"/>
-        <%} else if (attribute == 'GameState') {%>
-            <%= this[attribute]%>
-            <input type='hidden' value="<%= this[attribute]%>" name="<%= attribute%>"/>
-        <%} else if ((attribute == 'TeamAScore') || (attribute == 'TeamBScore')) {%>
-            <%= this[attribute]%>
-            <input type='hidden' value="<%= this[attribute]%>" name="<%= attribute%>"/>
-       <% /* %>
-            <input type='button' value='-' onclick='javascript:process(-1)'>
-            <input type='test' value="<%= this[attribute]%>" name="<%= attribute%>"/>
-            <input type='button' value='+' onclick='javascript:process(1)'>
-        <% */} else {%>
-		<input type="text" value="<%= this[attribute]%>" name="<%= attribute%>"/>
-        <%}%></td>
+<%for(var attribute in Spools.Models.Game.attributes){
+    if(attribute == 'id') continue;
+%><td class='<%= attribute %>'><%
+    if(attribute == 'TypeSport') { %>
+<select name="<%= attribute%>">
+    <option value="Baseball">Baseball</option>
+    <option value="Football" selected="selected">Football</option>
+</select>
+<%} else if (attribute == 'idGameBrd') {%>
+<%= this[attribute]%><input type='hidden' value="<%= this[attribute]%>" name="<%= attribute%>"/>
+<%} else if (attribute == 'GameState') {%>
+<select name="<%= attribute%>">
+    <option value="StartGame">StartGame</option>
+    <option value="EndGame">EndGame</option>
+    <option value="JoinGame" selected="selected">JoinGame</option>
+</select>
+<%} else if ((attribute == 'TeamAScore') || (attribute == 'TeamBScore')) {%>
+<%= this[attribute]%>
+<% /* %><input type='hidden' value="<%= this[attribute]%>" name="<%= attribute%>"/><% */ %>
+<div class='teamscore'>
+<input type='button' value='-' class='gamescoreminus'>
+<input type='test' value="<%= this[attribute]%>" name="<%= attribute%>" class='gamescore' />
+<input type='button' value='+' class='gamescoreplus'>
+</div>
+<% } else {%>
+<input type="text" value="<%= this[attribute]%>" name="<%= attribute%>"/>
+<%}%></td>
 <%}%>
 <td>
-	<input type='submit' value='Update' class='update'/>
-	<a href='javascript://' class='cancel'>cancel</a>
+<input type='submit' value='Update' class='update'/>
+<a href='javascript://' class='cancel'>cancel</a>
 </td>
