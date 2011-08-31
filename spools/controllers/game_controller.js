@@ -27,6 +27,9 @@ $.Controller.extend('Spools.Controllers.Game',
  */
  list: function( games ){
 	$('#game').html(this.view('init', {games:games} ));
+        var curgame = games.idGameBrd;
+
+        this.showgamegrid(curgame);
  },
  /**
  * Responds to the create form being submitted by creating a new Spools.Models.Game.
@@ -100,6 +103,8 @@ $.Controller.extend('Spools.Controllers.Game',
  '.view click': function( el ){
         $('.game').removeClass('gameselect');
         var curgame = el.closest('.game').model();
+        el.closest('.game').addClass('gameselect');
+        //var curgame = el.closest('.gameselect').model();
         function createCookie(name,value,days) {
 	if (days) {
 		var date = new Date();
@@ -129,10 +134,16 @@ $.Controller.extend('Spools.Controllers.Game',
        createCookie('idGameBrd',curgame['idGameBrd'],1);
        //alert("game_controller: "+curgame['idGameBrd']);
        //createCookie('catCrap',99,2);
+       this.showgamegrid(curgame);
+ },
+ /**
+ * Shows a game's information.
+ */
+showgamegrid: function(curgame){
         Spools.Models.Token.findAll({}, function(data){
           $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:data, game:curgame} ));
         });
- },
+},
  /**
  * Shows a game's information.
  */

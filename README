@@ -697,15 +697,52 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 [cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
 <<<<<<<<<<<<<<<<<
->>>>>STEP x - TEST
+>>>>>STEP 9 - TEST
 <<<<<<<<<<<<<<<<<
 Browse - http://http://javascriptmvc310.xplanb.net/spools/spools.html
 AUTOTEST: http://http://javascriptmvc310.xplanb.net/spools/funcunit.html
 Browse - http://js.javascriptmvc310/spools/spools.html
 AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
 SUCCESS>>Both work
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 10 - More CSS and Testing
+<<<<<<<<<<<<<<<<<
+--OK... start getting css in
+--Start with tabs
+--Joe had them nested... and going to urls.
+--From a controller standpoint... the tabs bar need to be active ALL THE TIME..
+--So we make it a single controller... tabs controller that activates other controllers.
+--http://jupiterjs.com/news/organize-jquery-widgets-with-jquery-controller
+--I started a test
+--http://js.javascriptmvc310/spools/tabstest.html
+--This works... lets commit this so we have a place to come back to when it f's
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 10 - add spools/tabstest.html"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+
+
+
+
+
+
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add -u
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 10 - More CSS and Testing"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 10 - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc310/spools/spools.html
+AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
+SUCCESS>>
 ?FAILURE>>
 ??WHAT?>>
+
 ======================================================================================
 ------- copy buffer --------------
 ?????????????????????????????????
