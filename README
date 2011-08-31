@@ -659,9 +659,53 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 Browse - http://js.javascriptmvc310/spools/spools.html
 AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
 SUCCESS>>
+
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 9 - Share
+<<<<<<<<<<<<<<<<<
+[cat@gator1209 ~/public_html]$ git clone git@github.com:christrees/javascriptmvc310.git
+Initialized empty Git repository in /home/cat/public_html/javascriptmvc310/.git/
+Enter passphrase for key '/home/cat/.ssh/id_rsa':
+remote: Counting objects: 969, done.
+remote: Compressing objects: 100% (722/722), done.
+remote: Total 969 (delta 190), reused 926 (delta 147)
+Receiving objects: 100% (969/969), 1.47 MiB, done.
+Resolving deltas: 100% (190/190), done.
+[cat@gator1209 ~/public_html]$ cd javascriptmvc310/
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+Note: moving to 'remotes/origin/spools' which isn't a local branch
+If you want to create a new branch from this checkout, you may do so
+(now or later) by using -b with the checkout command again. Example:
+  git checkout -b <new_branch_name>
+HEAD is now at 1b02796... STEP 8 - Hang the CSS
+[cat@gator1209 ~/public_html/javascriptmvc310]$
+[cat@gator1209 ~/public_html/javascriptmvc310]$ cd spools/spoolspps/
+[cat@gator1209 ~/public_html/javascriptmvc310/spools/spoolspps]$ mkdir spoolsdata
+[cat@gator1209 ~/public_html/javascriptmvc310/spools/spoolspps]$ ls
+common.php  error_log  game.php  gameboard.ini  games.php  nukecookieandsession.php  spoolsdata  token.php  tokens.php
+[cat@gator1209 ~/public_html/javascriptmvc310/spools/spoolspps]$
+--BROWSE: http://javascriptmvc310.xplanb.net/spools/spools.html
+--RUNTEST: http://javascriptmvc310.xplanb.net/spools/funcunit.html
+--DETAILS: https://github.com/christrees/javascriptmvc310/tree/spools
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add -u
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 9 - Share"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+<<<<<<<<<<<<<<<<<
+>>>>>STEP x - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://http://javascriptmvc310.xplanb.net/spools/spools.html
+AUTOTEST: http://http://javascriptmvc310.xplanb.net/spools/funcunit.html
+Browse - http://js.javascriptmvc310/spools/spools.html
+AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
+SUCCESS>>Both work
 ?FAILURE>>
 ??WHAT?>>
-
 ======================================================================================
 ------- copy buffer --------------
 ?????????????????????????????????
