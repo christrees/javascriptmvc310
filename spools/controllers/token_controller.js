@@ -18,7 +18,8 @@ $.Controller.extend('Spools.Controllers.Token',
  "{window} load": function(){
 	if(!$("#token").length){
 	 $(document.body).append($('<div/>').attr('id','token'));
-		 Spools.Models.Token.findAll({}, this.callback('list'));
+                //-- let the game_controller trigger the fetch
+		// Spools.Models.Token.findAll({}, this.callback('list'));
  	}
  },
  /**
@@ -26,13 +27,7 @@ $.Controller.extend('Spools.Controllers.Token',
  * @param {Array} tokens An array of Spools.Models.Token objects.
  */
  grid: function( tokens ){ /**/
-        var curgame;
-        Spools.Models.Game.findAll({}, function(data){
-            curgame = data[$.cookie('idGameBrd')]
-            $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:tokens, game:curgame} ));
-        });
-     // $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:tokens, game:curgame} ));
-     // $('#token').html(this.view('grid', {tokens:tokens} ));
+           $('#token').html(this.view('grid', {tokens:tokens, game:game} ));
  },
  /**
  * Displays a list of tokens and the submit form.
@@ -93,9 +88,15 @@ $.Controller.extend('Spools.Controllers.Token',
  * update's its display.
  */
 'token.updated subscribe': function( called, token ){
-	this.show(token);
+	// this.show(token);
+        // this.grid(token);
+        /*
+        Spools.Models.Token.findAll({}, function(data){
+          $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:data, game:curgame} ));
+        });
+        */
 },
- /**
+/**
  * Shows a token's information.
  */
 show: function( token ){

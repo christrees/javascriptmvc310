@@ -127,9 +127,10 @@ $.Controller.extend('Spools.Controllers.Game',
        // document.cookie = 'idGameBrd=' + curgame['idGameBrd'] + '; path=/';
        eraseCookie('idGameBrd');
        createCookie('idGameBrd',curgame['idGameBrd'],1);
+       //alert("game_controller: "+curgame['idGameBrd']);
        //createCookie('catCrap',99,2);
         Spools.Models.Token.findAll({}, function(data){
-          $('#token').html(Spools.Controllers.Token.prototype.view('list', {tokens:data, game:curgame} ));
+          $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:data, game:curgame} ));
         });
  },
  /**

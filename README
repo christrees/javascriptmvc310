@@ -585,6 +585,82 @@ Browse - http://js.javascriptmvc310/spools/spools.html
 AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
 SUCCESS>>funcunit test testing shaynes loop but have errors
 ?FAILURE>>Has errors we can work on that next
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 8 - Hang the CSS
+<<<<<<<<<<<<<<<<<
+--OK... I did a git reset because I had some issues <I messed around with the icon / grid views>
+--In the process, I got things failing and I got lost... enough that I needed to get back to something I was confident that worked..
+--SO... use git to revert to my last commit..
+C:\Users\ChrisT\workspace\javascriptmvc310>git reset --hard
+HEAD is now at 1b4e7e0 STEP 7 - Functional Auto Test Token Picks
+C:\Users\ChrisT\workspace\javascriptmvc310>ls
+MIT-LICENSE.txt  changelog.txt  funcunit  js      nbproject  steal
+README           documentjs     jquery    js.bat  spools
+C:\Users\ChrisT\workspace\javascriptmvc310>git status
+# On branch spools
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       spools/views/token/grid.ejs
+#       spools/views/token/icon.ejs
+nothing added to commit but untracked files present (use "git add" to track)
+C:\Users\ChrisT\workspace\javascriptmvc310>git status
+# On branch spools
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       spools/views/token/xgrid.ejs
+#       spools/views/token/xicon.ejs
+nothing added to commit but untracked files present (use "git add" to track)
+--NOTE: I had put the grid and icon view in from the javascriptmvc305 project
+--I must have something messed up in the pick event logic because the tokens changed view
+--when they were in the path
+--CHANGE grid.ejs and icon.ejs to xgrid.ejs and xicon.ejs
+--RUN TEST:   http://js.javascriptmvc310/spools/funcunit.html
+--Now that worked as expected... but the second run got some errors... lets clean that up.
+--Basically I use the nuke to clean things up... well, setup test the default so I should move nuke into setup.
+--OTHERWISE the first try could be messed up if I have edited the default...
+--MOVE nuke to setup and take out of tests
+--OK... got green lights on chrome... firefox has the delete key issue <error when I change because I can't delete text in text input>
+--NOW... lets fix up the token test to use pointers to the token dom data
+--EDIT: C:\Users\ChrisT\workspace\javascriptmvc310\spools\test\funcunit\game_controller_test.js
+--OK got that cleaned up..
+--Now we want to drop in the grid view
+--take the x off xgrid.ejs and xicon.ejg
+--OK... now the default of the token controller is currently pointed to list...
+--Humm.... actually we really want the game controler load to trigger the token load...
+--Lets comment out the window load on token controller
+--SO when we click view on the game we trigger the grid instead of the list..
+--TO REVIEW:
+--game_controller.js is the main even handler
+-->view click events are processed
+-->>Sets the board cookie
+-->>Sends request for tokens to server
+-->>Recieves data back and passes tokens and game data to the token view 'grid'
+--token_controller.js
+-->grid: Recieves tokens and game data from game_controller and renders the grid view
+--NOW we need to fix the test dom pointers in the token test.
+--Man... lot of work getting that in... but it's because my table mapings changed.
+--That seems to be critical is mapping names and keeping the maps
+--For the frameworks we should establish a pattern of reading and applying meta-data <transformation basically>
+--For NOW... I want to get this up and let the guys help...
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add -u
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 8 - Hang the CSS"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 8 - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc310/spools/spools.html
+AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
+SUCCESS>>
+?FAILURE>>
+??WHAT?>>
 
 ======================================================================================
 ------- copy buffer --------------

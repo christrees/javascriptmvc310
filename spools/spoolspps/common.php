@@ -51,5 +51,27 @@ function init_newboard($filename, $idGameBrd, $theGame) { //-- THIS is our crap 
     fclose($fp);
     return $gamebrdout;
 }
+//-- OK if the user attemps to post a board, we need to find the key
+function findGameBrd($needle, $haystack) {
+        if (empty($needle) || empty($haystack)) {
+            return false;
+        }
+        foreach ($haystack as $key => $value) {
+            $exists = 0;
+            foreach ($needle as $nkey => $nvalue) {
+                if (!empty($value[$nkey]) && $value[$nkey] == $nvalue) {
+                    $exists = 1;
+                } else {
+                    $exists = 0;
+                }
+            }
+            if ($exists) return $key;
+        }
+        return false;
+}
+// Not using needle haystack lookup via $idGameBrd now...
+    $needle = array("idGameBrd" => $idGameBrd);
+    $haystack = $gamebankout;
+    $gamekey = findGameBrd($needle, $haystack);
 //--We should have a user data and board at this point
 ?>

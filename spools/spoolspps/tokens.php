@@ -16,7 +16,7 @@ if (file_exists($gamebrdfilename)) {
 //
 $idGamePos = isset($_POST["idGamePos"]) ? $_POST["idGamePos"] : -1;
 //--User just clicked on a token and sent us an update.. lets assign it to him
-    if (($gamebrdout[$idGamePos]["idOwner"] == $theGame["tokendefault"]["idOwner"]) && ($gamebankout[$idGameBrd]["GameState"] == "JoinGame"))  {
+    if (($gamebrdout[$idGamePos]["idOwner"] == $theGame["tokendefault"]["idOwner"]) && ($gamebankout[$gamekey]["GameState"] == "JoinGame"))  {
      $gamebrdout[$idGamePos]["idOwner"] = isset($_POST['idPlayer']) ? $_POST['idPlayer'] : 'xxxx';
     }
         //-- Store the new board <before we set idPlayer to responce>

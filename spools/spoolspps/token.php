@@ -22,11 +22,10 @@ if (file_exists($gamebrdfilename)) {
 } else  $gamebrdout = init_newboard($gamebrdfilename, $idGameBrd, $theGame);
 
 //--OK we should have a $gamebrdout array
-//--We need to set the user display field so this user can click and buy tokens from the board default
 
 for ($i = 1; $i <= $theGame["gamegridinit"]["gametotaltokens"]; $i++) {
     if ($gamebrdout[$i]["idOwner"] == $theGame["gamegridinit"]["gamedefaulttokenowner"]) {
-        if ($gamebankout[$idGameBrd]["GameState"] == "JoinGame") {
+        if ($gamebankout[$gamekey]["GameState"] == "JoinGame") {
             $gamebrdout[$i]["idPlayer"] = $idPlayer;
         } else {
             $gamebrdout[$i]["idPlayer"] = "BANK";

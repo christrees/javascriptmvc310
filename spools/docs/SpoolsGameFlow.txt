@@ -37,3 +37,5 @@
 	1-JoinGame <Can StartGame, Can NOT EndGame, {Can pick open tokens}>
 	2-StartGame <Can END Game, Can NOT JoinGame, {Can not pick tokens, Can Enter Scores}>
 	3-EndGame <Can NOT JoinGame, Can NOT StartGame>
+
+http://www.htmlgoodies.com/primers/jsp/article.php/3600451
