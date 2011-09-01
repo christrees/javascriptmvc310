@@ -700,7 +700,7 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 >>>>>STEP 9 - TEST
 <<<<<<<<<<<<<<<<<
 Browse - http://http://javascriptmvc310.xplanb.net/spools/spools.html
-AUTOTEST: http://http://javascriptmvc310.xplanb.net/spools/funcunit.html
+AUTOTEST: //http://javascriptmvc310.xplanb.net/spools/funcunit.html
 Browse - http://js.javascriptmvc310/spools/spools.html
 AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
 SUCCESS>>Both work
@@ -716,11 +716,42 @@ SUCCESS>>Both work
 --I started a test
 --http://js.javascriptmvc310/spools/tabstest.html
 --This works... lets commit this so we have a place to come back to when it f's
+--Browse - http://js.javascriptmvc310/spools/tabstest.html
 C:\Users\ChrisT\workspace\javascriptmvc310>git add .
 C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 10 - add spools/tabstest.html"
 C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+--OK got tabs looking like Joes... a few issues but it works.
+--Browse - http://js.javascriptmvc310/spools/tabstest.html
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 10 - Joe's css on tabstest.html"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+--OK now I'm going to attempt to merge crap so I copied tabstest to joingame.html
+--EDIT: C:\Users\ChrisT\workspace\javascriptmvc310\spools\joingame.html
+--Browse - http://js.javascriptmvc310/spools/joingame.html
+--Issues with getting FF to reload cache
+You can use Ctrl + F5 for a single use basis, or if you want firefox to always reload the page then type this into the address bar:
+about:config
+type this into the filter:
+browser.cache.check_doc_frequency
+change the value to: 1
+--Apache CACHE config http://serverfault.com/questions/173038/apache-redirect-and-set-cache-headers
+--I added a clear cache addon to firefox...
+<link href="partyplay.css" type="text/css" rel="stylesheet">
 
-
+.header {
+position:relative;
+width:319px;
+height:25px;
+z-index:1;
+border: 0px;
+left: 0px;
+top: 3px;
+color:white;
+font-size:24px;
+text-align:center;
+font-family:Hauser, Arial, Helvetica, sans-serif;
+text-shadow: rgba(0,0,0,1) 2px 2px 3px;
+} 
 
 
 
@@ -737,8 +768,17 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 <<<<<<<<<<<<<<<<<
 >>>>>STEP 10 - TEST
 <<<<<<<<<<<<<<<<<
+TARGETS:
+Browse - http://www.gimbalrock.com/spools/v04/joingame.html
+Browse - http://www.gimbalrock.com/spools/v04/newgame.html
+Browse - http://www.gimbalrock.com/spools/v04/officialspanel.html
+Browse - http://www.gimbalrock.com/spools/v04/pregame.html
+Browse - http://www.gimbalrock.com/spools/v04/game.html
+Browse - http://www.gimbalrock.com/spools/v04/scoreboard.html
 Browse - http://js.javascriptmvc310/spools/spools.html
 AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
+Browse - http://js.javascriptmvc310/spools/tabstest.html
+Browse - http://js.javascriptmvc310/spools/joingame.html
 SUCCESS>>
 ?FAILURE>>
 ??WHAT?>>

@@ -17,9 +17,9 @@ $.Controller.extend('Spools.Controllers.Token',
  */
  "{window} load": function(){
 	if(!$("#token").length){
-	 $(document.body).append($('<div/>').attr('id','token'));
+	 $('#tab3').append($('<div/>').attr('id','token'));
                 //-- let the game_controller trigger the fetch
-		// Spools.Models.Token.findAll({}, this.callback('list'));
+        Spools.Models.Token.findAll({}, this.callback('grid'));
  	}
  },
  /**

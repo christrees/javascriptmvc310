@@ -1,53 +1,166 @@
 /*+init {*/
-*
-{
+* {
 	position: relative;
 	margin: 0;
 	padding: 0;
 	font-size: 1em;
 }
-H1, H2, H3, H4, H5, H6, TH
-{
+H1, H2, H3, H4, H5, H6, TH {
 	font-weight: inherit;
 	=font-weight: expression(this.__FW?this.__FW:(new Function('t','return (t.__FW=t.parentNode.currentStyle.fontWeight)'))(this));
 }
-ADDRESS, CITE, DFN, VAR
-{
+ADDRESS, CITE, DFN, VAR {
 	font-style: inherit;
 	=font-style: expression(this.__FS?this.__FS:(new Function('t','return (t.__FS=t.parentNode.currentStyle.fontStyle)'))(this));
 }
-CAPTION, CODE, KBD, PRE, SAMP, TT, INPUT, TEXTAREA, SELECT, BUTTON
-{
+CAPTION, CODE, KBD, PRE, SAMP, TT, INPUT, TEXTAREA, SELECT, BUTTON {
 	font-family: inherit;
 	=font-family: expression(this.__FF?this.__FF:(new Function('t','return (t.__FF=t.parentNode.currentStyle.fontFamily)'))(this));
 }
-TABLE
-{
-	border-spacing: 0;
-}
-TH
-{
-	text-align: left;
-}
-HTML, BODY, THEAD, TBODY, TFOOT, TR, TH, TD, BR
-{
-	position: static;
-}
-INPUT[type=hidden]
-{
-	display: none !important;
-}
-FIELDSET, A IMG
-{
-	border: 0;
-}
-BODY
-{
+TABLE {	border-spacing: 0;}
+TH { text-align: left; }
+HTML, BODY, THEAD, TBODY, TFOOT, TR, TH, TD, BR { position: static; }
+INPUT[type=hidden] { display: none !important; }
+FIELDSET, A IMG { border: 0; }
+BODY {
 	font-size: 100%;
-	font-family: sans-serif;
+	font-family: verdana;
 	line-height: 1.5;
 }
 /*+}*/
+.tabs {
+    padding: 0px; margin: 0px;
+    list-style-type: none;
+}
+.tabs li {
+/*        float: left;
+    padding: 0px;
+    background-color: #F6F6F6; */
+/*        list-style: none;
+    margin-left: 10px; */
+    position:relative;
+    width:106px;
+    height:30px;
+    top:6px;
+    z-index:1;
+    float:left;
+    background-image:url(resources/pp_nontab.png);
+    background-position:top;
+    background-repeat:no-repeat;
+    text-decoration: none;
+}
+.tabs li.active {
+    background-image:url(resources/pp_tab.png);
+}
+.tabs li a {
+    /* color: #1C94C4;
+    font-weight: bold;*/
+    text-decoration: none;
+    position:relative;
+    width:100%;
+    height:16px;
+    top:5px;
+    z-index:1;
+    float:left;
+    color: lightgrey;
+    font-size:14px;
+    font-family: "Myriad Pro", Helvetica, sans-serif;
+    text-align:center;
+}
+.tabs li.active a {
+    color: white;
+    cursor: default;
+    text-decoration: none;
+}
+.tab {
+    /* border: solid 1px #F6A828;
+    margin: 10px; */
+    position:absolute;
+    width:319px;
+    height:438px;
+    top:36px;
+    z-index:1;
+    border: 0px;
+    left: 0px;
+    background-image:url(resources/pp_app_bg.png);
+    background-position:top;
+    background-repeat:no-repeat;
+}
+/* clearfix from jQueryUI */
+.ui-helper-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.ui-helper-clearfix { display: inline-block; }
+/* required comment for clearfix to work in Opera \*/
+* html .ui-helper-clearfix { height:1%; }
+.ui-helper-clearfix { display:block; }
+/* end clearfix */
+/* Get rid of a crap */
+a:link      {text-decoration: none;}
+a:visited   {text-decoration: none;}
+a:active    {text-decoration: none;}
+a:hover     {text-decoration: none;}
+/* ---------------------------------------------- */
+.infoSection {
+    display:block;
+    color:white;
+    position:relative;
+    width:319px;
+    height:89px;
+    z-index:1;
+    border: 0px;
+    left: 0px;
+    top: 10px;
+    background-image:url(resources/pp_row_bg.png);
+    background-repeat:no-repeat;
+}
+.header {
+    position:relative;
+    width:319px;
+    height:25px;
+    z-index:1;
+    border: 0px;
+    left: 0px;
+    top: 3px;
+    color:white;
+    font-size:24px;
+    text-align:center;
+    font-family:Hauser, Arial, Helvetica, sans-serif;
+    text-shadow: rgba(0,0,0,1) 2px 2px 3px;
+}
+.createdBy {
+    position:relative;
+    width:319px;
+    height:25px;
+    z-index:1;
+    border: 0px;
+    left: 0px;
+    bottom: 0px;
+    color:white;
+    font-size:18px;
+    text-align:center;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.gameview {
+    display:block;
+    /*set the div in the bottom right corner*/
+    position:absolute;
+    bottom:0;
+    right:0;
+    width:50px;
+    /*give it some background and border*/
+    background:#eee;
+    border:1px solid #ddd;
+ }
+.gameedit {
+    display:block;
+    /*set the div in the bottom left corner*/
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:50px;
+    /*give it some background and border*/
+    background:#eee;
+    border:1px solid #ddd;
+}
 /*spools.css Chris Trees 20110822 merge Joe*/
 .boardSection
 {

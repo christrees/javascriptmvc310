@@ -17,8 +17,9 @@ $.Controller.extend('Spools.Controllers.Game',
  */
  "{window} load": function(){
 	if(!$("#game").length){
-	 $(document.body).append($('<div/>').attr('id','game'));
-		 Spools.Models.Game.findAll({}, this.callback('list'));
+            $('#tab1').append($('<div/>').attr('id','game'));
+            $('#tab2').append($('<div/>').attr('id','gamenew'));
+            Spools.Models.Game.findAll({}, this.callback('list'));
  	}
  },
  /**
@@ -27,9 +28,11 @@ $.Controller.extend('Spools.Controllers.Game',
  */
  list: function( games ){
 	$('#game').html(this.view('init', {games:games} ));
+        $('#gamenew').html(this.view('new', {games:games}));
+
         var curgame = games.idGameBrd;
 
-        this.showgamegrid(curgame);
+        //this.showgamegrid(curgame);
  },
  /**
  * Responds to the create form being submitted by creating a new Spools.Models.Game.
@@ -37,6 +40,7 @@ $.Controller.extend('Spools.Controllers.Game',
  * @param {Event} ev A jQuery event whose default action is prevented.
  */
 'form submit': function( el, ev ){
+    alert('detected form submit');
 	ev.preventDefault();
 	new Spools.Models.Game(el.formParams()).save();
 },
@@ -100,7 +104,8 @@ $.Controller.extend('Spools.Controllers.Game',
  /**
  *	 Handle's clicking on a game's view link.
  */
- '.view click': function( el ){
+ '.gameview click': function( el ){
+     alert('got clicked');
         $('.game').removeClass('gameselect');
         var curgame = el.closest('.game').model();
         el.closest('.game').addClass('gameselect');
@@ -134,7 +139,11 @@ $.Controller.extend('Spools.Controllers.Game',
        createCookie('idGameBrd',curgame['idGameBrd'],1);
        //alert("game_controller: "+curgame['idGameBrd']);
        //createCookie('catCrap',99,2);
-       this.showgamegrid(curgame);
+       //this.showgamegrid(curgame);
+       Spools.Models.Token.findAll({}, function(data){
+          $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:data, game:curgame} ));
+        });
+
  },
  /**
  * Shows a game's information.

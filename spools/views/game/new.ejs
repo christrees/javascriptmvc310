@@ -1,0 +1,26 @@
+<h2>New game</h2>
+<form id='game' class='game'>
+    <% for(var attr in Spools.Models.Game.attributes){ %>
+		<% if(attr == "id") continue;%>
+		<div>
+	<% if (attr == "TypeSport") {%>
+            <label>TypeSport</label>
+            <select name="TypeSport">
+                <option value="Baseball">Baseball</option>
+                <option value="Football" selected="selected">Football</option>
+            </select>
+        <%} else if (attr == "TeamAScore") {%>
+            <input type="hidden" value="0" name="TeamAScore"/>
+        <%} else if (attr == "TeamBScore") {%>
+            <input type="hidden" value="0" name="TeamBScore"/>
+        <%} else if (attr == "message") {%>
+            <input type="hidden" value="New Game" name="message"/>
+        <%} else if (attr == "GameState") {%>
+            <input type="hidden" value="JoinGame" name="GameState"/>
+        <%} else {%>
+		<label><%= attr %></label><input type="text" name="<%= attr%>"/>
+        <%}%>
+	</div>
+    <%}%>
+    <input class='game' type="submit" value="Create"/>
+</form>
