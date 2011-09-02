@@ -17,9 +17,9 @@ $.Controller.extend('Spools.Controllers.Game',
  */
  "{window} load": function(){
 	if(!$("#game").length){
-            $('#tab1').append($('<div/>').attr('id','game'));
-            $('#tab2').append($('<div/>').attr('id','gamenew'));
-            Spools.Models.Game.findAll({}, this.callback('list'));
+	 $('#tab1').append($('<div/>').attr('id','game'));
+	 $('#tab2').append($('<div/>').attr('id','game').attr('class','gamenew'));
+          Spools.Models.Game.findAll({}, this.callback('list'));
  	}
  },
  /**
@@ -28,8 +28,7 @@ $.Controller.extend('Spools.Controllers.Game',
  */
  list: function( games ){
 	$('#game').html(this.view('init', {games:games} ));
-        $('#gamenew').html(this.view('new', {games:games}));
-
+        $('.gamenew').html(this.view('new', {games:games} ));
         var curgame = games.idGameBrd;
 
         //this.showgamegrid(curgame);
@@ -105,7 +104,7 @@ $.Controller.extend('Spools.Controllers.Game',
  *	 Handle's clicking on a game's view link.
  */
  '.gameview click': function( el ){
-     alert('got clicked');
+     //alert('got clicked');
         $('.game').removeClass('gameselect');
         var curgame = el.closest('.game').model();
         el.closest('.game').addClass('gameselect');

@@ -164,6 +164,7 @@ a:hover     {text-decoration: none;}
 /*spools.css Chris Trees 20110822 merge Joe*/
 .boardSection
 {
+        display:block;
 	background-image: url(resources/games_spools_bg.png);
 	background-repeat: no-repeat;
 	border: 6px solid #000000;
@@ -172,12 +173,14 @@ a:hover     {text-decoration: none;}
 }
 #PGSpoolsTable
 {
-	/*+placement:anchor-bottom-right 0px 0px;*/
+	display:block;
 	position: absolute;
 	right: 0px;
 	bottom: 0px;
-	margin: 17px 19px 15px 9px;
-	text-align: center;
+	width: 334px;
+        height: 334px;
+        color:white;
+	/* text-align: center; */
 }
 .PGSpoolsScoreVert
 {

@@ -737,7 +737,6 @@ change the value to: 1
 --Apache CACHE config http://serverfault.com/questions/173038/apache-redirect-and-set-cache-headers
 --I added a clear cache addon to firefox...
 <link href="partyplay.css" type="text/css" rel="stylesheet">
-
 .header {
 position:relative;
 width:319px;
@@ -752,9 +751,78 @@ text-align:center;
 font-family:Hauser, Arial, Helvetica, sans-serif;
 text-shadow: rgba(0,0,0,1) 2px 2px 3px;
 } 
-
-
-
+--OK... I got kind of messed up with the form edit when I was attempting to put it in a tab.
+--SO.. I'm creating a branch called joemod and going to stash chnages in there and then come back..
+C:\Users\ChrisT\workspace\javascriptmvc310>git branch joemod
+C:\Users\ChrisT\workspace\javascriptmvc310>git branch
+  joemod
+  master
+* spools
+C:\Users\ChrisT\workspace\javascriptmvc310>git checkout joemod
+M       README
+M       spools/controllers/game_controller.js
+M       spools/controllers/token_controller.js
+M       spools/spools.css
+M       spools/tabstest.html
+M       spools/views/game/init.ejs
+M       spools/views/game/list.ejs
+M       spools/views/game/show.ejs
+Switched to branch 'joemod'
+C:\Users\ChrisT\workspace\javascriptmvc310>git status
+# On branch joemod
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   README
+#       modified:   spools/controllers/game_controller.js
+#       modified:   spools/controllers/token_controller.js
+#       modified:   spools/spools.css
+#       modified:   spools/tabstest.html
+#       modified:   spools/views/game/init.ejs
+#       modified:   spools/views/game/list.ejs
+#       modified:   spools/views/game/show.ejs
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       spools/controllers/tabs_controller.js
+#       spools/joingame.css
+#       spools/joingame.html
+#       spools/views/game/new.ejs
+no changes added to commit (use "git add" and/or "git commit -a")
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 10 - Messed up form entry on game"
+C:\Users\ChrisT\workspace\javascriptmvc310>git checkout spools
+--OK after some work I figured out a pattern to attempt with the edit...
+C:\Users\ChrisT\workspace\javascriptmvc310>git checkout joemod
+--We basically want to create a controller on each element we want to use
+--http://javascriptmvc.com/docs.html#&who=jQuery.Controller
+--OK... after some messing around I got some shit to work... not like I wanted or expect but need to put up
+-->>>>COMMIT AND PUSH
+C:\Users\ChrisT\workspace\javascriptmvc310>git status
+# On branch joemod
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   README
+#       modified:   spools/controllers/game_controller.js
+#       modified:   spools/controllers/token_controller.js
+#       modified:   spools/joingame.html
+#       modified:   spools/spools.css
+#       modified:   spools/views/token/grid.ejs
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+C:\Users\ChrisT\workspace\javascriptmvc310>git branch
+* joemod
+  master
+  spools
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 10 - Joe candy working but not done"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
 
 --Lets commit this
 --SAVE THIS README
@@ -769,12 +837,12 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 >>>>>STEP 10 - TEST
 <<<<<<<<<<<<<<<<<
 TARGETS:
-Browse - http://www.gimbalrock.com/spools/v04/joingame.html
-Browse - http://www.gimbalrock.com/spools/v04/newgame.html
-Browse - http://www.gimbalrock.com/spools/v04/officialspanel.html
-Browse - http://www.gimbalrock.com/spools/v04/pregame.html
-Browse - http://www.gimbalrock.com/spools/v04/game.html
-Browse - http://www.gimbalrock.com/spools/v04/scoreboard.html
+Browse - (1) http://www.gimbalrock.com/spools/v04/joingame.html
+Browse - (1) http://www.gimbalrock.com/spools/v04/newgame.html
+Browse - (2) http://www.gimbalrock.com/spools/v04/game.html
+Browse - (2) http://www.gimbalrock.com/spools/v04/scoreboard.html
+Browse - (2) http://www.gimbalrock.com/spools/v04/officialspanel.html
+Browse - (3) http://www.gimbalrock.com/spools/v04/pregame.html
 Browse - http://js.javascriptmvc310/spools/spools.html
 AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
 Browse - http://js.javascriptmvc310/spools/tabstest.html
