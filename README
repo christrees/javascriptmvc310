@@ -871,6 +871,13 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 10 - Joe candy wo
 C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/joemod
+--HAD an issue on the HG server with the 'no .php' file... so I updated the models.js to use .php
+--Also pulled out the alerts
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 10 - Joe candy working but not done"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/joemod
 
 
 --Lets commit this

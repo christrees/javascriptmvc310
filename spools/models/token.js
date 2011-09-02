@@ -38,7 +38,7 @@ $.Model.extend('Spools.Models.Token',
 		$.ajax({
 		//	url: 'tokens/'+id,
 		//	type: 'put',
-			url: 'spoolspps/tokens/'+id,
+			url: 'spoolspps/tokens.php',
 			type: 'post',
 			dataType: 'json',
 			data: attrs,

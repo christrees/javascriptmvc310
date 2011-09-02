@@ -40,7 +40,7 @@ $.Controller.extend('Spools.Controllers.Game',
  * @param {Event} ev A jQuery event whose default action is prevented.
  */
 'form submit': function( el, ev ){
-    alert('detected form submit');
+    //alert('detected form submit');
 	ev.preventDefault();
 	new Spools.Models.Game(el.formParams()).save();
 },
@@ -137,7 +137,7 @@ $.Controller.extend('Spools.Controllers.Game',
        // document.cookie = 'idGameBrd=' + curgame['idGameBrd'] + '; path=/';
        eraseCookie('idGameBrd');
        createCookie('idGameBrd',curgame['idGameBrd'],1);
-       alert("game_controller: "+curgame['idGameBrd']);
+       //alert("game_controller: "+curgame['idGameBrd']);
        //createCookie('catCrap',99,2);
        //this.showgamegrid(curgame);
        Spools.Models.Token.findAll({}, function(data){

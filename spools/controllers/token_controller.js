@@ -95,7 +95,7 @@ $.Controller.extend('Spools.Controllers.Token',
           $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:data, game:curgame} ));
         });
         */
-       alert('token-update subscribe');
+       //alert('token-update subscribe');
         var curgame = $('table.game').model();
         //var alltokens;
         //Spools.Models.Token.findAll({}, function(alltokens){ token.elements().html(this.view('grid', {tokens:alltokens, game:curgame})); });
