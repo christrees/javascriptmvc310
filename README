@@ -823,6 +823,55 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 10 - Joe candy wo
 C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+>>>>>>>>>>>>>>>>>>>>>>>> SKYPE slar.notmeworld.com <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>> SKYPE2011.09.02christrees <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[11:22:30 AM] Chris Trees: OK... some candy and the events are not all quite right...
+[11:22:30 AM] Chris Trees: http://javascriptmvc310.xplanb.net/spools/joingame.html
+[11:23:59 AM] Chris Trees: Defaults to the JoinGame 'tab'
+[11:24:36 AM] Chris Trees: Need to click view of the game you want... THEN click the Spools tab to see the game...
+[11:26:23 AM] Chris Trees: lots of crap not working how I want yet <event wise> but I'm attempting to figure out how to pass events between wigets... We have 2 - Game and Token... token is the board... game is the list of boards..
+[11:26:35 AM] Chris Trees: http://javascriptmvc310.xplanb.net/spools/spoolspps/nukecookieandsession.php
+[11:28:18 AM] Chris Trees: Hitting the nukecookieandsession is basically a logout and you can also nuke the ASCII data files so you can see how it starts from scratch.  I also use that in testing to reset and test things..
+[11:29:04 AM] Chris Trees: THE big issue is the tags used for BOTH CSS, EVENTS <framework>, AJAX...
+[11:29:56 AM] Chris Trees: bascially almost everything is tied to class and id tags... which is what I"m struggling with to get the right patterns...
+[11:31:16 AM] Chris Trees: What I need you guys to help on is to establish a GUI 'positioning and tagging pattern' that is compatable with the frameworks 'event and tagging patterns'
+[11:32:25 AM] Chris Trees: <basically comming up with unique generic name pattern stuff so we can code the pattern matchs to the GUI pattern matching...
+[11:33:00 AM] Chris Trees: ... take the tabs...
+[11:35:47 AM] Chris Trees: the tabs may be contained in the 'whole game' but cannot be contained in any of the views... the tabs then hide and show GUI elements that are contained in the tagged controller...  this is why I want to get to a tool chain that we all like that is compatable with these newer tool-chains...
+[11:36:42 AM] Chris Trees: in the end... all the tool chains are doing is shitting out name patterns and the search string controll to accesses them <toilet paper>
+[11:38:21 AM] Chris Trees: ... Example... <my current crap pile>
+[11:38:47 AM] Chris Trees: We have 2 data models game and token
+[11:39:11 AM] Chris Trees: each data model has a controller and views
+[11:40:29 AM] Chris Trees: To display a spools game board, we need a game, and a list of tokens.
+[11:44:17 AM] Chris Trees: SO... the even chain goes from a game list <Games> select a view <view click> which picks up the spools_model_game_<id> and passed that data to a token controller grid view... the token view triggers a request to the server for the associated board tokens then generates the table with both game and token information.
+[11:45:05 AM] Chris Trees: My issue is I can't figure out how the framework wants to pass these events and data around yet...  so it's messed up...
+[11:46:18 AM] Chris Trees: IN the mean time... you guys can basically start thinking about...
+[11:47:03 AM] Chris Trees: overflows... <how to handel data over flows of various things>
+[11:49:25 AM] Chris Trees: UI alignments... Joe... absolutes are not good... I need to 'write the code' on the client side.. absolutes would need to be set relitive at some point... I just don't know...
+[11:50:00 AM] Chris Trees: Matching the grid up to the token display is always giving me issues...
+[11:50:36 AM] Chris Trees: SHAYNE and JOE.... you guys should talk about this as both of can figure this out faster than I can...
+[11:51:41 AM] Chris Trees: WHAT I've notice <web search> is the use of display:block; then position: absolute;
+[11:52:15 AM] Chris Trees: and they do right: 0px; bottom: 0px;
+[11:53:23 AM] Chris Trees: Another fancy thing is they use js in the css to figure out and set crap based on browser crap...
+[11:54:59 AM] Chris Trees: I think the absolute stuff is fine... but HAVE to layer that with some overall crap to get the first 'reletive' stuff... just dont' know what the fuck pattern to use that makes it compatable with all the crap... but figure you guys need to look at that...
+[11:55:41 AM] Chris Trees: HOLLY CRAP.... I spewed too much... I'll put this in the README LOG
+[11:56:51 AM] Chris Trees: https://github.com/christrees/javascriptmvc310/tree/joemod
+[11:57:03 AM] Chris Trees: NOTICE that is the joemod branch
+>>>>>>>>>>>>>>>>>>>>>>>> SKYPE slar.notmeworld.com <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+--OK...Need to figure out the using wigets in javascriptmvc
+--OK... Started to figure out how to get the event thing going... basically they are using the class as an index hash for other data models... not real clear to me yet but I got something working and going to commit
+C:\Users\ChrisT\workspace\javascriptmvc310>git branch
+* joemod
+  master
+  spools
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 10 - Joe candy working but not done"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/joemod
+
 
 --Lets commit this
 --SAVE THIS README
@@ -833,6 +882,8 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
 [cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+==NOTES;
+http://s3.amazonaws.com/jupiter_images/resources/1/javascriptmvc_cheatsheet.pdf
 <<<<<<<<<<<<<<<<<
 >>>>>STEP 10 - TEST
 <<<<<<<<<<<<<<<<<

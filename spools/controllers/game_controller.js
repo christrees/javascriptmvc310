@@ -29,6 +29,7 @@ $.Controller.extend('Spools.Controllers.Game',
  list: function( games ){
 	$('#game').html(this.view('init', {games:games} ));
         $('.gamenew').html(this.view('new', {games:games} ));
+        $('#crapx').html(this.view('new', {games:games} ));
         var curgame = games.idGameBrd;
 
         //this.showgamegrid(curgame);
@@ -136,7 +137,7 @@ $.Controller.extend('Spools.Controllers.Game',
        // document.cookie = 'idGameBrd=' + curgame['idGameBrd'] + '; path=/';
        eraseCookie('idGameBrd');
        createCookie('idGameBrd',curgame['idGameBrd'],1);
-       //alert("game_controller: "+curgame['idGameBrd']);
+       alert("game_controller: "+curgame['idGameBrd']);
        //createCookie('catCrap',99,2);
        //this.showgamegrid(curgame);
        Spools.Models.Token.findAll({}, function(data){

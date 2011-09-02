@@ -17,7 +17,7 @@ $.Controller.extend('Spools.Controllers.Token',
  */
  "{window} load": function(){
 	if(!$("#token").length){
-	 $('#tab3').append($('<div/>').attr('id','token'));
+	 $(document.body).append($('<div/>').attr('id','token'));
                 //-- let the game_controller trigger the fetch
         // Spools.Models.Token.findAll({}, this.callback('grid'));
  	}
@@ -82,12 +82,6 @@ $.Controller.extend('Spools.Controllers.Token',
 '.pick click': function( el ){
 	var $token = el.closest('.token');
 	$token.model().update($token.formParams());
-        var curgame = $('.spools_model_game_0').model();
-        var alltokens;
-        Spools.Models.Token.findAll({}, alltokens);
-        //alert("Token_curgame: "+curgame['idGameBrd']);
-        //alert("Token_tokens: "+alltokens['idGameBrd']);
-        $('#token').html(this.view('grid', {tokens:alltokens, game:curgame} ));
 },
  /**
  * Listens for updated tokens.	 When a token is updated, 
@@ -101,8 +95,15 @@ $.Controller.extend('Spools.Controllers.Token',
           $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:data, game:curgame} ));
         });
         */
-       //alert('token-update subscribe');
-        
+       alert('token-update subscribe');
+        var curgame = $('table.game').model();
+        //var alltokens;
+        //Spools.Models.Token.findAll({}, function(alltokens){ token.elements().html(this.view('grid', {tokens:alltokens, game:curgame})); });
+        //alert("Token_curgame: "+curgame['idGameBrd']);
+        //alert("Token_tokens: "+alltokens['idGameBrd']);
+       Spools.Models.Token.findAll({}, function(data){
+          $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:data, game:curgame} ));
+        });
 },
 /**
  * Shows a token's information.
