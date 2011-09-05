@@ -1,0 +1,35 @@
+<div id="officalgameupdate"<%= game %> >
+<% /* %>
+<div class="infoSection" >
+<div id="PGPicksInstructions"><%= game['message'] %></div>
+<div id="PGPicksSelectionContainer">
+<div id="PGHomeTeam"><%= game['TeamNameA'] %></div>
+<div id="PGVS">vs</div>
+<div id="PGAwayTeam"><%= game['TeamNameB'] %></div>
+<div id="PGHomeTeamScore"><%= game['TeamAScore'] %></div>
+<div id="PGAwayTeamScore"><%= game['TeamBScore'] %></div>
+</div>
+</div>
+<% */ %>
+<div class="infoSection">
+<div class="teamscore">
+<div id="heading"><%= game['TeamNameA'] %></div>
+<input id="minusbutton" type="button" class="gamescoreminus"/>
+<input id="teamscoreedit" type="test" value="<%= game['TeamAScore'] %>" name="TeamAScore" class="gamescore" />
+<input id="plusbutton" type="button" class="gamescoreplus"/>
+</div>
+</div>
+<div class="infoSection">
+<div class="teamscore">
+<div id="heading"><%= game['TeamNameB'] %></div>
+<input id="minusbutton" type="button" class="gamescoreminus"/>
+<input id="teamscoreedit" type="test" value="<%= game['TeamBScore'] %>" name="TeamBScore" class="gamescore" />
+<input id="plusbutton" type="button" class="gamescoreplus"/>
+</div>
+</div>
+<div class="infoSection">
+<input type='submit' value='Update' class='update'/>
+<a href='javascript://' class='cancel' <%= game %>>CANCEL</a>
+</div>
+
+</div>

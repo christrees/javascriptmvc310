@@ -1,8 +1,5 @@
-<td><%for(var attribute in this.Class.attributes){ if(attribute == 'id') continue; %>
-<%if(attribute == 'TeamNameA') {%><div class='header'><%= this[attribute]%> vs <%}%>
-<%if(attribute == 'TeamNameB') {%><%= this[attribute]%></div><%}%>
-<%if(attribute == 'TypeSport') {%><div class='createdBy'>Sport: <%= this[attribute]%></div><%}%>
-<%}%>
-<a class='gameedit' href='javascript://' class='edit'>edit</a>
+<td>
+<div class='header'><%= this['TeamNameA']%> vs <%= this['TeamNameB']%></div>
+<div class='createdBy'>Sport: <%= this['TypeSport']%></div>
 <a class='gameview' href='javascript://' class='view'>view</a>
 </td>

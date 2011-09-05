@@ -878,19 +878,79 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 10 - Joe candy wo
 C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/joemod
-
-
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+>>>>>>>>>>>>>>>>>>>>>>>> SKYPE slar.notmeworld.com <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>> SKYPE2011.09.02christrees <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[5:39:04 PM] Chris Trees: OK... more working
+[5:39:04 PM] Chris Trees: http://javascriptmvc310.xplanb.net/spools/joingame.html
+[5:39:16 PM] Chris Trees: got the event crossing to work better...
+[5:39:42 PM] Chris Trees: I'll be doing a code cleanup then go after the test next
+[5:41:07 PM] Chris Trees: You guys need to think about 'events'... <what CRUD on what DATA in what VIEW>
+[5:41:13 PM] Chris Trees: EXAMPLE:
+[5:41:41 PM] Chris Trees: Games... CRUD
+[5:41:54 PM] Chris Trees: CREATE - <NewGameTab>
+[5:42:16 PM] Chris Trees: READ - <GamesTab>
+[5:43:10 PM] Chris Trees: UPDATE - <??? I put the edit link in the GAMESTAB list ??>
+[5:43:47 PM] Chris Trees: DESTORY - <never... but how should we take it out of view... or just nuke everything
+[5:44:58 PM] Chris Trees: UPDATE - <ALSO needs the officials panel update stuff... again... you guys need to think about it.. I would like to capture that User Flow in the test
+[5:48:15 PM] Chris Trees: OH... stuff like I used SPORT: Baseball instead of Offical: Shayne because the game data is not BOUND to a USER... but the TOKENS are...
+[5:49:04 PM] Chris Trees: ... THIS is where I really need you guys to help hammer the tool chain with me so that you'll actually use it...
+>>>>>>>>>>>>>>>>>>>>>>>> SKYPE slar.notmeworld.com <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+--OK... chris when you get back start with cleaning up the code in the controllers
+--You were messing around a lot getting the cross signalling stuff to work so it's full off poo
+--Also see if you can clean up the init and stuff like that...
+--Next you need to finish up the css candy hang and see if it all works...
+--THEN you need to update the test and get that working again.
+--OK... clean up went well... once I figured out how to pass crap around using the class in the dom elements... things got clearer in my brain.
+--Now... CSS candy.. lets just walk through JOES tabs...
+--http://www.gimbalrock.com/spools/v04/joingame.html
+-->>>>>> --- DONE --- <<<<<<<
+--Looks the same... except for Sport: vs Official: which will be GUI call to submit a bug
+--http://www.gimbalrock.com/spools/v04/newgame.html
+-->>>>>> LOTS OF WORK <<<<<<< come back to this after the review
+--http://www.gimbalrock.com/spools/v04/game.html
+-->>>>>> NEEDS THE HEADER AND FORMATING <<<<<<<
+--http://www.gimbalrock.com/spools/v04/scoreboard.html
+-->>>>>> --- DONE --- <<<<<<< as nothing to do as we do not have this
+--http://www.gimbalrock.com/spools/v04/officialspanel.html
+-->>>>>> LOTS OF WORK <<<<<<< come back to this after the review
+--OK... lets do the easy one... 
+--http://www.gimbalrock.com/spools/v04/scoreboard.html
+-->>>>>> --- DONE --- <<<<<<<
+--http://www.gimbalrock.com/spools/v04/newgame.html
+-->>>>>> --- DONE --- <<<<<<<
+--http://www.gimbalrock.com/spools/v04/officialspanel.html
+--WORKING on this... thining of swapping out the game board with an update board.
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+>>>>>>>>>>>>>>>>>>>>>>>> SKYPE slar.notmeworld.com <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>> SKYPE2011.09.03christrees <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[6:29:49 AM] Shayne Huston: Good morning guys
+[6:29:59 AM] Shayne Huston: reading through the notes here...
+[6:30:38 AM] Chris Trees: hey... we need to sync abit...
+[7:16:02 AM] Shayne Huston: So what level of feedback are we talking about now. I mean, I will get the CRUD stuff written down, but are you looking for things like "after the Create button is hit you should move back to Game tab automatically"  ?  But not get into, "When I push Play it does not put my ID there until I click out and then back in"  I assume we are not talking the level of "The Plays do not line up with the grid" too early for that plus above you were talking about needing some changes to refer to relative rather than absolute.
+[7:22:50 AM] Shayne Huston: Moving to relative I would suggest using the upper left corner as the origin. Then everything builds from there. I suggest this so that no matter the device the initial location starts logically. (left to right, top to bottom)
+[7:24:34 AM] Shayne Huston: Each layered container comes in relative to the upper left position of its parent container
+[7:26:31 AM] Chris Trees: Actually at some point I want you guys to edit the UI stuff...
+[7:27:37 AM] Chris Trees: The 'tool chain' stuff I talk about is the ablility for any of us to jump in...bitch.. fix.. confirm.. notify..
+[7:28:47 AM] Chris Trees: which basically is attempting to follow the 'converstaions' and then merge 'value' back into the 'larger conversation'....
+[7:40:14 AM] Chris Trees: ... basically I'm starting to fix UI flow... I want to figure out a way to capture that process in the tool chain.. of course the UI flow is the 'business logic' combined with the layout...
+[7:43:17 AM] Chris Trees: my hopes are to create 'asset banks' of GUI elements and UIE <user interface events> to capture 'a phoneme of a UI pattern'
+[7:51:37 AM] Chris Trees: If your actually ready to work on this.... I can push new updates...
+[7:52:05 AM] Chris Trees: the UI flow is moving fast now that I've got the event patterns working..
+[7:53:10 AM] Chris Trees: My goal right now is to get something I think has the flow you wrote out <which is what my ascii test was based off of> and get auto test working and up...
+[7:54:09 AM] Chris Trees: right now the ASCII version and test are broken due to the event mapping tags to get the css working...
+>>>>>>>>>>>>>>>>>>>>>>>> SKYPE slar.notmeworld.com <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+--OK... got the basic testing working with Joes Candy
 --Lets commit this
 --SAVE THIS README
-C:\Users\ChrisT\workspace\javascriptmvc310>git add -u
 C:\Users\ChrisT\workspace\javascriptmvc310>git add .
 C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 10 - More CSS and Testing"
 C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
 [cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
-==NOTES;
-http://s3.amazonaws.com/jupiter_images/resources/1/javascriptmvc_cheatsheet.pdf
 <<<<<<<<<<<<<<<<<
 >>>>>STEP 10 - TEST
 <<<<<<<<<<<<<<<<<
@@ -905,10 +965,17 @@ Browse - http://js.javascriptmvc310/spools/spools.html
 AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
 Browse - http://js.javascriptmvc310/spools/tabstest.html
 Browse - http://js.javascriptmvc310/spools/joingame.html
+EXTERNAL:
+Browse - http://javascriptmvc310.xplanb.net/spools/joingame.html
+Browse - http://javascriptmvc310.xplanb.net/spools/funcunit.html
 SUCCESS>>
 ?FAILURE>>
 ??WHAT?>>
 
+==QUICK NOTES==
+http://s3.amazonaws.com/jupiter_images/resources/1/javascriptmvc_cheatsheet.pdf
+KILL CACHE: http://forum.javascriptmvc.com/topic/ejs-templates-are-always-cached
+FIREFOX - about:config Type ‘cache’ in the search bar, and look for network.http.use-cache, and double click it to set it to false.
 ======================================================================================
 ------- copy buffer --------------
 ?????????????????????????????????

@@ -13,11 +13,13 @@ steal.plugins(
 	.views()				// adds views to be added to build
         .models('token')
         .controllers('token')
-        .then(function($){
-        // create a new Tabs class
-            $.Controller("Tabs",{
-              // initialize widget
-              init : function(el){
+        .then(function($){ // create a new Tabs class
+            $.Controller("Tabs",
+            { /* @Static */
+                    onDocument: true
+            },    
+            { /* @Prototype */
+              init : function(el){ // initialize widget
                 // activate the first tab
                 $(el).children("li:first").addClass('active')
                 // hide the other tabs
@@ -25,13 +27,12 @@ steal.plugins(
                 this.element.children("li:gt(0)").each(function(){
                   tab($(this)).hide()
                 })
+                $('div#demo-html').show();
               },
-              // helper function finds the tab for a given li
-              tab : function(li){
+              tab : function(li){ // helper function finds the tab for a given li
                 return $(li.find("a").attr("href"))
               },
-              // hides old active tab, shows new one
-              "li click" : function(el, ev){
+              "li click" : function(el, ev){ // hides old active tab, shows new one
                 ev.preventDefault();
                 this.tab(this.find('.active').removeClass('active')).hide()
                 this.tab(el.addClass('active')).show();

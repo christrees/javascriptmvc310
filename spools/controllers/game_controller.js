@@ -17,10 +17,10 @@ $.Controller.extend('Spools.Controllers.Game',
  */
  "{window} load": function(){
 	if(!$("#game").length){
-	 $('#tab1').append($('<div/>').attr('id','game'));
-	 $('#tab2').append($('<div/>').attr('id','game').attr('class','gamenew'));
-          Spools.Models.Game.findAll({}, this.callback('list'));
+	 $(document.body).append($('<div/>').attr('id','game'));
+	 $(document.body).append($('<div/>').attr('id','game').attr('class','gamenew'));
  	}
+        Spools.Models.Game.findAll({}, this.callback('list'));
  },
  /**
  * Displays a list of games and the submit form.
@@ -28,11 +28,9 @@ $.Controller.extend('Spools.Controllers.Game',
  */
  list: function( games ){
 	$('#game').html(this.view('init', {games:games} ));
-        $('.gamenew').html(this.view('new', {games:games} ));
-        $('#crapx').html(this.view('new', {games:games} ));
-        var curgame = games.idGameBrd;
-
-        //this.showgamegrid(curgame);
+        var curgame = games[0]; //use the default game as the edit input pattern
+        //alert('GameID: '+curgame['idGameBrd']);
+        $('.gamenew').html(this.view('new', {game:curgame} ));
  },
  /**
  * Responds to the create form being submitted by creating a new Spools.Models.Game.
@@ -40,7 +38,6 @@ $.Controller.extend('Spools.Controllers.Game',
  * @param {Event} ev A jQuery event whose default action is prevented.
  */
 'form submit': function( el, ev ){
-    //alert('detected form submit');
 	ev.preventDefault();
 	new Spools.Models.Game(el.formParams()).save();
 },
@@ -54,19 +51,12 @@ $.Controller.extend('Spools.Controllers.Game',
 	$("#game form input[type!=submit]").val(""); //clear old vals
 },
  /**
- * Creates and places the edit interface.
- * @param {jQuery} el The game's edit link element.
- */
-'.edit click': function( el ){
-	var game = el.closest('.game').model();
-	game.elements().html(this.view('edit', game));
-},
- /**
  * Removes the edit interface.
  * @param {jQuery} el The game's cancel link element.
  */
 '.cancel click': function( el ){
-	this.show(el.closest('.game').model());
+    $('.gameedit').remove();
+    $('#token.tokenview').show();
 },
  /**
  * Updates the game from the edit values.
@@ -82,39 +72,41 @@ $.Controller.extend('Spools.Controllers.Game',
     var stuff = parseInt(el.next('.gamescore').attr('value'));
     --stuff;
     el.next('.gamescore').attr('value', stuff);
-    //alert(stuff);
-    /*
-	var $game = el.closest('.gamescore');
-	$game.model().update($game.formParams());
-    */
 },
 '.gamescoreplus click': function( el ){
     var stuff = parseInt(el.prev('.gamescore').attr('value'));
     ++stuff;
     el.prev('.gamescore').attr('value', stuff);
-    //alert(stuff);
 },
  /**
  * Listens for updated games.	 When a game is updated, 
  * update's its display.
  */
 'game.updated subscribe': function( called, game ){
-	this.show(game);
+	//this.show(game);
+       $('.gameedit').remove();
+       $('#token.tokenview').remove();
+       $('#tab3').html('');
+       $('#tab3').append($('<div/>').attr('id','game').attr('class','gameinfo'));
+       $('.gameinfo').html(this.view('infobar',{game:game}));
+$('#tab3').append($('<div/>').attr('id','token').attr('class','tokenview'));
+       //$('#tab3').append($('<div/>').attr('id','game').attr('class','gameedit'));
+
+       Spools.Models.Token.findAll({}, function(data){
+          $('.tokenview').html(Spools.Controllers.Token.prototype.view('grid', {tokens:data, game:game} ));
+        });
 },
  /**
  *	 Handle's clicking on a game's view link.
  */
  '.gameview click': function( el ){
-     //alert('got clicked');
         $('.game').removeClass('gameselect');
         var curgame = el.closest('.game').model();
         el.closest('.game').addClass('gameselect');
-        //var curgame = el.closest('.gameselect').model();
         function createCookie(name,value,days) {
 	if (days) {
 		var date = new Date();
 		date.setTime(date.getTime()+(days*24*60*60*1000));
-		//date.setTime(date.getTime()+(sec*1000));
 		var expires = "; expires="+date.toGMTString();
 	}
 	else var expires = "";
@@ -133,26 +125,22 @@ $.Controller.extend('Spools.Controllers.Game',
         function eraseCookie(name) {
 	createCookie(name,"",-1);
         }
-       // $.cookie('DoDo', 'Dah');
-       // document.cookie = 'idGameBrd=' + curgame['idGameBrd'] + '; path=/';
        eraseCookie('idGameBrd');
        createCookie('idGameBrd',curgame['idGameBrd'],1);
-       //alert("game_controller: "+curgame['idGameBrd']);
-       //createCookie('catCrap',99,2);
-       //this.showgamegrid(curgame);
-       Spools.Models.Token.findAll({}, function(data){
-          $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:data, game:curgame} ));
-        });
+       $('.gameedit').remove();
+       $('#token.tokenview').remove();
+       $('#tab3').html('');
+       $('#tab3').append($('<div/>').attr('id','game').attr('class','gameinfo'));
+       $('.gameinfo').html(this.view('infobar',{game:curgame}));
+$('#tab3').append($('<div/>').attr('id','token').attr('class','tokenview'));
+       //$('#tab3').append($('<div/>').attr('id','game').attr('class','gameedit'));
 
- },
- /**
- * Shows a game's information.
- */
-showgamegrid: function(curgame){
-        Spools.Models.Token.findAll({}, function(data){
-          $('#token').html(Spools.Controllers.Token.prototype.view('grid', {tokens:data, game:curgame} ));
+       Spools.Models.Token.findAll({}, function(data){
+          $('.tokenview').html(Spools.Controllers.Token.prototype.view('grid', {tokens:data, game:curgame} ));
         });
-},
+  //      $('#tab3 li').tabs().trigger('li click');
+   $('#litab3').click();
+ },
  /**
  * Shows a game's information.
  */
