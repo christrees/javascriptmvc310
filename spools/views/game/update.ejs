@@ -11,6 +11,28 @@
 </div>
 </div>
 <% */ %>
+<%
+var nextstate;
+var editscore;
+switch (game['GameState']) {
+    case 'JoinGame':
+        nextstate = 'StartGame';
+        editscore = 'no';
+        break;
+    case 'StartGame':
+        nextstate = 'EndGame';
+        editscore = 'yes';
+        break;
+    case 'EndGame':
+        nextstate = 'EndGame';
+        editscore = 'no';
+        break;
+    default:
+        nextstate = 'EndGame';
+        editscore = 'no';
+}
+%>
+<%if (editscore == 'yes') {%>
 <div class="infoSection">
 <div class="teamscore">
 <div id="heading"><%= game['TeamNameA'] %></div>
@@ -26,6 +48,11 @@
 <input id="teamscoreedit" type="test" value="<%= game['TeamBScore'] %>" name="TeamBScore" class="gamescore" />
 <input id="plusbutton" type="button" class="gamescoreplus"/>
 </div>
+</div>
+<%}%>
+<div class="infoSection">
+<div id="heading">State: <%= game['GameState'] %></div>
+<input type="checkbox" value="<%= nextstate %>" name="GameState"/><%= nextstate %>
 </div>
 <div class="infoSection">
 <input type='submit' value='Update' class='update'/>

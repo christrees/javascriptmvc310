@@ -35,6 +35,7 @@ for ($i = 1; $i <= $theGame["gamegridinit"]["gametotaltokens"]; $i++) {
     } else { 
         $gamebrdout[$i]["idPlayer"] = "GONE";
     }
+    if ($gamebankout[$gamekey]["GameState"] != "JoinGame") {$gamebrdout[$i]["state"] = "LOCK";}
 }
 
 //--Send the game to the user

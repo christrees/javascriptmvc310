@@ -16,17 +16,17 @@
     <th colspan=5 class="PGSpoolsTableTeamTop" ><span id="gridTeamNameA"><%= game["TeamNameA"] %></span></th>
 </tr>
 <tr>
-<th class="PGSpoolsScoreHoriz">x/x</th>
-<th class="PGSpoolsScoreHoriz">x/x</th>
-<th class="PGSpoolsScoreHoriz">x/x</th>
-<th class="PGSpoolsScoreHoriz">x/x</th>
-<th class="PGSpoolsScoreHoriz">x/x</th>
+<th class="PGSpoolsScoreHoriz"><%= game["TeamARow1"] %></th>
+<th class="PGSpoolsScoreHoriz"><%= game["TeamARow2"] %></th>
+<th class="PGSpoolsScoreHoriz"><%= game["TeamARow2"] %></th>
+<th class="PGSpoolsScoreHoriz"><%= game["TeamARow3"] %></th>
+<th class="PGSpoolsScoreHoriz"><%= game["TeamARow4"] %></th>
 </tr>
 <tr><th rowspan=6 class="PGSpoolsTableTeamLeft" ><span id="gridTeamNameB"><%= game["TeamNameB"] %></span></th></tr>
 <tr>
-<th class="PGSpoolsScoreVert">x/x</th>
-<%var a = 0; var r = 1; for(var i = 0; i < tokens.length ; i++){ a++; 
-    if( a == 6 ) { a = 1; r++; %></tr><tr><th class="PGSpoolsScoreVert">x/x</th> <%
+<th class="PGSpoolsScoreVert"><%= game["TeamARow1"] %></th>
+<%var a = 0; var r = 1; for(var i = 0; i < tokens.length ; i++){ a++;
+    if( a == 6 ) { a = 1; r++; %></tr><tr><th class="PGSpoolsScoreVert"><%= game["TeamARow"+r] %></th> <%
 }%><td <%= tokens[i] %> class="PGGrid" <% if (tokens[i].idOwner == 'game') {%> class="theCrap" <%}
 %> ><%= $.View('//spools/views/token/icon',tokens[i])%></td><%}
 %>

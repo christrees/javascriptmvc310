@@ -41,6 +41,18 @@ function findGameBrd($needle, $haystack) {
      $gamebankout[$key]["TeamAScore"] = (isset($_POST['TeamAScore']))  ? ($_POST['TeamAScore']  ) : ('TeamAScorefuckd');
      $gamebankout[$key]["TeamBScore"] = (isset($_POST['TeamBScore']))  ? ($_POST['TeamBScore']  ) : ('TeamBScorefuckd');
      $gamebankout[$key]["GameState"] = (isset($_POST['GameState']))    ? ($_POST['GameState']  )   : ('GameStatefuckd');
+     if ($_POST['GameState'] != 'JoinGame') { //-- assign keys when not in JoinGame
+        $gamebankout[$key]["TeamARow1"] = "0/5";
+        $gamebankout[$key]["TeamARow2"] = "1/6";
+        $gamebankout[$key]["TeamARow3"] = "2/7";
+        $gamebankout[$key]["TeamARow4"] = "3/8";
+        $gamebankout[$key]["TeamARow5"] = "4/9";
+        $gamebankout[$key]["TeamBRow1"] = "0/5";
+        $gamebankout[$key]["TeamBRow2"] = "1/6";
+        $gamebankout[$key]["TeamBRow3"] = "2/7";
+        $gamebankout[$key]["TeamBRow4"] = "3/8";
+        $gamebankout[$key]["TeamBRow5"] = "4/9";
+     }
      $gamebankout[$key]["message"]   = (isset($_POST['message']))    ? ($_POST['message']  )   : ('messagefuckd');
      $out = $gamebankout[$key];
     //-- Store the new games list

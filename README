@@ -940,6 +940,15 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 [7:52:05 AM] Chris Trees: the UI flow is moving fast now that I've got the event patterns working..
 [7:53:10 AM] Chris Trees: My goal right now is to get something I think has the flow you wrote out <which is what my ascii test was based off of> and get auto test working and up...
 [7:54:09 AM] Chris Trees: right now the ASCII version and test are broken due to the event mapping tags to get the css working...
+[10:39:50 PM] Chris Trees: OK.. this broke my ASCII version but I've got basic test going...
+[10:40:10 PM] Chris Trees: let you guys play with it and we'll go from there.
+[10:40:51 PM] Chris Trees: I'll get the ASCII version going again so we can talk about mappings at some point.
+[10:42:00 PM] Chris Trees: http://javascriptmvc310.xplanb.net/spools/joingame.html
+[10:42:11 PM] Chris Trees: The testing is:
+[11:02:19 PM] Chris Trees: http://javascriptmvc310.xplanb.net/spools/funcunit.html
+[11:16:33 PM] Chris Trees: It should run all the test on all browsers but I use firefox and chrome.
+[11:17:05 PM] Chris Trees: If you enble pop-ups you should see the screen progress..
+[11:28:08 PM] Chris Trees: I don't have the officials screen tests yet... but will probably do those after I clean up the ASCII version and do a sync / clean up and use those
 >>>>>>>>>>>>>>>>>>>>>>>> SKYPE slar.notmeworld.com <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 --OK... got the basic testing working with Joes Candy
@@ -947,12 +956,107 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 --SAVE THIS README
 C:\Users\ChrisT\workspace\javascriptmvc310>git add .
 C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 10 - More CSS and Testing"
-C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
 [cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
-[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/joemod
 <<<<<<<<<<<<<<<<<
 >>>>>STEP 10 - TEST
+<<<<<<<<<<<<<<<<<
+TARGETS:
+Browse - (1) http://www.gimbalrock.com/spools/v04/joingame.html
+Browse - (1) http://www.gimbalrock.com/spools/v04/newgame.html
+Browse - (2) http://www.gimbalrock.com/spools/v04/game.html
+Browse - (2) http://www.gimbalrock.com/spools/v04/scoreboard.html
+Browse - (2) http://www.gimbalrock.com/spools/v04/officialspanel.html
+Browse - (3) http://www.gimbalrock.com/spools/v04/pregame.html
+Browse - http://js.javascriptmvc310/spools/spools.html
+AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
+Browse - http://js.javascriptmvc310/spools/tabstest.html
+Browse - http://js.javascriptmvc310/spools/joingame.html
+EXTERNAL:
+Browse - http://javascriptmvc310.xplanb.net/spools/joingame.html
+Browse - http://javascriptmvc310.xplanb.net/spools/funcunit.html
+SUCCESS>>It runs all tests
+?FAILURE>>Cache issues WATCH OUT!!! <basically turn off cache>
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 11 - ASCII Cleanup
+<<<<<<<<<<<<<<<<<
+--OK... I need to get the old spools cleaned up so that the ASCII version runs.
+--This means cleaning up the controller and views so that the ASCII version can run with or without the css
+--Start with http://js.javascriptmvc310/spools/spools.html
+--Wow... the ascii version of joingame is pretty good... 
+--One thing... I should have the start game toggle to the game list... OH and call it CREATE
+--DONE
+--Now format the game status bar so score lines up in ASCII
+--DONE
+--Now we need to add the game state update
+--DONE
+--NOW we need to add the action locks of each of the states <rules for state>
+--This is server side code that changes both game and token data
+--FIRST... I'm going to cheat and put a dropdown to change state... games\update.ejs
+--Now if it's Join Game... you can select tokens, if it is NOT tokens are locked...
+--Mod the Token View to only display pick when GameState is JoinGame
+--SO... when the game is NOT join game, on the server POST with state NOT JOINGAME the server will put tokens STATE into LOCK
+--Now we also need to also do the rowcol stuff for score...
+TeamARow1 = "0/5"
+TeamARow2 = "1/6"
+TeamARow3 = "2/7"
+TeamARow4 = "3/8"
+TeamARow5 = "4/9"
+TeamBRow1 = "0/5"
+TeamBRow2 = "1/6"
+TeamBRow3 = "2/7"
+TeamBRow4 = "3/8"
+TeamBRow5 = "4/9"
+--OK... I put in the game state JoinGame to StartGame locks out tokens and puts numbers up.
+--Take out the dropdown select in update
+<select name="GameState">
+    <option value="JoinGame">JoinGame</option>
+    <option value="StartGame">StartGame</option>
+    <option value="EndGame">EndGame</option>
+</select>
+--Now only the state transistion choice is and you can only go forward.
+--OK... that's pretty much it... 
+--Now on the change the END... I should parse the token field and tag the winners... but I'm going to leave that for now.
+--We need to get test going...
+--I also want to make sure the test work on the spools.html also...
+--ON TO TEST..
+--http://js.javascriptmvc310/spools/funcunit.html
+--OK... I see the issue... we click too fast on some of the test token clicks...
+--I think I'll add some delays via a varible so we can slow it it...
+--OK... TWO THINGS: I added delay but didn't need it.  I also figured out how to use .missing() basically to click and then let it go away...
+--SO now the test are running clean...
+--I've got a few more hours before Joe comes on.  Lets attempt to get the game status 
+--Well I got some of it working but time to sync
+C:\Users\ChrisT\workspace\javascriptmvc310>git status
+# On branch joemod
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   README
+#       modified:   spools/controllers/game_controller.js
+#       modified:   spools/spoolspps/gameboard.ini
+#       modified:   spools/spoolspps/games.php
+#       modified:   spools/spoolspps/token.php
+#       modified:   spools/test/funcunit/joecandy_test.js
+#       modified:   spools/views/game/infobar.ejs
+#       modified:   spools/views/game/new.ejs
+#       modified:   spools/views/game/update.ejs
+#       modified:   spools/views/token/grid.ejs
+#       modified:   spools/views/token/icon.ejs
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 11 - ASCII Cleanup and Auto Test"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/joemod
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 11 - TEST
 <<<<<<<<<<<<<<<<<
 TARGETS:
 Browse - (1) http://www.gimbalrock.com/spools/v04/joingame.html
@@ -972,10 +1076,36 @@ SUCCESS>>
 ?FAILURE>>
 ??WHAT?>>
 
+
 ==QUICK NOTES==
 http://s3.amazonaws.com/jupiter_images/resources/1/javascriptmvc_cheatsheet.pdf
 KILL CACHE: http://forum.javascriptmvc.com/topic/ejs-templates-are-always-cached
 FIREFOX - about:config Type ‘cache’ in the search bar, and look for network.http.use-cache, and double click it to set it to false.
+TEST:
+FuncUnit API: http://javascriptmvc.com/docs.html#&who=FuncUnit
+FuncUnit on Sauce: http://forum.javascriptmvc.com/#Topic/32525000000389015
+C:\Users\ChrisT\workspace\javascriptmvc310\funcunit\settings.js
+var FuncUnitSauceLabsSettings = {
+	browsers: [ '{' + 
+	"username": "<your Sauce Labs username>",' + 
+	'"access-key": "<your Sauce Labs Api Key>",' +
+	'"os": "Windows 2003",' +
+	"browser": "firefox",' + 
+        '"browser-version": "3.6.",' +
+        '"name": "My Tests",' +
+        '"user-extensions-url": "http://<your server>/funcunit/java/user-extensions.js"' +
+	'}'],
+	serverHost: 'ondemand.saucelabs.com',
+	serverPort: 80,
+	jmvcRoot: 'http://<your server>/'
+};
+var FuncUnitLocalSettings = {
+	browsers: ["*firefox", "*iexplore"],
+	jmvcRoot: 'http://localhost/'
+};
+var runFuncUnitLocally = false;
+FuncUnit = (runFuncUnitLocally) ? FuncUnitLocalSettings : FuncUnitSauceLabsSettings;
+
 ======================================================================================
 ------- copy buffer --------------
 ?????????????????????????????????

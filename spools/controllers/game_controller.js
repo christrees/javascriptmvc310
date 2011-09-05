@@ -48,7 +48,8 @@ $.Controller.extend('Spools.Controllers.Game',
  */
 'game.created subscribe': function( called, game ){
 	$("#game tbody").append( this.view("list", {games:[game]}) );
-	$("#game form input[type!=submit]").val(""); //clear old vals
+	$(".gamenew input[type!=submit]").val(""); //clear old vals
+        $('#litab1').click(); //--click the gameslist tab
 },
  /**
  * Removes the edit interface.
