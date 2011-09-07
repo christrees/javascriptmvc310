@@ -27,12 +27,18 @@ function findGameBrd($needle, $haystack) {
 //    $key = findGameBrd($needle, $haystack);
 //    if ($key) {
 */
+// This needs to be randomized and written to the game data in the matrix...
     $tokenmap = array(
       0 => array ( 0 => 1, 1 => 2, 2 => 3, 3 => 4, 4 => 5 ),
       1 => array ( 0 => 6, 1 => 7, 2 => 8, 3 => 9, 4 => 10 ),
       2 => array ( 0 => 11, 1 => 12, 2 => 13, 3 => 14, 4 => 15 ),
       3 => array ( 0 => 16, 1 => 17, 2 => 18, 3 => 19, 4 => 20 ),
-      4 => array ( 0 => 21, 1 => 22, 2 => 23, 3 => 24, 4 =>25  )
+      4 => array ( 0 => 21, 1 => 22, 2 => 23, 3 => 24, 4 =>25  ),
+      5 => array ( 5 => 1, 6 => 2, 7 => 3, 8 => 4, 9 => 5 ),
+      6 => array ( 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10 ),
+      7 => array ( 5 => 11, 6 => 12, 7 => 13, 8 => 14, 9 => 15 ),
+      8 => array ( 5 => 16, 6 => 17, 7 => 18, 8 => 19, 9 => 20 ),
+      9 => array ( 5 => 21, 6 => 22, 7 => 23, 8 => 24, 9 =>25  )
     );
     if (!isset($_POST['id'])) {
      $newGame = $theGame["gamesbankinit"];

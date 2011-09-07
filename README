@@ -1146,6 +1146,92 @@ Browse - http://js.javascriptmvc310/spools/joingame.html
 EXTERNAL:
 Browse - http://javascriptmvc310.xplanb.net/spools/joingame.html
 Browse - http://javascriptmvc310.xplanb.net/spools/funcunit.html
+SUCCESS>>Works for me... local... HG has issues not sure if it's my internet connection.
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 13 - Production Mode
+<<<<<<<<<<<<<<<<<
+--OK... WHAT I think I need to do NEXT:
+-- 1) Make a production release of the code <ie one JS file>
+-- 2) Mess with the CACHE
+	Test somehow to verify js code only loads when expected.
+	Test somehow only AJAX calls in normal opperation
+-- 3) More test and clean up tests.
+--OK... lets do the production release
+C:\Users\ChrisT\workspace\javascriptmvc310>js spools\scripts\build.js
+Building to spools/
+BUILDING SCRIPTS ---------------
+steal.compress - Using Google Closure app
+   steal/steal.js
+   ignoring ../../steal/dev/dev.js
+   spools/spools.js
+   jquery/controller/controller.js
+   jquery/class/class.js
+   jquery/jquery.js
+   jquery/lang/lang.js
+   jquery/event/destroyed/destroyed.js
+   jquery/event/event.js
+   jquery/controller/subscribe/subscribe.js
+   jquery/lang/openajax/openajax.js
+   jquery/view/ejs/ejs.js
+   jquery/view/view.js
+   jquery/lang/rsplit/rsplit.js
+   jquery/controller/view/view.js
+   jquery/model/model.js
+   jquery/dom/form_params/form_params.js
+   jquery/dom/dom.js
+   spools/models/game.js
+   spools/controllers/game_controller.js
+   spools/models/token.js
+   spools/controllers/token_controller.js
+SCRIPT BUNDLE > spools/production.js
+BUILDING STYLES ---------------
+text/css
+../../spools/spools.css
+  resources/pp_nontab.png > resources/pp_nontab.png
+  resources/pp_tab.png > resources/pp_tab.png
+  resources/pp_app_bg.png > resources/pp_app_bg.png
+  resources/pp_row_bg.png > resources/pp_row_bg.png
+  resources/games_spools_bg.png > resources/games_spools_bg.png
+  resources/pp_big_button.png > resources/pp_big_button.png
+  resources/pp_big_button.png > resources/pp_big_button.png
+  resources/pp_big_button.png > resources/pp_big_button.png
+  resources/pp_red_button.png > resources/pp_red_button.png
+  resources/pp_minus_button.png > resources/pp_minus_button.png
+  resources/pp_plus_button.png > resources/pp_plus_button.png
+STYLE BUNDLE > spools/production.css
+Nice! Compressed: 31.8%  Before: 10.0 kb  After: 6.8 kb
+C:\Users\ChrisT\workspace\javascriptmvc310>
+--OK... now switch to production
+--This should have created:
+--C:\Users\ChrisT\workspace\javascriptmvc310\spools\production.js
+--C:\Users\ChrisT\workspace\javascriptmvc310\spools\production.css
+--EDIT: C:\Users\ChrisT\workspace\javascriptmvc310\spools\joingame.html
+<!--<script type='text/javascript' src='../steal/steal.js?spools,development'></script>-->
+<script type='text/javascript' src='../steal/steal.production.js?spools'></script>
+--YES... the prodution really tighten things up...
+--I'll be pushing this out...
+--I looked at the network traffic and it does the right cache things and AJAX things <as I expected>
+--Still have an issue with the update buttons...
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 13 - Production Mode"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/joemod
+
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 13 - Production Mode"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/joemod
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 13 - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc310/spools/spools.html
+AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
 SUCCESS>>
 ?FAILURE>>
 ??WHAT?>>
@@ -1212,7 +1298,7 @@ SUCCESS>>
 +++++BUG:4 STATUS-> OPEN
 +++++BUG:5 STATUS-> CLOSED
 +++++BUG:6 STATUS-> CLOSED
-+++++BUG:7 STATUS-> OPEN
++++++BUG:7 STATUS-> CLOSED
 +++++BUG:8 STATUS-> OPEN
 >>>>>BUG:8 BEGIN
 <<<<<BUG:8 END
