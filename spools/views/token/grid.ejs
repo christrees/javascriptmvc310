@@ -11,6 +11,7 @@
 </div>
 <% */ %>
 <div class="boardSection">
+<div id="boardwinner">WINNER: <%= game["GameWinner"] %></div>
 <table id="PGSpoolsTable" <%= game %> >
 <tr><th colspan=2 rowspan=2 id="PGSpoolTableBlank"><a id='game' class='gameediticon' <%= game %> href='javascript://' class='edit'>edit</a></th>
     <th colspan=5 class="PGSpoolsTableTeamTop" ><span id="gridTeamNameA"><%= game["TeamNameA"] %></span></th>
@@ -18,9 +19,9 @@
 <tr>
 <th class="PGSpoolsScoreHoriz"><%= game["TeamARow1"] %></th>
 <th class="PGSpoolsScoreHoriz"><%= game["TeamARow2"] %></th>
-<th class="PGSpoolsScoreHoriz"><%= game["TeamARow2"] %></th>
 <th class="PGSpoolsScoreHoriz"><%= game["TeamARow3"] %></th>
 <th class="PGSpoolsScoreHoriz"><%= game["TeamARow4"] %></th>
+<th class="PGSpoolsScoreHoriz"><%= game["TeamARow5"] %></th>
 </tr>
 <tr><th rowspan=6 class="PGSpoolsTableTeamLeft" ><span id="gridTeamNameB"><%= game["TeamNameB"] %></span></th></tr>
 <tr>

@@ -28,7 +28,7 @@ defaultcheck: function() {
     S('.gameview').exists(function () {
         ok(S('.spools_models_game_0').exists(), "default game model exists");
         ok(S('.gameview').exists(), "gameview class exists");
-        ok(S('.createdBy').text().match(/Sport:/), "CreatedBy class div Sport:");
+        ok(S('.createdBy').text().match(/Official:/), "CreatedBy class div Official:");
         ok(S('.header').text().match(/vs/), "header class div with vs");
         ok(S('.gameview').text().match(/view/), "Default gameview link");
     });
@@ -36,12 +36,14 @@ defaultcheck: function() {
 defaultgameinput: function () {
   var defautinput = {
         expectedkey: 0,
-        idGameBrd: 'test01brd',
+        //-- idGameBrd: '0',
+        Official: 'DefaultOfficial',
         TypeSport: 'Football',
         TeamNameA: 'Home Team',
         TeamNameB: 'Away Team',
         TeamAScore: 0,
         TeamBScore: 0,
+        StartTime: '6:15 PM',
         message: 'New Game',
         GameState: 'JoinGame',
         tokensperboard: 25,
@@ -60,9 +62,10 @@ creategame: function (gameinput) {
     S('#litab2').exists().click();
     //alert('TeamNameA is: '+gameinput.TeamNameA+' idGameBrd is: '+gameinput.idGameBrd);
     S(gamecreatedom+submitbutton).exists( function () {
-        S(gamecreatedom+editvals+'input[name=idGameBrd]').type(gameinput.idGameBrd);
+        S(gamecreatedom+editvals+'input[name=Official]').type(gameinput.Official);
         S(gamecreatedom+editvals+'input[name=TeamNameA]').type(gameinput.TeamNameA);
         S(gamecreatedom+editvals+'input[name=TeamNameB]').type(gameinput.TeamNameB);
+        S(gamecreatedom+editvals+'input[name=StartTime]').type(gameinput.StartTime);
         S(gamecreatedom+submitbutton).click();
     });
 },
@@ -78,8 +81,7 @@ modgame: function (modinput) {
 checkgame: function(checkinput) {
     var gamecheckdom = 'div#game table tbody tr.spools_models_game_'+checkinput.expectedkey;
     S(gamecheckdom).exists(function () {
-        equal(S(gamecheckdom+' td .createdBy').text(), ('Sport: '+checkinput.TypeSport), 'TypeSport');
-        equal('SHIT', 'SHIT', 'SHIT Check');
+        equal(S(gamecheckdom+' td .createdBy').text(), ('Official: '+checkinput.Official), 'Official');
         equal(S(gamecheckdom+' td .header').text(), (checkinput.TeamNameA+' vs '+checkinput.TeamNameB), 'Header Check');
     });
  },
@@ -98,12 +100,11 @@ test("GAMES: 01-SmokeDefault", function () {
 });
 //-TEST2
 test("GAMES: 02-create", function () {
-    expect(8); //8 per setup and check
+    expect(7); //8 per setup and check
     st = this.nukeuseranddata(); //-SETUP now this.nukeuseranddata();
     this.defaultcheck();
     var myUsergameinput = this.defaultgameinput();
     myUsergameinput.expectedkey = 1;
-    myUsergameinput.idGameBrd = 'test02brd';
     this.creategame(myUsergameinput);
     S('#litab1').exists().click();
     this.checkgame(myUsergameinput);

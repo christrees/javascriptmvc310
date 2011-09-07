@@ -1075,7 +1075,77 @@ Browse - http://javascriptmvc310.xplanb.net/spools/funcunit.html
 SUCCESS>>
 ?FAILURE>>
 ??WHAT?>>
-
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 12 - Fix Bugs
+<<<<<<<<<<<<<<<<<
+--Joe filed some bugs and I need to clear the old ones too...
+--https://github.com/christrees/javascriptmvc310/issues
+--Just walk through them all and get assigned
+--THE 'Special' bugs I'll put in here and reference too... like:
+--https://github.com/christrees/javascriptmvc310/issues/10
+OK... this is adding a field to the game data so it's worth explaining.
+1 - Edit C:\Users\ChrisT\workspace\javascriptmvc310\spools\spoolspps\gameboard.ini
+[gamesbankinit]
+idGameBrd = 0
+Official = "Official"
+...
+That puts it in the default gameboard
+2 - Edit C:\Users\ChrisT\workspace\javascriptmvc310\spools\spoolspps\games.php and add
+     $gamebankout[$key]["Official"] = (isset($_POST['Official']))  ? ($_POST['Official']  ) : ('OfficialDefault');
+Which accepts the post
+3 - Edit C:\Users\ChrisT\workspace\javascriptmvc310\spools\views\game\new.ejs
+ADD
+<div class="infoSection">
+<div id="heading">Officials Name</div>
+<div id="neweditvalue"><input type="text" name="Official"/></div>
+</div>
+--This supplies the form to the user for the AJAX post.
+4 - Edit C:\Users\ChrisT\workspace\javascriptmvc310\spools\views\game\show.ejs
+<td>
+<div class='header'><%= this['TeamNameA']%> vs <%= this['TeamNameB']%></div>
+<div class='createdBy'>Official: <%= this['Official']%></div>
+<a class='gameview' href='javascript://' class='view'>view</a>
+</td>
+--This displays like Joe wanted.
+--Now https://github.com/christrees/javascriptmvc310/issues/8
+--OK... Auto name the game boards... I'll take the userid and the board id so bidxuidxxxx
+--Edit the creation of board...
+--OK... got through all the bugs...
+--Want to post to HG to see if the cache fixes worked..
+--I burned down issues 1,2,5,6,7,8,9,10,11,12
+--Only 2 open issue which are targets for Release 1.1
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 12 - Fix Bugs"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 12 - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc310/spools/spools.html
+AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
+ISSUES: https://github.com/christrees/javascriptmvc310/issues
+WIKI: https://github.com/christrees/javascriptmvc310/wiki
+TARGETS:
+Browse - (1) http://www.gimbalrock.com/spools/v04/joingame.html
+Browse - (1) http://www.gimbalrock.com/spools/v04/newgame.html
+Browse - (2) http://www.gimbalrock.com/spools/v04/game.html
+Browse - (2) http://www.gimbalrock.com/spools/v04/scoreboard.html
+Browse - (2) http://www.gimbalrock.com/spools/v04/officialspanel.html
+Browse - (3) http://www.gimbalrock.com/spools/v04/pregame.html
+Browse - http://js.javascriptmvc310/spools/spools.html
+AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
+Browse - http://js.javascriptmvc310/spools/tabstest.html
+Browse - http://js.javascriptmvc310/spools/joingame.html
+EXTERNAL:
+Browse - http://javascriptmvc310.xplanb.net/spools/joingame.html
+Browse - http://javascriptmvc310.xplanb.net/spools/funcunit.html
+SUCCESS>>
+?FAILURE>>
+??WHAT?>>
 
 ==QUICK NOTES==
 http://s3.amazonaws.com/jupiter_images/resources/1/javascriptmvc_cheatsheet.pdf
@@ -1133,12 +1203,12 @@ SUCCESS>>
 ???????????????????????????????????????
 >>>>>UNUSED / NEXT BUG ID BIN<<<<<
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-+++++BUG:1 STATUS-> OPEN
-+++++BUG:2 STATUS-> OPEN
++++++BUG:1 STATUS-> CLOSED
++++++BUG:2 STATUS-> CLOSED
 +++++BUG:3 STATUS-> OPEN
 +++++BUG:4 STATUS-> OPEN
-+++++BUG:5 STATUS-> OPEN
-+++++BUG:6 STATUS-> OPEN
++++++BUG:5 STATUS-> CLOSED
++++++BUG:6 STATUS-> CLOSED
 +++++BUG:7 STATUS-> OPEN
 +++++BUG:8 STATUS-> OPEN
 >>>>>BUG:8 BEGIN

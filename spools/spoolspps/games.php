@@ -27,20 +27,32 @@ function findGameBrd($needle, $haystack) {
 //    $key = findGameBrd($needle, $haystack);
 //    if ($key) {
 */
+    $tokenmap = array(
+      0 => array ( 0 => 1, 1 => 2, 2 => 3, 3 => 4, 4 => 5 ),
+      1 => array ( 0 => 6, 1 => 7, 2 => 8, 3 => 9, 4 => 10 ),
+      2 => array ( 0 => 11, 1 => 12, 2 => 13, 3 => 14, 4 => 15 ),
+      3 => array ( 0 => 16, 1 => 17, 2 => 18, 3 => 19, 4 => 20 ),
+      4 => array ( 0 => 21, 1 => 22, 2 => 23, 3 => 24, 4 =>25  )
+    );
     if (!isset($_POST['id'])) {
      $newGame = $theGame["gamesbankinit"];
      $newGame["id"] = count($gamebankout);
+     $newGame["idGameBrd"] = 'bid'.((string)$newGame["id"]).'uid'.$_COOKIE["idPlayer"];
+     //$newGame["idGameBrd"] = "bid001";
      array_push($gamebankout, $newGame);
      end($gamebankout);
      $key = key($gamebankout);
     } else $key = $_POST['id'];
-     $gamebankout[$key]["idGameBrd"] = (isset($_POST['idGameBrd']))  ? ($_POST['idGameBrd'] )  : ('GameBrdFd');
-     $gamebankout[$key]["TeamNameA"] = (isset($_POST['TeamNameA']))  ? ($_POST['TeamNameA']  ) : ('TeamNameAfuckd');
-     $gamebankout[$key]["TeamNameB"] = (isset($_POST['TeamNameB']))  ? ($_POST['TeamNameB']  ) : ('TeamNameBfuckd');
-     $gamebankout[$key]["TypeSport"] = (isset($_POST['TypeSport']))  ? ($_POST['TypeSport']  ) : ('TypeSportfuckd');
-     $gamebankout[$key]["TeamAScore"] = (isset($_POST['TeamAScore']))  ? ($_POST['TeamAScore']  ) : ('TeamAScorefuckd');
-     $gamebankout[$key]["TeamBScore"] = (isset($_POST['TeamBScore']))  ? ($_POST['TeamBScore']  ) : ('TeamBScorefuckd');
-     $gamebankout[$key]["GameState"] = (isset($_POST['GameState']))    ? ($_POST['GameState']  )   : ('GameStatefuckd');
+     //$gamebankout[$key]["idGameBrd"] = (isset($_POST['idGameBrd']))  ? ($_POST['idGameBrd'] )  : ('idGameBrdDefault');
+     //--Joe wants auto name of board 
+     $gamebankout[$key]["Official"] = (isset($_POST['Official']))  ? ($_POST['Official']  ) : ('OfficialDefault');
+     $gamebankout[$key]["StartTime"] = (isset($_POST['StartTime']))  ? ($_POST['StartTime']  ) : ('StartTimeDefault');
+     $gamebankout[$key]["TeamNameA"] = (isset($_POST['TeamNameA']))  ? ($_POST['TeamNameA']  ) : ('TeamNameADefault');
+     $gamebankout[$key]["TeamNameB"] = (isset($_POST['TeamNameB']))  ? ($_POST['TeamNameB']  ) : ('TeamNameBDefault');
+     $gamebankout[$key]["TypeSport"] = (isset($_POST['TypeSport']))  ? ($_POST['TypeSport']  ) : ('TypeSportDefault');
+     $gamebankout[$key]["TeamAScore"] = (isset($_POST['TeamAScore']))  ? ($_POST['TeamAScore']  ) : ('TeamAScoreDefault');
+     $gamebankout[$key]["TeamBScore"] = (isset($_POST['TeamBScore']))  ? ($_POST['TeamBScore']  ) : ('TeamBScoreDefault');
+     $gamebankout[$key]["GameState"] = (isset($_POST['GameState']))    ? ($_POST['GameState']  )   : ('GameStateDefault');
      if ($_POST['GameState'] != 'JoinGame') { //-- assign keys when not in JoinGame
         $gamebankout[$key]["TeamARow1"] = "0/5";
         $gamebankout[$key]["TeamARow2"] = "1/6";
@@ -53,7 +65,13 @@ function findGameBrd($needle, $haystack) {
         $gamebankout[$key]["TeamBRow4"] = "3/8";
         $gamebankout[$key]["TeamBRow5"] = "4/9";
      }
-     $gamebankout[$key]["message"]   = (isset($_POST['message']))    ? ($_POST['message']  )   : ('messagefuckd');
+     if (1) {
+    // if ($_POST['GameState'] == 'EndGame') {
+         //$gamebankout[$key]["GameWinner"] = $gamebrdout[$tokenmap[$gamebankout[$key]["TeamAScore"]][$gamebankout[$key]["TeamBScore"]]]['idOwner'];
+         $thetoken = $tokenmap[$gamebankout[$key]["TeamBScore"]][$gamebankout[$key]["TeamAScore"]];
+         $gamebankout[$key]["GameWinner"] = $gamebrdout[$thetoken]['idOwner'];
+     }
+     $gamebankout[$key]["message"]   = (isset($_POST['message']))    ? ($_POST['message']  )   : ('messageDefault');
      $out = $gamebankout[$key];
     //-- Store the new games list
     $fp = fopen($gamesbankbasename, 'w+') or die("I could not open $gamesbankbasename.");
