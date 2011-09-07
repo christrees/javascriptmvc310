@@ -1114,14 +1114,17 @@ ADD
 --Want to post to HG to see if the cache fixes worked..
 --I burned down issues 1,2,5,6,7,8,9,10,11,12
 --Only 2 open issue which are targets for Release 1.1
+==CRAP... the issue with HG was a 404 error due to no .php files on the model request.
+==Fix in both game.js and token.js so it calls a php
+==Commit and push again
 --Lets commit this
 --SAVE THIS README
 C:\Users\ChrisT\workspace\javascriptmvc310>git add .
 C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 12 - Fix Bugs"
-C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
 [cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
-[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/joemod
 <<<<<<<<<<<<<<<<<
 >>>>>STEP 12 - TEST
 <<<<<<<<<<<<<<<<<

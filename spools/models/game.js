@@ -38,7 +38,7 @@ $.Model.extend('Spools.Models.Game',
 		$.ajax({
 //			url: '/games/'+id,
 //			type: 'put',
-			url: 'spoolspps/games/'+id,
+			url: 'spoolspps/games.php',
 			type: 'post',
 			dataType: 'json',
 			data: attrs,

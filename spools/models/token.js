@@ -71,7 +71,7 @@ $.Model.extend('Spools.Models.Token',
 	 */
 	create: function( attrs, success, error ){
 		$.ajax({
-			url: 'spoolspps/tokens',
+			url: 'spoolspps/tokens.php',
 			type: 'post',
 			dataType: 'json',
 			success: success,
