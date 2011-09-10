@@ -1214,6 +1214,22 @@ C:\Users\ChrisT\workspace\javascriptmvc310>
 --Still have an issue with the update buttons...
 --Lets commit this
 --SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git status
+# On branch joemod
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   README
+#       modified:   spools/joingame.html
+#       modified:   spools/spoolspps/games.php
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       spools/production.css
+#       spools/production.js
+no changes added to commit (use "git add" and/or "git commit -a")
 C:\Users\ChrisT\workspace\javascriptmvc310>git add .
 C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 13 - Production Mode"
 C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
@@ -1233,10 +1249,59 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
 Browse - http://js.javascriptmvc310/spools/spools.html
 AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
 SUCCESS>>
-?FAILURE>>
-??WHAT?>>
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 14 - Android APP via PhoneGap
+<<<<<<<<<<<<<<<<<
+--Well... lets attempt to push this to an android app
+--First... I needed to figure out the min requirements.
+--After f'n around I found this:
+www
++steal
+++steal.production.js
++spools
+++production.js
+++production.css
+++joingame.html
+++resources
++++<ALL FILES>
+++views
++++<ALL FILES>
+--I also needed to specify the URLS in models\token.js and models\game.js to:
+--http://javascriptmvc310.xplanb.net/spools/spoolspps/tokens.php
+--Then recompile production
+C:\Users\ChrisT\workspace\javascriptmvc310>js spools\scripts\build.js
+--I started a wiki page for this
+--https://github.com/christrees/javascriptmvc310/wiki/PhoneGap
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "STEP 14 - Android APP via PhoneGap"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/joemod
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 14 - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc310/spools/spools.html
+AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
+SUCCESS>>Ran on simulator
+
 
 ==QUICK NOTES==
+n terms of making mobile dev easier, there's a ton of stuff:
+
+http://www.phonegap.com/
+http://www.sencha.com/products/touch/
+http://www.appcelerator.com/
+http://www.jquerymobile.com/
+http://www.jqtouch.com/
+
+http://stackoverflow.com/questions/991764/hiding-title-in-a-fullscreen-mode
+
+https://github.com/paulirish/html5-boilerplate/blob/master/index.html
+http://www.rkblog.rk.edu.pl/w/p/optimizing-websites-iphone-and-android/
+http://stackoverflow.com/questions/90178/make-a-div-fill-the-remaining-screen-space
+
 http://s3.amazonaws.com/jupiter_images/resources/1/javascriptmvc_cheatsheet.pdf
 KILL CACHE: http://forum.javascriptmvc.com/topic/ejs-templates-are-always-cached
 FIREFOX - about:config Type ‘cache’ in the search bar, and look for network.http.use-cache, and double click it to set it to false.
@@ -1277,10 +1342,9 @@ FuncUnit = (runFuncUnitLocally) ? FuncUnitLocalSettings : FuncUnitSauceLabsSetti
 C:\Users\ChrisT\workspace\javascriptmvc310>git add -u
 C:\Users\ChrisT\workspace\javascriptmvc310>git add .
 C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "blah blah"
-C:\Users\ChrisT\workspace\javascriptmvc310>git push origin spools
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
-[cat@gator1209 ~/public_html/javascriptmvc310]$ rm gamebrdbank.spools
-[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/spools
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/joemod
 <<<<<<<<<<<<<<<<<
 >>>>>STEP x - TEST
 <<<<<<<<<<<<<<<<<
