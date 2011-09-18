@@ -1,5 +1,5 @@
 <div id="officalgameupdate"<%= game %> >
-<% /* %>
+<% /* if (game['GameState'] == 'StartGame') { %>
 <div class="infoSection" >
 <div id="PGPicksInstructions"><%= game['message'] %></div>
 <div id="PGPicksSelectionContainer">
@@ -10,8 +10,7 @@
 <div id="PGAwayTeamScore"><%= game['TeamBScore'] %></div>
 </div>
 </div>
-<% */ %>
-<%
+<% } */
 var nextstate;
 var editscore;
 switch (game['GameState']) {
@@ -51,12 +50,20 @@ switch (game['GameState']) {
 </div>
 <%}%>
 <div class="infoSection">
-<div id="heading">State: <%= game['GameState'] %></div>
-<input type="checkbox" value="<%= nextstate %>" name="GameState"/><%= nextstate %>
+<% /* %>
+<div>State: <%= game['GameState'] %></div>
+<input class="endgame" type="checkbox" value="<%= nextstate %>" name="GameState"/><%= nextstate %>
+<% */ %>
+<div class="startgame">
+  <div id="squarebuttonTitle"> <input type="radio" name="GameState" value="StartGame" checked/>  Start</div>
 </div>
-<div class="infoSection">
-<input type='submit' value='Update' class='update'/>
-<a href='javascript://' class='cancel' <%= game %>>CANCEL</a>
+<div class="endgame">
+  <div id="squarebuttonTitle">End <input type="radio" name="GameState" value="EndGame"/></div>
 </div>
-
+<div class="updategame">
+  <input id="squarebuttonTitle" type='submit' value='Update' class='update'/>
+</div>
+<div class="cancelupdate">
+    <a id="squarebuttonTitle" href='javascript://' class='cancel' <%= game %>>Cancel</a>
+</div>
 </div>

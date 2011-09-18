@@ -1,7 +1,8 @@
 <?php
 session_cache_limiter( 'nocache' );
 session_start();
-header( 'Cache-Control: no-cache, must-revalidate, post-check=3600, pre-check=3600' );
+// The seesion_cache_limter should be something like below
+// header( 'Cache-Control: no-cache, must-revalidate, post-check=0, pre-check=0' );
 //
 //header('Content-type: application/json');
 //--REFERENCE

@@ -11,7 +11,9 @@
 </div>
 <% */ %>
 <div class="boardSection">
+<% if (game['GameState'] == 'EndGame') { %>
 <div id="boardwinner">WINNER: <%= game["GameWinner"] %></div>
+<% } %>
 <table id="PGSpoolsTable" <%= game %> >
 <tr><th colspan=2 rowspan=2 id="PGSpoolTableBlank"><a id='game' class='gameediticon' <%= game %> href='javascript://' class='edit'>edit</a></th>
     <th colspan=5 class="PGSpoolsTableTeamTop" ><span id="gridTeamNameA"><%= game["TeamNameA"] %></span></th>

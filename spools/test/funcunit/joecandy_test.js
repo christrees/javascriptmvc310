@@ -65,7 +65,7 @@ creategame: function (gameinput) {
         S(gamecreatedom+editvals+'input[name=Official]').type(gameinput.Official);
         S(gamecreatedom+editvals+'input[name=TeamNameA]').type(gameinput.TeamNameA);
         S(gamecreatedom+editvals+'input[name=TeamNameB]').type(gameinput.TeamNameB);
-        S(gamecreatedom+editvals+'input[name=StartTime]').type(gameinput.StartTime);
+        //S(gamecreatedom+editvals+'input[name=StartTime]').type(gameinput.StartTime);
         S(gamecreatedom+submitbutton).click();
     });
 },

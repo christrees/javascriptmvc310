@@ -71,11 +71,13 @@ function findGameBrd($needle, $haystack) {
         $gamebankout[$key]["TeamBRow4"] = "3/8";
         $gamebankout[$key]["TeamBRow5"] = "4/9";
      }
-     if (1) {
-    // if ($_POST['GameState'] == 'EndGame') {
+    // if (1) {
+    if ($_POST['GameState'] == 'EndGame') {
          //$gamebankout[$key]["GameWinner"] = $gamebrdout[$tokenmap[$gamebankout[$key]["TeamAScore"]][$gamebankout[$key]["TeamBScore"]]]['idOwner'];
          $thetoken = $tokenmap[$gamebankout[$key]["TeamBScore"]][$gamebankout[$key]["TeamAScore"]];
          $gamebankout[$key]["GameWinner"] = $gamebrdout[$thetoken]['idOwner'];
+     } else {
+         $gamebankout[$key]["GameWinner"] = 'TBD';
      }
      $gamebankout[$key]["message"]   = (isset($_POST['message']))    ? ($_POST['message']  )   : ('messageDefault');
      $out = $gamebankout[$key];

@@ -1285,7 +1285,27 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
 Browse - http://js.javascriptmvc310/spools/spools.html
 AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
 SUCCESS>>Ran on simulator
-
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 15 - Party Play Release 1.0 Bug Burn
+<<<<<<<<<<<<<<<<<
+--Burn down the issues list for Release 1.0
+--https://github.com/christrees/javascriptmvc310/issues?sort=created&direction=desc&state=open&page=1&milestone=2
+--Got them all cleared and test pass.
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "Party Play Release 1.0 Bug Burn"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/joemod
+<<<<<<<<<<<<<<<<<
+>>>>>STEP x - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc310/spools/spools.html
+AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
+SUCCESS>>
+?FAILURE>>
+??WHAT?>>
 
 ==QUICK NOTES==
 n terms of making mobile dev easier, there's a ton of stuff:
