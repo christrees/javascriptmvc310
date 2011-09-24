@@ -1,6 +1,8 @@
 >>>>GAME PHASE 1 - Creation <Official>
-
-	Connect via URL http://js.javascriptmvc310/spools/spoolsoffical.html
+	Connect via URL http://js.javascriptmvc310/spools/spoolspartyplay.html
+	<user will see nogames>
+	<user clicks on NewGame>
+	--Create new game-- user is official
 	Select a Sport <drop down Baseball Football>
 	*Enter name of Away Team (text field)
 	*Enter name of Home Team (text field)
