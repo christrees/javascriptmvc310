@@ -8,10 +8,10 @@
 	*Enter name of Home Team (text field)
 	Press Create Game button
 >>>>GAME PHASE 2 - Join Game
-	Connects via URL
-	Screen shows a tab titled Join Game 
-	Selects game 
-	View game
+	Connect via URL http://js.javascriptmvc310/spools/spoolspartyplay.html
+	Tap Selects game 
+	Connect via URL http://js.javascriptmvc310/spools/spoolsgame123442345.html
+	<unique game url>
 >>>>GAME PHASE 3 - Token Selection
 	Click on token image
 	Call to database
