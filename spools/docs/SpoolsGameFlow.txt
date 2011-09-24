@@ -1,3 +1,5 @@
+Official
+
 >>>>GAME PHASE 1 - Creation <Official>
 	Connect via URL http://js.javascriptmvc310/spools/spoolspartyplay.html
 	<user will see nogames>
@@ -8,34 +10,56 @@
 	*Enter name of Home Team (text field)
 	Press Create Game button
 	Connect via URL http://js.javascriptmvc310/spools/spoolsgame123442345.html
->>>>GAME PHASE 2 - Join Game
+>>>>GAME PHASE 2 - Pre Game <Official>
+	Official Sections shows only for the owner
+	Official chooses their own pick for winner and spools
+	Hit trivia button
+	Sends trivia question to all players
+	Select trivia answer
+	Timer finishes, trivia pop up shows answer
+	Change Game Status
+	Hit Update button
+	Send update
+	Rows/Columns randomized
+	Tokens and winning pick locked from further selection
+	Game status (innings/quarter)
+>>>>GAME PHASE 3 - Game
+	Hit trivia button
+	Sends trivia question to all players
+	Select trivia answer
+	Timer finishes, trivia pop up shows answer
+	Hit Next play button
+	Select Next Play Guess
+	Timer finishes, Next play pop up asks for what the actual play was
+	Adjust Score with +/1 buttons
+	Hit Update button
+	Send update
+	
+>>>>GAME PHASE 4 - End Game <Official>
+	Hit + to adjust status to End
+	Hit update button
+	Send update
+	Call to database
+	Game redirects to Scoreboard page
+	Identify winners
+	Pop up to congratulate winner
+	Exit game button Appears on scoreboard page
+
+Player
+
+>>>>GAME PHASE 1 - Join Game
 	Connect via URL http://js.javascriptmvc310/spools/spoolspartyplay.html
 	Tap Selects game 
 	Connect via URL http://js.javascriptmvc310/spools/spoolsgame123442345.html
 	<unique game url>
->>>>GAME PHASE 3 - Token Selection
+>>>>GAME PHASE 2 - Pregame
+	Click a winning pick
 	Click on token image
 	Call to database
 	Place request for token
 	If token already taken message returned
 	If token available moniker is added to screen
->>>>GAME PHASE 4 - Manage Game <Official>
-	Selects game like Player
-	Official tab shows only for the owner
-	Bottom buttons show <Start Game> <End Game>
-	Clicks start game
-	Call to database
-	Rows/Columns randomized
-	Tokens locked from further selection
-	Score is adjusted with -/+ buttons
-	Game status (innings/quarter)
->>>>GAME PHASE 5 - End Game <Official>
-	Selects game like Player
-	Official tab shows only for the owner 
-	Clicks end game
-	Call to database
-	Identify winners
-	Notify winners
+
 	
 >>>>StateFlow
 	1-JoinGame <Can StartGame, Can NOT EndGame, {Can pick open tokens}>
