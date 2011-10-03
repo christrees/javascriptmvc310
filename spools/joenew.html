@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test</title>
+
+    <link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.css" />
+    <!--
+<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.js"></script>
+        -->
+</head>
+<body>
+<div data-role="header" data-position="inline">
+<a href="index.html" data-icon="grid">Play</a>
+<h2>Spools Party Play</h2>
+<a href="index.html" data-icon="gear">Settings</a>
+</div>
+    <div data-role="content" data-theme="a">
+
+<div data-role="collapsible"  data-theme="a">
+    <h4>Official's Panel<span class="ui-li-count">Game Starts Count Down: 12:20</span></h4>
+<div data-role="controlgroup" data-type="horizontal" >
+<a href="index.html" data-role="button">Trivia</a>
+<a href="index.html" data-role="button">Next Play</a>
+<a href="index.html" data-role="button">Special</a>
+</div>
+    <fieldset class="ui-grid-d">
+<span class="ui-block-a">Packers </span>
+<a href="index.html" data-role="button" data-inline="true" class="ui-block-b">-</a>
+<span class="ui-block-c">0</span>
+<a href="index.html" data-role="button" data-inline="true" data-theme="b" class="ui-block-d">+</a>
+</fieldset><!-- /grid-d -->
+<fieldset class="ui-grid-a">
+    <div class="ui-block-a"><a href="index.html" data-role="button" data-inline="true" >Reset</a></div>
+    <div class="ui-block-b"><a href="index.html" data-role="button" data-inline="true" >Update</a></div>
+</fieldset><!-- /grid-a -->
+
+</div>
+
+<div data-role="collapsible"  data-theme="a">
+    <h3>Pick Winner<span class="ui-li-count">Bears</span></h3>
+    <fieldset class="ui-grid-a">
+    <div class="ui-block-a"><a href="index.html" data-role="button" >Packers</a></div>
+    <div class="ui-block-b"><a href="index.html" data-role="button" >Bears</a></div>
+</fieldset><!-- /grid-a -->
+
+</div>
+
+<div data-role="collapsible" data-collapsed="true">
+<h3>Section 3: Form elements</h3>
+<form action="#" method="get">
+<div data-role="fieldcontain">
+        <label for="textarea">Textarea:</label>
+        <textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
+</div>
+<div data-role="fieldcontain">
+        <label for="slider">Input slider:</label>
+        <input type="range" name="slider" id="slider" value="0" min="0" max="100"  />
+</div>
+<fieldset class="ui-grid-a">
+                <div class="ui-block-a"><button type="submit" data-theme="c">Cancel</button></div>
+                <div class="ui-block-b"><button type="submit" data-theme="b">Submit</button></div>
+</fieldset>
+</form>
+</div><!-- /section 3 -->
+
+    </div><!-- data-role="content" -->
+    <div data-role="collapsible" data-collapsed="true">
+<h3>Old List: Spools</h3>
+<div id="game" class="gamelist"></div>
+    </div>
+<div data-role="footer" class="ui-bar">
+<a href="index.html" data-role="button" data-icon="delete">Remove</a>
+<a href="index.html" data-role="button" data-icon="plus">Add</a>
+<a href="index.html" data-role="button" data-icon="arrow-u">Up</a>
+<a href="index.html" data-role="button" data-icon="arrow-d">Down</a>
+</div>
+
+<script type='text/javascript' src='../steal/steal.js?spools,development'></script>
+<!--<script type='text/javascript' src='../steal/steal.production.js?spools'></script>
+-->
+</body>
+</html>

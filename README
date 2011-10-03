@@ -1299,13 +1299,47 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git push origin joemod
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/joemod
 <<<<<<<<<<<<<<<<<
->>>>>STEP x - TEST
+>>>>>STEP 15 - TEST
 <<<<<<<<<<<<<<<<<
 Browse - http://js.javascriptmvc310/spools/spools.html
 AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
 SUCCESS>>
 ?FAILURE>>
 ??WHAT?>>
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 16 - Quick jQuery Mobile example
+<<<<<<<<<<<<<<<<<
+--Testing jQuery Mobile style
+--Couldn't easily attach jQuerymobile to the javascriptmvc so I just did some examples.
+--Added a jqmobile directory and messed around..
+C:\Users\ChrisT\workspace\javascriptmvc310>git branch jqmobile
+C:\Users\ChrisT\workspace\javascriptmvc310>git branch
+* joemod
+  jqmobile
+  master
+  spools
+C:\Users\ChrisT\workspace\javascriptmvc310>git checkout jqmobile
+M       README
+Switched to branch 'jqmobile'
+C:\Users\ChrisT\workspace\javascriptmvc310>
+--Lets commit this
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "jqmobile stuff"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin jqmobile
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/jqmobile
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 16 - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc310/spools/spools.html
+AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
+EXTERNAL:
+Browse - http://javascriptmvc310.xplanb.net/spools/jqmobile/spoolspartyplay.html
+SUCCESS>>
+?FAILURE>>
+??WHAT?>>
+
 
 ==QUICK NOTES==
 n terms of making mobile dev easier, there's a ton of stuff:
@@ -1324,7 +1358,7 @@ http://stackoverflow.com/questions/90178/make-a-div-fill-the-remaining-screen-sp
 
 http://s3.amazonaws.com/jupiter_images/resources/1/javascriptmvc_cheatsheet.pdf
 KILL CACHE: http://forum.javascriptmvc.com/topic/ejs-templates-are-always-cached
-FIREFOX - about:config Type ‘cache’ in the search bar, and look for network.http.use-cache, and double click it to set it to false.
+FIREFOX - about:config Type ï¿½cacheï¿½ in the search bar, and look for network.http.use-cache, and double click it to set it to false.
 TEST:
 FuncUnit API: http://javascriptmvc.com/docs.html#&who=FuncUnit
 FuncUnit on Sauce: http://forum.javascriptmvc.com/#Topic/32525000000389015
