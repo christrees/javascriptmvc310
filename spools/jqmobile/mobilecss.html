@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile Docs - Navbar</title>
+	<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.css" />
+	<!-- <link rel="stylesheet" href="mobilecss.css"/> -->
+	<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+        <!-- <script src="custom.js"></script> -->
+        <script>
+        $(document).bind('mobileinit',function(){
+		$.mobile.selectmenu.prototype.options.nativeMenu = false;
+	});
+        </script>
+	<script src="http://code.jquery.com/mobile/1.0b3/jquery.mobile-1.0b3.min.js"></script>
+</head>
+<body>
+<!-- Start of first page: #pg-1 Join -->
+<div data-role="page" id="pg-1" data-theme="a">
+<div data-role="navbar"><ul>
+<li><a href="#pg-1">Join</a></li>
+<li><a href="#pg-2">New</a></li>
+<li><a href="#pg-3">Spools</a></li>
+</ul></div><!-- /navbar -->
+<div data-role="content" id="ctone" data-theme="a">
+	<div class="content-primary" data-theme="a">
+		<ul data-role="listview" data-theme="a">
+			<li><a href="index.html">
+				<img src="resources/CoinIcon.png" />
+				<h3>Joe vs Volcano</h3>
+				<p>Official: Shayne</p>
+			</a></li>
+			<li><a href="index.html">
+				<img src="resources/CoinIcon.png" />
+				<h3>Joe vs Volcano</h3>
+				<p>Official: Shayne</p>
+			</a></li>
+			<li><a href="index.html">
+				<img src="resources/CoinIcon.png" />
+				<h3>Joe vs Volcano</h3>
+				<p>Official: Shayne</p>
+			</a></li>
+			<li><a href="index.html">
+				<img src="resources/CoinIcon.png" />
+				<h3>Joe vs Volcano</h3>
+				<p>Official: Shayne</p>
+			</a></li>
+			<li><a href="index.html">
+				<img src="resources/CoinIcon.png" />
+				<h3>Joe vs Volcano</h3>
+				<p>Official: Shayne</p>
+			</a></li>
+		</ul>
+                </div><!-- /content-primary -->
+</div><!-- /content -->
+</div><!-- /page one -->
+
+
+<!-- Start of second page: #pg-2 New -->
+<div data-role="page" id="pg-2" data-theme="a">
+<div data-role="navbar"><ul>
+<li><a href="#pg-1">Join</a></li>
+<li><a href="#pg-2">New</a></li>
+<li><a href="#pg-3">Spools</a></li>
+</ul></div><!-- /navbar -->
+<div data-role="content" id="cttwo" data-theme="a">
+    <div data-role="fieldcontain">
+    <label for="name">Text Input:</label>
+    <input type="text" name="name" id="name" value=""  />
+    </div><!-- /fieldcontain -->
+    <div data-role="fieldcontain">
+	<label for="select-choice-1" class="select">Game Type:</label>
+	<select name="select-choice-1" id="select-choice-1" data-native-menu="false">
+		<option value="football">Football</option>
+		<option value="baseball">Baseball</option>
+	</select>
+    </div><!-- /fieldcontain -->
+    <div data-role="fieldcontain">
+    <label for="stuff">Stuff Input:</label>
+    <input type="text" name="stuff" id="stuff" value=""  />
+    </div><!-- /fieldcontain -->
+</div><!-- /content -->
+</div><!-- /page two -->
+
+
+<!-- Start of third page: #pg-3 Spools -->
+<div data-role="page" id="pg-3"  data-theme="a">
+<div data-role="navbar"><ul>
+<li><a href="#pg-1">Join</a></li>
+<li><a href="#pg-2">New</a></li>
+<li><a href="#pg-3">Spools</a></li>
+</ul></div><!-- /navbar -->
+<div data-role="content" id="ctthree" data-theme="a">
+    <h2>Page Three</h2>
+</div><!-- /content -->
+<div data-role="content" id="ctthreeb" data-theme="a">
+    <div class="ui-grid-d">
+	<div class="ui-block-a">Block A</div>
+	<div class="ui-block-b">Block B</div>
+	<div class="ui-block-c">Block C</div>
+	<div class="ui-block-d">Block D</div>
+	<div class="ui-block-e">Block E</div>
+	<div class="ui-block-a">Block A</div>
+	<div class="ui-block-b">Block B</div>
+	<div class="ui-block-c">Block C</div>
+	<div class="ui-block-d">Block D</div>
+	<div class="ui-block-e">Block E</div>
+	<div class="ui-block-a">Block A</div>
+	<div class="ui-block-b">Block B</div>
+	<div class="ui-block-c">Block C</div>
+	<div class="ui-block-d">Block D</div>
+	<div class="ui-block-e">Block E</div>
+	<div class="ui-block-a">Block A</div>
+	<div class="ui-block-b">Block B</div>
+	<div class="ui-block-c">Block C</div>
+	<div class="ui-block-d">Block D</div>
+	<div class="ui-block-e">Block E</div>
+	<div class="ui-block-a">Block A</div>
+	<div class="ui-block-b">Block B</div>
+	<div class="ui-block-c">Block C</div>
+	<div class="ui-block-d">Block D</div>
+	<div class="ui-block-e">Block E</div>
+</div><!-- /grid-b -->
+</div><!-- /content -->
+</div><!-- /page popup -->
+
+</body>
+</html>

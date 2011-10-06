@@ -1339,7 +1339,36 @@ Browse - http://javascriptmvc310.xplanb.net/spools/jqmobile/spoolspartyplay.html
 SUCCESS>>
 ?FAILURE>>
 ??WHAT?>>
-
+<<<<<<<<<<<<<<<<<
+>>>>>STEP 17 - Joe jQuery Mobile Day 1
+<<<<<<<<<<<<<<<<<
+--Joe and I work on a jQuery Mobile version
+http://js.javascriptmvc310/spools/jqmobile/joingame.html
+http://js.javascriptmvc310/spools/jqmobile/newgame.html
+http://js.javascriptmvc310/spools/jqmobile/mygames.html
+http://js.javascriptmvc310/spools/jqmobile/uidspools.html
+http://js.javascriptmvc310/spools/jqmobile/winningpick.html
+--Got brain dead on last one...
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "Day 1 - Joe work"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin jqmobile
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/jqmobile
+http://javascriptmvc310.xplanb.net/spools/jqmobile/
+http://javascriptmvc310.xplanb.net/spools/jqmobile/joingame.html
+http://javascriptmvc310.xplanb.net/spools/jqmobile/newgame.html
+http://javascriptmvc310.xplanb.net/spools/jqmobile/mygames.html
+http://javascriptmvc310.xplanb.net/spools/jqmobile/uidspools.html
+http://javascriptmvc310.xplanb.net/spools/jqmobile/winningpick.html
+<<<<<<<<<<<<<<<<<
+>>>>>STEP x - TEST
+<<<<<<<<<<<<<<<<<
+Browse - http://js.javascriptmvc310/spools/spools.html
+AUTOTEST: http://js.javascriptmvc310/spools/funcunit.html
+SUCCESS>>
+?FAILURE>>
+??WHAT?>>
 
 ==QUICK NOTES==
 n terms of making mobile dev easier, there's a ton of stuff:
