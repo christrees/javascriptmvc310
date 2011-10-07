@@ -1375,6 +1375,12 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "Day 2 - Chris fixes 2 
 C:\Users\ChrisT\workspace\javascriptmvc310>git push origin jqmobile
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/jqmobile
+--Fixed some more stuff...
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "Day 2 - Chris fixes 3 before Joe work"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin jqmobile
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/jqmobile
 <<<<<<<<<<<<<<<<<
 >>>>>STEP x - TEST
 <<<<<<<<<<<<<<<<<
