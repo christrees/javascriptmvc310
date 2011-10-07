@@ -1355,6 +1355,13 @@ C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "Day 1 - Joe work"
 C:\Users\ChrisT\workspace\javascriptmvc310>git push origin jqmobile
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
 [cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/jqmobile
+--Fix some basic stuff
+--SAVE THIS README
+C:\Users\ChrisT\workspace\javascriptmvc310>git add .
+C:\Users\ChrisT\workspace\javascriptmvc310>git commit -m "Day 2 - Chris fixes before Joe work"
+C:\Users\ChrisT\workspace\javascriptmvc310>git push origin jqmobile
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git fetch
+[cat@gator1209 ~/public_html/javascriptmvc310]$ git checkout remotes/origin/jqmobile
 http://javascriptmvc310.xplanb.net/spools/jqmobile/
 http://javascriptmvc310.xplanb.net/spools/jqmobile/joingame.html
 http://javascriptmvc310.xplanb.net/spools/jqmobile/newgame.html
